@@ -1,0 +1,721 @@
+' Gambas class file
+
+Private ColeccionElemento As New Collection
+
+Private moneda As String = Settings["SimboloMoneda"]
+
+Private listaClaves As New String[]
+
+Public Sub Form_Open()
+  
+  ModuleVarios.cargaEmpleadoCombobox(ComboBoxEmpleado)
+  ModuleVarios.cargaClienteCombobox(ComboBoxCliente)
+  
+  DateBoxDesde.value = Now
+  DateBoxHasta.value = Now
+  
+  DateBoxDesdeCliente.value = Now
+  DateBoxHastaCliente.value = Now
+  
+End
+
+Public Sub ButtonConsultaEmpleado_Click()
+  
+  If ComboBoxEmpleado.index = -1 Then
+    Message.Info(("Elija un empleado"))
+    Return
+    
+  Endif
+  
+  If DateDiff(DateBoxDesde.value, DateBoxHasta.value, gb.day) >= 0 Then
+    
+    consultaEntre(DateBoxDesde.value, DateBoxHasta.value, ComboBoxEmpleado.text, ComboBoxEmpleado.tag[ComboBoxEmpleado.index])
+    
+  Else
+    Message.Info(("No puedo mostrar ese periodo de fechas"))
+  Endif
+  
+  Me.Close()
+  
+End
+
+'-------------------------------
+'CONSULTA DATOS DE UN EMPLEADO
+'-------------------------------
+Public Sub consultaEntre(f_inicio As Date, f_fin As Date, nombre As String, id As Integer)
+  
+  Dim numeroRecibos As Integer
+  Dim consulta As String
+  Dim importes As Single
+  Dim texto As String
+  Dim mser As New ServicioDAO
+  Dim mpro As New ProductoDAO
+  Dim mcup As New CuponDAO
+  
+  Dim idservicio As Integer
+  Dim idproducto As Integer
+  Dim idcupon As Integer
+  
+  Dim contenidoServicio As String
+  Dim contenidoCupon As String
+  Dim contenidoProducto As String
+  
+  Dim hresult As Result
+  Dim tablaRecibos As String
+  Dim manejarRecibos As New ReciboDAO
+  Dim a As Integer
+  Dim datosempleado As String
+  ' Dim idservicio As String
+  
+  ColeccionElemento.Clear()
+  
+  datosempleado = gb.CrLf & gb.CrLf & "<div ALIGN=center><font size=4>" & ("Informe de Empleado") & "</font></div><br>"
+  
+  ''TODO: Revisar listados de impresion, convertirlo en TABLE
+  datosempleado &= "<table>"
+  datosempleado &= "<tr>"
+  datosempleado &= "<td>" & ("Empleado") & ":" & "</td><td>" & nombre & "</td>" & gb.Crlf
+  datosempleado &= "</tr>"
+  
+  datosempleado &= "<tr>"
+  datosempleado &= "<td>" & ("idempleado") & ":" & "</td><td>" & id & "</td>" & gb.Crlf
+  datosempleado &= "</tr>"
+  datosempleado &= "</table>"
+  
+  datosempleado &= "<br>"
+  datosempleado &= "--------------" & ("Periodo") & "-----------------" 
+  datosempleado &= "<table>"
+  datosempleado &= "<tr>"
+  datosempleado &= "<td>" & ("fecha inicial") & ":" & "</td><td>" & Str$(f_inicio) & gb.Crlf
+  datosempleado &= "</tr>"
+  
+  datosempleado &= "<tr>"
+  datosempleado &= "<td>" & ("fecha final") & ":" & "</td><td>" & Str$(f_fin) & gb.Crlf
+  datosempleado &= "</tr>"
+  
+  datosempleado &= "</table>"
+  
+  datosempleado &= "<br>"
+  datosempleado &= "--------------" & ("Recibos") & "-----------------" 
+  'lista de recibos que tiene ese nombre, y estan entre las fecha
+  '' consulta de recibos de empleado concreto empleado entre fechas
+  ''
+  consulta = Subst$("Select * From recibo WHERE idempleado Like '&1' and (fecha BETWEEN '&2' and '&3') ", ComboBoxEmpleado.Tag[ComboBoxEmpleado.index], Format$(f_inicio, "yyyy-mm-dd hh:nn:ss"), Format$(f_fin, "yyyy-mm-dd hh:nn:ss"))
+  Print consulta
+  hresult = manejarRecibos.sql(consulta)
+  
+  tablaRecibos &= "<table border=1>"
+  tablaRecibos &= "<tr  bgcolor=\"C4C4C4\">" & "<td>" & " " & ("Id de Recibo") & " " & "</td><td>" & ("Cliente") & "</td><td>" & ("Importe") & " " & moneda & " " & "</td><td>" & ("IdLineaRecibo") & "</td></tr>"
+  
+  While hresult.Available
+    tablaRecibos &= "<tr>" & "<td>" & hresult["id"] & " " & "</td>"
+    
+    tablaRecibos &= "<td>" & nombreCliente(hresult["idcliente"]) & " " & "</td>"
+    tablaRecibos &= "<td align=right>" & Format$(hresult["importe"], "#.#0") & "</td>"
+    tablaRecibos &= "<td>" & hresult["idlinearecibo"] & "</td></tr>"
+    contenidoelementos(hresult["idlinearecibo"])
+    importes += hresult["importe"]
+    numeroRecibos += 1
+    hresult.MoveNext
+  Wend
+  tablaRecibos &= "</table>"
+  
+  tablaRecibos &= "<table>"
+  tablaRecibos &= "<tr>"
+  tablaRecibos &= "<td>" & ("Importe Total") & ":" & "</td><td align=right>" & Format$(importes, "#.#0") & " " & moneda & "</td>" & gb.CrLf
+  tablaRecibos &= "</tr>"
+  tablaRecibos &= "<tr>"
+  tablaRecibos &= "<td>" & ("Número Total de Recibos") & "</td><td align=right>" & Format$(numeroRecibos, ",#") & "</td>" & gb.CrLf 
+  tablaRecibos &= "</tr>"
+  tablaRecibos &= "</table>"  
+  'repaso la lista de servicios, productos, cupones
+  ' ' contenidoServicio = "-----------" & ("Servicios") & "--------------" & gb.CrLf
+  ' ' For a = 0 To listaClaves.count - 1
+  ' '   If Left$(listaClaves[a], 1) = 1 Then
+  ' '     'servicios
+  ' '     idservicio = Val(Right(listaClaves[a], Len(listaClaves[a]) - 2))
+  ' '     hresult = mser.BuscarIgualId(idservicio)
+  ' '     While hresult.Available
+  ' '       contenidoServicio &= hresult["nombre"] & ", " & ("cantidad") & ": " & Str$(ColeccionElemento[listaClaves[a]]) & gb.CrLf
+  ' '       hresult.MoveNext
+  ' '     Wend
+  ' '   Endif
+  ' '   
+  ' ' Next
+  ' ' '
+  contenidoProducto = "<br>"
+  contenidoProducto &= "-----------" & ("Producto") & "--------------" 
+  contenidoProducto &= "<table border=2>"
+  
+  contenidoProducto &= "<tr  bgcolor=\"C4C4C4\">"
+  
+  contenidoProducto &= "<td>" & ("Código") & "</td><td>" & ("Nombre") & "</td><td>" & ("Cantidad") & "</td> "
+  
+  contenidoProducto &= "</tr>"
+  
+  For a = 0 To listaClaves.count - 1
+    If Left$(listaClaves[a], 1) = 2 Then
+      'servicios
+      idproducto = Val(Right(listaClaves[a], Len(listaClaves[a]) - 2))
+      hresult = mpro.BuscarIgualId(idproducto)
+      
+      While hresult.Available
+        contenidoProducto &= "<tr>"
+        contenidoProducto &= "<td>" & hresult["codigo"] & "</td><td>" & hresult["nombre"] & "</td><td align=right>" & Str$(ColeccionElemento[listaClaves[a]]) & "</td>" & gb.CrLf
+        contenidoProducto &= "</tr>"
+        hresult.MoveNext
+      Wend
+      
+    Endif
+    
+  Next  '
+  
+  contenidoProducto &= "</table>"
+  
+  ' ' contenidoCupon = "-----------" & ("Cupones") & "--------------" & gb.CrLf
+  ' ' For a = 0 To listaClaves.count - 1
+  ' '   If Left$(listaClaves[a], 1) = 3 Then
+  ' '     'servicios
+  ' '     idcupon = Val(Right(listaClaves[a], Len(listaClaves[a]) - 2))
+  ' '     hresult = mcup.BuscarIgualId(idcupon)
+  ' '     While hresult.Available
+  ' '       contenidoCupon &= hresult["nombre"] & ", " & ("cantidad") & ": " & Str$(ColeccionElemento[listaClaves[a]]) & gb.CrLf
+  ' '       hresult.MoveNext
+  ' '     Wend
+  ' '   Endif
+  
+  ' ' Next  '
+  
+  'crear una pagina web con los datos..
+  
+  datosempleado = Replace$(datosempleado, gb.CrLf, "<br>")
+  tablaRecibos = Replace$(tablaRecibos, gb.CrLf, "<br>")
+  ' '   contenidoServicio = Replace$(contenidoServicio, gb.CrLf, "<br>")
+  contenidoProducto = Replace$(contenidoProducto, gb.CrLf, "<br>")
+  ' ' contenidoCupon = Replace$(contenidoCupon, gb.CrLf, "<br>")
+  
+  texto = datosempleado & tablaRecibos & contenidoServicio & contenidoProducto & contenidoCupon
+  
+  ModuleVarios.imprirmirInforme(texto, nombre & Str$(f_inicio) & Str$(f_fin))
+  
+End
+'------------------------
+' Informe Cliente
+'------------------------
+
+Public Sub consultaEntreCliente(f_inicio As Date, f_fin As Date, nombre As String, id As Integer)
+  
+  Dim numeroRecibos As Integer
+  Dim consulta As String
+  Dim importes As Single
+  Dim texto As String
+  Dim mser As New ServicioDAO
+  Dim mpro As New ProductoDAO
+  Dim mcup As New CuponDAO
+  
+  Dim idservicio As Integer
+  Dim idproducto As Integer
+  Dim idcupon As Integer
+  
+  Dim contenidoServicio As String
+  Dim contenidoCupon As String
+  Dim contenidoProducto As String
+  
+  Dim hresult As Result
+  Dim tablaRecibos As String
+  Dim manejarRecibos As New ReciboDAO
+  Dim a As Integer
+  Dim datosempleado As String
+  ' Dim idservicio As String
+  
+  ColeccionElemento.Clear()
+  
+  datosempleado = gb.CrLf & gb.CrLf & "<div ALIGN=center><font size=4>" & ("Informe de Cliente") & "</font></div><br>"
+  datosempleado &= "<table>"
+  datosempleado &= "<tr>"
+  datosempleado &= "<td>" & ("Cliente") & ":    " & "</td><td>" & "<b>" & nombre & "</b>" & "</td>" & gb.Crlf
+  datosempleado &= "</tr>"
+  
+  datosempleado &= "<tr>"
+  datosempleado &= "<td>" & ("idcliente") & ":  " & "</td><td>" & id & "<td>" & gb.Crlf
+  datosempleado &= "</tr>"
+  datosempleado &= "</table>"
+  
+  datosempleado &= "<br>"
+  datosempleado &= "-----------------" & ("Periodo") & "-----------------" 
+  datosempleado &= "<table>"
+  
+  datosempleado &= "<tr>"
+  datosempleado &= "<td>" & ("fecha inicial") & ":  " & "</td><td>" & Str$(f_inicio) & "</td>" & gb.Crlf
+  datosempleado &= "</tr>"
+  
+  datosempleado &= "<tr>"
+  datosempleado &= "<td>" & ("fecha final") & ":    " & "</td><td>" & Str$(f_fin) & "</td>" & gb.Crlf
+  datosempleado &= "</tr>"
+  
+  datosempleado &= "</table>"
+  datosempleado &= "<br>"
+  datosempleado &= "-----------------" & ("Recibos") & "-----------------" 
+  'lista de recibos que tiene ese nombre, y estan entre las fecha
+  '' consulta de recibos de empleado concreto empleado entre fechas
+  ''
+  consulta = Subst$("Select * From recibo WHERE idcliente Like '&1' and (fecha BETWEEN '&2' and '&3') ", ComboBoxCliente.Tag[ComboBoxCliente.index], Format$(f_inicio, "yyyy-mm-dd hh:nn:ss"), Format$(f_fin, "yyyy-mm-dd hh:nn:ss"))
+  Print consulta
+  hresult = manejarRecibos.sql(consulta)
+  
+  tablaRecibos = "<table border=1>"
+  tablaRecibos &= "<tr  bgcolor=\"C4C4C4\">" & "<td>" & (" Id de Recibo ") & "</td><td>" & ("Empleado") & "</td><td>" & ("Importe") & " " & moneda & " " & "</td><td>" & ("IdLineaRecibo") & "</td></tr>"
+  
+  While hresult.Available
+    tablaRecibos &= "<tr>" & "<td>" & hresult["id"] & " " & "</td>"
+    
+    tablaRecibos &= "<td>" & nombreEmpleado(hresult["idempleado"]) & " " & "</td>"
+    tablaRecibos &= "<td align=right>" & Format$(hresult["importe"], "#.#0") & "</td>"
+    tablaRecibos &= "<td>" & hresult["idlinearecibo"] & "</td></tr>"
+    contenidoelementos(hresult["idlinearecibo"])
+    importes += hresult["importe"]
+    numeroRecibos += 1
+    hresult.MoveNext
+  Wend
+  tablaRecibos &= "</table>"
+  
+  tablaRecibos &= "<table>"
+  tablaRecibos &= "<tr>"
+  tablaRecibos &= "<td>" & ("Importe Total") & ":" & "</td><td align=right>" & Format$(importes, "#.#0") & " " & moneda & " " & "</td>" & gb.CrLf
+  tablaRecibos &= "</tr>"
+  
+  tablaRecibos &= "<tr>"
+  tablaRecibos &= "<td>" & ("Número Total de Recibos") & ":" & "</td><td align=right>" & "</b> " & Format$(numeroRecibos, ",#") & " " & "</td>" & gb.CrLf
+  tablaRecibos &= "</tr>"
+  
+  tablaRecibos &= "</table>"
+  'repaso la lista de servicios, productos, cupones
+  ' ' contenidoServicio = "-----------" & ("Servicios") & "--------------" & gb.CrLf
+  ' ' For a = 0 To listaClaves.count - 1
+  ' '   If Left$(listaClaves[a], 1) = 1 Then
+  ' '     'servicios
+  ' '     idservicio = Val(Right(listaClaves[a], Len(listaClaves[a]) - 2))
+  ' '     hresult = mser.BuscarIgualId(idservicio)
+  ' '     While hresult.Available
+  ' '       contenidoServicio &= hresult["nombre"] & ", " & ("cantidad") & ": " & Str$(ColeccionElemento[listaClaves[a]]) & gb.CrLf
+  ' '       hresult.MoveNext
+  ' '     Wend
+  ' '   Endif
+  ' '   
+  ' ' Next
+  contenidoProducto = "<br>"
+  contenidoProducto &= "-----------" & ("Producto") & "--------------" 
+  
+  contenidoProducto &= "<table border=1>"
+  
+  contenidoProducto &= "<tr  bgcolor=\"C4C4C4\">"
+  
+  contenidoProducto &= "<td>" & ("Código") & "</td><td>" & ("Nombre") & "</td><td>" & ("Cantidad") & " " & moneda & " " & "</td> "
+  
+  contenidoProducto &= "</tr>"
+  
+  For a = 0 To listaClaves.count - 1
+    If Left$(listaClaves[a], 1) = 2 Then
+      'servicios
+      idproducto = Val(Right(listaClaves[a], Len(listaClaves[a]) - 2))
+      hresult = mpro.BuscarIgualId(idproducto)
+      
+      While hresult.Available
+        contenidoProducto &= "<tr>"
+        
+        contenidoProducto &= "<td>" & hresult["codigo"] & "</td><td>" & hresult["nombre"] & "</td><td align=right>" & Str$(ColeccionElemento[listaClaves[a]]) & "</td>" & gb.CrLf
+        contenidoProducto &= "</tr>"
+        hresult.MoveNext
+      Wend
+      
+    Endif
+    
+  Next  '
+  contenidoProducto &= "</table>"
+  ' ' contenidoCupon = "-----------" & ("Cupones") & "--------------" & gb.CrLf
+  ' ' For a = 0 To listaClaves.count - 1
+  ' '   If Left$(listaClaves[a], 1) = 3 Then
+  ' '     'servicios
+  ' '     idcupon = Val(Right(listaClaves[a], Len(listaClaves[a]) - 2))
+  ' '     hresult = mcup.BuscarIgualId(idcupon)
+  ' '     While hresult.Available
+  ' '       contenidoCupon &= hresult["nombre"] & ", " & ("cantidad") & ": " & Str$(ColeccionElemento[listaClaves[a]]) & gb.CrLf
+  ' '       hresult.MoveNext
+  ' '     Wend
+  ' '   Endif
+  ' '   
+  ' ' Next  '
+  
+  'crear una pagina web con los datos..
+  
+  datosempleado = Replace$(datosempleado, gb.CrLf, "<br>")
+  tablaRecibos = Replace$(tablaRecibos, gb.CrLf, "<br>")
+  ' '   contenidoServicio = Replace$(contenidoServicio, gb.CrLf, "<br>")
+  contenidoProducto = Replace$(contenidoProducto, gb.CrLf, "<br>")
+  ' '   contenidoCupon = Replace$(contenidoCupon, gb.CrLf, "<br>")
+  
+  texto = datosempleado & tablaRecibos & contenidoServicio & contenidoProducto & contenidoCupon
+  
+  ModuleVarios.imprirmirInforme(texto, nombre & Str$(f_inicio) & Str$(f_fin))
+  
+End
+
+Public Function nombreCliente(idcliente As Integer) As String
+  
+  Dim manejadorClienteDatos As New ClienteDAO
+  Dim hresultado2 As Result
+  
+  hresultado2 = manejadorClienteDatos.BuscarIgualId(idcliente)
+  Return hresultado2["nombre"]
+  
+End
+
+Public Function nombreEmpleado(idEmpleado As Integer) As String
+  
+  Dim manejadorEmpleadoDatos As New EmpleadoDAO
+  Dim hresultado2 As Result
+  
+  hresultado2 = manejadorEmpleadoDatos.BuscarIgualId(idEmpleado)
+  
+  Return hresultado2["nombre"]
+  
+End
+
+Public Sub contenidoelementos(idlinea As String)
+  
+  Dim cantidaAntigua As Single
+  Dim cantidadNueva As Single
+  Dim codigo As String
+  Dim hresult As Result
+  Dim mli As New LineaReciboAdaptadaDAO
+  
+  hresult = mli.BuscarIgualIdlinearecibo(idlinea)
+  cantidaAntigua = 0
+  
+  While hresult.Available
+    
+    codigo = hresult["tabla"] & "|" & hresult["idproducto"]
+    
+    If ColeccionElemento.Exist(codigo) Then
+      cantidaAntigua = ColeccionElemento[codigo]
+      cantidadNueva = cantidaAntigua + hresult["cantidad"]
+      ColeccionElemento.Remove(codigo)
+      
+      ColeccionElemento.Add(cantidadNueva, codigo)
+      
+    Else
+      ColeccionElemento.Add(hresult["cantidad"], codigo)
+      listaClaves.Add(codigo)
+    Endif
+    
+    hresult.MoveNext
+  Wend
+  
+End
+
+'-------------------------
+'BOTON SALIR
+'-------------------------
+Public Sub ButtonSalir_Click()
+  
+  Me.Close()
+  
+End
+
+Public Sub ButtonConsultaCliente_Click()
+  
+  If ComboBoxCliente.index = -1 Then
+    Message.Info(("Elija un cliente"))
+    Return
+    
+  Endif
+  
+  If DateDiff(DateBoxDesdeCliente.value, DateBoxHastaCliente.value, gb.day) >= 0 Then
+    consultaEntreCliente(DateBoxDesdeCliente.value, DateBoxHastaCliente.value, ComboBoxCliente.text, ComboBoxCliente.tag[ComboBoxCliente.index])
+  Else
+    Message.Info(("No puedo mostrar ese periodo de fechas"))
+  Endif
+  Me.Close()
+  
+End
+'--------------------------------------------------------------------------------------------
+' INVENTARIO E INVENTARIO VALORADO
+'--------------------------------------------------------------------------------------------
+
+Public Sub ButtonInventario_Click()
+  
+  Dim informe As String
+  Dim conectar As New Conexion
+  Dim hresult As Result
+  
+  'comprobar que existen entradas de todos los productos
+  comprobarTablasEntradaRoboRoturaSalidaCREAR()
+  'nos conectamos
+  conectar.Conexion()
+  
+  hresult = conectar.hconn.exec("SELECT * FROM INVENTARIO")
+  
+  INFORME = "<br><br><br>" & "<div ALIGN=center><H1>" & ("Informe de Inventario") & "</H1></div><br>"
+  INFORME &= "<div ALIGN=center>" & Upper$(("Fecha informe: ") & Format(Now, "dddd dd/mmmm/yyyy")) & "</div><br>"
+  INFORME &= "<table border=2>"
+  informe &= "<tr  bgcolor=\"C4C4C4\">" & "<td>" & ("IdProd") & "</td><td>" & (" Nombre Producto ") & "</td><td>" & ("Entrada") & "</td><td>" & ("Venta") & "</td>"
+  informe &= "<td>" & ("Rotura") & "</td><td>" & ("Robo") & "</td><td>" & ("Existencia Almacen") & "</td>"
+  informe &= "</tr>"
+  
+  While hresult.Available
+    informe &= "<tr>" & "<td>" & hresult["codigo"] & " " & "</td>"
+    informe &= "<td>" & Repite(".", hresult["nombre"], 60) & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["ENTRADA"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["VENTA"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["ROTURA"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["ROBO"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["EXISTENCIA_ALMACEN"] & " " & "</td>"
+    informe &= "</tr>"
+    hresult.MoveNext
+  Wend
+  
+  ModuleVarios.imprirmirInforme(informe, ("INVENTARIO"))
+  RadioButtonPdfInventario.value = True
+  comprobarTablasEntradaRoboRoturaSalidaBorrar()
+  Me.Close()
+  
+End
+
+Public Function Repite(caracter As String, nombre As String, numero As Integer) As String
+  
+  Dim a As Integer
+  Dim cadena As String
+  
+  For a = 0 To numero - 1
+    cadena &= caracter
+    
+  Next
+  
+  Return Mid$(nombre & cadena, 1, numero)
+  
+End
+'----------------------------------------
+
+Public Sub comprobarTablasEntradaRoboRoturaSalidaCREAR()
+  
+  Dim datos As New LineaAlmacenVO
+  Dim manejadorlineaAlmacen As New LineaAlmacenAdaptadaDAO
+  Dim manejadorproducto As New ProductoDAO
+  Dim hresult As Result
+  Dim manejadorlineaRecibo As New LineaReciboAdaptadaDAO
+  Dim lineaReciboTmp As New LineareciboVO
+  'creando para lista de entrada/robo/rotura
+  hresult = manejadorproducto.contenido()
+  
+  While hresult.Available
+    datos.idProducto = hresult["id"]
+    datos.cantidad = 0
+    datos.fecha = Date(2000, 1, 1)
+    datos.tipo = "ENTRADA"
+    manejadorlineaAlmacen.registrar(datos)
+    datos.tipo = "ROBO"
+    manejadorlineaAlmacen.registrar(datos)
+    datos.tipo = "ROTURA"
+    manejadorlineaAlmacen.registrar(datos)
+    
+    'nota añadir tambien salida =0
+    
+    lineaReciboTmp.cantidad = 0
+    lineaReciboTmp.idproducto = hresult["id"]
+    lineaReciboTmp.tabla = 2 'tabla de productos
+    manejadorlineaRecibo.registrar(lineaReciboTmp)
+    '----------------
+    hresult.MoveNext
+  Wend
+  
+End
+
+Public Sub comprobarTablasEntradaRoboRoturaSalidaBorrar()
+  '' recordatorio...REVISAR BORRADO DE LINEAS DE ALMACEN
+  
+  Dim manejadorlineaAlmacen As New LineaAlmacenAdaptadaDAO
+  Dim manejadorlineaRecibo As New LineaReciboAdaptadaDAO
+  
+  manejadorlineaAlmacen.BorrarCantidad(0)
+  'nota borrar tambien salida =0
+  manejadorlineaRecibo.BorrarCantidad(0)
+  
+End
+
+' ---------------------------------------------
+' inventario valorado
+' ---------------------------------------------
+Public Sub ButtonInventarioValorado_Click()
+  
+  Dim informe As String
+  Dim conectar As New Conexion
+  Dim hresult As Result
+  
+  Dim total_almacen As Float
+  Dim total_entrada As Float
+  Dim total_robo As Float
+  Dim total_rotura As Float
+  Dim total_venta As Float
+  
+  'comprobar que existen entradas de todos los productos
+  comprobarTablasEntradaRoboRoturaSalidaCREAR()
+  'nos conectamos
+  conectar.Conexion()
+  
+  hresult = conectar.hconn.exec("SELECT * FROM INVENTARIOVALORADO")
+  
+  INFORME = "<br><br><br>" & "<div ALIGN=center><H1>" & ("Informe de Inventario") & "</H1></div><br>"
+  INFORME &= "<div ALIGN=center>" & Upper$(("Fecha informe: ") & Format(Now, "dddd dd/mmmm/yyyy")) & "</div><br>"
+  INFORME &= "<table border=2>"
+  informe &= "<tr  bgcolor=\"C4C4C4\">" & "<td align=\"center\">" & ("IdProd") & "</td><td>" & (" Nombre Producto ") & "</td>"
+  informe &= "<td align=\"center\"> " & ("Precio Unitario") & "<br>" & " " & moneda & " " & " </tb>"
+  
+  informe &= "<td align=\"center\">" & ("Entrada") & "</td>"
+  informe &= "<td align=\"center\">" & ("Coste Entrada") & "<br>" & " " & moneda & " " & "</td>"
+  informe &= "<td align=\"center\">" & ("Venta") & "</td>"
+  informe &= "<td align=\"center\">" & ("Coste Venta") & "<br>" & " " & moneda & " " & "</td>"
+  informe &= "<td align=\"center\">" & ("Rotura") & "</td>"
+  informe &= "<td align=\"center\">" & ("Coste Rotura") & "<br>" & " " & moneda & " " & "</td>"
+  
+  informe &= "<td align=\"center\">" & ("Robo") & "</td>"
+  informe &= "<td align=\"center\">" & ("Coste Robo") & "<br>" & " " & moneda & " " & "</td>"
+  
+  informe &= "<td align=\"center\">" & ("Existencia Almacen") & "</td>"
+  informe &= "<td align=\"center\">" & ("Coste Almacen") & "<br>" & " " & moneda & " " & "</td>"
+  informe &= "</tr>"
+  
+  While hresult.Available
+    informe &= "<tr>" & "<td>" & hresult["codigo"] & " " & "</td>"
+    informe &= "<td>" & Repite(".", hresult["nombre"], 50) & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["precio"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["ENTRADA"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & Format(hresult["COSTE_ENTRADA"], "#.#0") & " " & "</td>"
+    Try total_entrada += Val(Replace(hresult["COSTE_ENTRADA"], ".", ","))
+    informe &= "<td align=\"right\">" & hresult["VENTA"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & Format(hresult["COSTE_VENTA"], "#.#0") & " " & "</td>"
+    total_venta += Val(Replace(hresult["COSTE_VENTA"], ".", ","))
+    informe &= "<td align=\"right\">" & hresult["ROTURA"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & Format(hresult["COSTE_ROTURA"], "#.#0") & " " & "</td>"
+    Try total_rotura += Val(Replace(hresult["COSTE_ROTURA"], ".", ","))
+    informe &= "<td align=\"right\">" & hresult["ROBO"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & Format(hresult["COSTE_ROBO"], "#.#0") & " " & "</td>"
+    
+    Try total_robo += Val(Replace(hresult["COSTE_ROBO"], ".", ","))
+    informe &= "<td align=\"right\">" & hresult["EXISTENCIA_ALMACEN"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & Format(hresult["COSTE_ALMACEN"], "#.#0") & " " & "</td>"
+    Try total_almacen += Val(Replace(hresult["COSTE_ALMACEN"], ".", ","))
+    informe &= "</tr>"
+    hresult.MoveNext
+  Wend
+  informe &= "<tr>" & "<td></td>"
+  informe &= "<td>" & " " & "</td>"
+  informe &= "<td align=\"right\">" & " " & "</td>"
+  informe &= "<td align=\"right\">" & ("Total:") & " " & moneda & " " & "</td>"
+  informe &= "<td align=\"right\">" & Format(total_entrada, "#.#0") & "</td>"
+  informe &= "<td align=\"right\">" & ("Total:") & " " & moneda & " " & "</td>"
+  informe &= "<td align=\"right\">" & Format(total_venta, "#.#0") & "</td>"
+  informe &= "<td align=\"right\">" & ("Total:") & " " & moneda & " " & "</td>"
+  informe &= "<td align=\"right\">" & Format(total_rotura, "#.#0") & "</td>"
+  informe &= "<td align=\"right\">" & ("Total:") & " " & moneda & " " & "</td>"
+  informe &= "<td align=\"right\">" & Format(total_robo, "#.#0") & "</td>"
+  informe &= "<td align=\"right\">" & ("Total:") & " " & moneda & " " & "</td>"
+  informe &= "<td align=\"right\">" & Format(total_almacen, "#.#0") & "</td>"
+  informe &= "</tr>"
+  
+  ModuleVarios.imprirmirInforme(informe, "INVENTARIO_Valorado")
+  RadioButtonPdfInventario.value = True
+  comprobarTablasEntradaRoboRoturaSalidaBorrar()
+  Me.Close()
+  
+End
+
+Public Sub ButtonConsultaEmpleadoCSV_Click()
+  
+  comun.csv = True
+  ButtonConsultaEmpleado_Click()
+  
+End
+
+Public Sub ButtonConsultaClienteCSV_Click()
+  
+  comun.csv = True
+  
+  ButtonConsultaCliente_Click()
+  
+End
+
+Public Sub RadioButtonCSVInventario_Click()
+  
+  comun.csv = True
+  
+End
+
+Public Sub RadioButtonPdfInventario_Click()
+  
+  comun.csv = False
+  
+End
+
+Public Sub PictureBoxPDF_MouseDown()
+  
+  RadioButtonPdfInventario_Click()
+  
+End
+
+Public Sub PictureBoxLibreOffice_MouseDown()
+  
+  RadioButtonCSVInventario_Click()
+  
+End
+
+Public Sub ButtonListaProductosVendidos_Click()
+  
+  Dim informe As String
+  Dim conectar As New Conexion
+  Dim hresult As Result
+  'nos conectamos
+  conectar.Conexion()
+  
+  hresult = conectar.hconn.exec("SELECT * FROM total")
+  
+  INFORME = "<br><br><br>" & "<div ALIGN=center><H1>" & ("Informe de Ventas") & "</H1></div><br>"
+  INFORME &= "<div ALIGN=center>" & Upper$(("Fecha informe: ") & Format(Now, "dddd dd/mmmm/yyyy")) & "</div><br>"
+  
+  INFORME &= "<table border=1>"
+  
+  informe &= "<tr  bgcolor=\"C4C4C4\">" & "<td>" & ("Fecha") & "</td>"
+  informe &= "<td align=\"center\">" & ("Codigo") & "</td>"
+  informe &= "<td align=\"center\">" & ("nombre") & "</td>"
+  informe &= "<td align=\"center\">" & ("cantidad") & "</td>"
+  informe &= "<td align=\"center\">" & ("precio") & " " & moneda & " " & "</td>"
+  
+  informe &= "<td align=\"center\">" & ("Descuento") & " %" & "</td>"
+  informe &= "<td align=\"center\">" & ("Iva") & " %" & "</td>"
+  
+  informe &= "<td align=\"center\">" & ("Cliente") & " " & "</td>"
+  informe &= "<td align=\"center\">" & ("Empleado") & " " & "</td>"
+  informe &= "</tr>"
+  
+  While hresult.Available
+    informe &= "<tr>" & "<td>" & hresult["fecha"] & " " & "</td>"
+    informe &= "<td>" & hresult["codigo"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["nombre"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & Format(hresult["cantidad"], "#.#0") & " " & "</td>"
+    informe &= "<td align=\"right\">" & Format(hresult["precio"], "#.#0") & " " & "</td>"
+    
+    informe &= "<td align=\"right\">" & Format(hresult["descuento"], "#.#0") & " " & "</td>"
+    informe &= "<td align=\"right\">" & Format(hresult["iva"], "#.#0") & " " & "</td>"
+    
+    informe &= "<td align=\"right\">" & hresult["cliente"] & " " & "</td>"
+    informe &= "<td align=\"right\">" & hresult["empleado"] & " " & "</td>"
+    informe &= "</tr>"
+    hresult.MoveNext
+  Wend
+  
+  INFORME &= "</table>"
+  ModuleVarios.imprirmirInforme(informe, "TOTALES_VENTAS")
+  RadioButtonPdfInventario.value = True
+  
+  Me.Close()
+  
+End

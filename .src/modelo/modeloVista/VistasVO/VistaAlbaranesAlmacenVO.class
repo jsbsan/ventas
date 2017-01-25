@@ -1,0 +1,132 @@
+PROPERTY lineaAlmacen_id AS string 
+PRIVATE hlineaAlmacen_id AS string
+
+PROPERTY fecha AS string 
+PRIVATE hfecha AS string
+
+PROPERTY idProducto AS string 
+PRIVATE hidProducto AS string
+
+PROPERTY codigo AS string 
+PRIVATE hcodigo AS string
+
+PROPERTY nombre AS string 
+PRIVATE hnombre AS string
+
+PROPERTY cantidad AS string 
+PRIVATE hcantidad AS string
+
+PROPERTY tipo AS string 
+PRIVATE htipo AS string
+
+PROPERTY campo AS string[] 
+PRIVATE hcampo AS new string[]
+
+PROPERTY campotipo AS string[] 
+PRIVATE hcampotipo AS new string[]
+
+PROPERTY campovisible AS string[] 
+PRIVATE hcampovisible AS new string[]
+
+PRIVATE FUNCTION lineaAlmacen_id_read() AS string
+ RETURN hlineaAlmacen_id 
+END 
+ 
+PRIVATE SUB lineaAlmacen_id_write(Valor AS string)
+ hlineaAlmacen_id= Valor 
+END  
+ 
+PRIVATE FUNCTION fecha_read() AS string
+ RETURN hfecha 
+END 
+ 
+PRIVATE SUB fecha_write(Valor AS string)
+ hfecha= Valor 
+END  
+ 
+PRIVATE FUNCTION idProducto_read() AS string
+ RETURN hidProducto 
+END 
+ 
+PRIVATE SUB idProducto_write(Valor AS string)
+ hidProducto= Valor 
+END  
+ 
+PRIVATE FUNCTION codigo_read() AS string
+ RETURN hcodigo 
+END 
+ 
+PRIVATE SUB codigo_write(Valor AS string)
+ hcodigo= Valor 
+END  
+ 
+PRIVATE FUNCTION nombre_read() AS string
+ RETURN hnombre 
+END 
+ 
+PRIVATE SUB nombre_write(Valor AS string)
+ hnombre= Valor 
+END  
+ 
+PRIVATE FUNCTION cantidad_read() AS string
+ RETURN hcantidad 
+END 
+ 
+PRIVATE SUB cantidad_write(Valor AS string)
+ hcantidad= Valor 
+END  
+ 
+PRIVATE FUNCTION tipo_read() AS string
+ RETURN htipo 
+END 
+ 
+PRIVATE SUB tipo_write(Valor AS string)
+ htipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campo_read() AS string[]
+ RETURN hcampo 
+END 
+ 
+PRIVATE SUB campo_write(Valor AS string[])
+ hcampo= Valor 
+END  
+ 
+PRIVATE FUNCTION campotipo_read() AS string[]
+ RETURN hcampotipo 
+END 
+ 
+PRIVATE SUB campotipo_write(Valor AS string[])
+ hcampotipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campovisible_read() AS string[]
+ RETURN hcampovisible 
+END 
+ 
+PRIVATE SUB campovisible_write(Valor AS string[])
+ hcampovisible= Valor 
+END  
+ 
+PUBLIC FUNCTION ConvertirVOaColeccion(dato as VistaAlbaranesAlmacenVO) AS collection
+Dim colecciontmp as new collection
+colecciontmp.add(dato.lineaAlmacen_id,"lineaAlmacen_id")
+colecciontmp.add(dato.fecha,"fecha")
+colecciontmp.add(dato.idProducto,"idProducto")
+colecciontmp.add(dato.codigo,"codigo")
+colecciontmp.add(dato.nombre,"nombre")
+colecciontmp.add(dato.cantidad,"cantidad")
+colecciontmp.add(dato.tipo,"tipo")
+return colecciontmp
+end
+PUBLIC FUNCTION ConvertirColeccionaVO(dato as collection) AS VistaAlbaranesAlmacenVO
+Dim datoVOtmp as new VistaAlbaranesAlmacenVO
+try datoVOtmp.lineaAlmacen_id=dato["lineaAlmacen_id"]
+try datoVOtmp.fecha=dato["fecha"]
+try datoVOtmp.idProducto=dato["idProducto"]
+try datoVOtmp.codigo=dato["codigo"]
+try datoVOtmp.nombre=dato["nombre"]
+try datoVOtmp.cantidad=dato["cantidad"]
+try datoVOtmp.tipo=dato["tipo"]
+return datoVOtmp
+end

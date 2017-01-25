@@ -1,0 +1,71 @@
+' Gambas class file
+
+Private modo As String
+Private manejador As New PersonaDAO
+Private indice As Integer
+
+Public Sub Form_Open()
+
+End
+
+Public Sub setmodo(tipo As String, perVo As PersonaVO, perDao As PersonaDAO)
+
+  If tipo = "add" Then
+    'estamos añadiendon
+    modo = "add"
+    Me.Title = "Añadiendo Registro"
+  Else
+    modo = "editar"
+    TextAreaComentario.text = perVo.comentario
+    TextBoxCorreo.text = perVo.correo
+    TextBoxDNI.text = perVo.dni
+    TextBoxDomicilio.text = perVo.domicilio
+    TextBoxNombre.text = perVo.nombre
+    TextBoxTelefono.text = perVo.telefono
+    Me.Title = "Editando Registro"
+  Endif
+  manejador = perDao
+  Me.Showmodal()
+
+End
+
+Public Sub setindice(i As Integer)
+
+  indice = i
+
+End
+
+Public Sub ButtonAceptar_Click()
+
+  Dim personaDatos As New PersonaVO
+
+  If modo = "add" Then
+    personaDatos.comentario = TextAreaComentario.Text
+    personaDatos.correo = TextBoxCorreo.Text
+    personaDatos.dni = TextBoxDNI.Text
+    personaDatos.domicilio = TextBoxDomicilio.Text
+
+    personaDatos.nombre = TextBoxNombre.Text
+    personaDatos.telefono = TextBoxTelefono.Text
+    manejador.registrar(personaDatos)
+
+  Else
+    'editando
+    personaDatos.comentario = TextAreaComentario.text
+    personaDatos.correo = TextBoxCorreo.text
+    personaDatos.dni = TextBoxDNI.text
+    personaDatos.domicilio = TextBoxDomicilio.text
+    personaDatos.nombre = TextBoxNombre.text
+    personaDatos.telefono = TextBoxTelefono.text
+    personaDatos.id = indice
+    manejador.ModificarId(indice, personaDatos)
+  Endif
+  Me.Close()
+
+End
+
+Public Sub ButtonCancelar_Click()
+
+  Me.Close()
+
+End

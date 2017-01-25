@@ -1,0 +1,98 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,93,70)
+  Icon = Picture["carrito.png"]
+  Resizable = False
+  { TextBoxCodigo TextBox
+    MoveScaled(12,2,26,4)
+  }
+  { TextBoxNombre TextBox
+    MoveScaled(12,7,44,4)
+  }
+  { TextBoxUbicacion TextBox
+    MoveScaled(12,12,44,4)
+  }
+  { ValueBoxPrecio ValueBox
+    MoveScaled(12,17,14,4)
+    Text = ("ValueBox1")
+  }
+  { TextAreaComentario TextArea
+    MoveScaled(1,25,55,14)
+    Wrap = True
+  }
+  { Label1 Label
+    MoveScaled(-6,7,16,4)
+    Text = ("Producto:")
+    Alignment = Align.Right
+  }
+  { Label2 Label
+    MoveScaled(-6,2,16,4)
+    Text = ("Codigo:")
+    Alignment = Align.Right
+  }
+  { Label3 Label
+    MoveScaled(-6,12,16,4)
+    Text = ("Ubicación:")
+    Alignment = Align.Right
+  }
+  { Label4 Label
+    MoveScaled(-6,17,16,4)
+    Text = ("Precio:")
+    Alignment = Align.Right
+  }
+  { Label6 Label
+    MoveScaled(0,22,15,3)
+    Text = ("Comentarios:")
+    Alignment = Align.Center
+  }
+  { ButtonCancelar Button
+    MoveScaled(61,64,13,5)
+    Text = ("Cancelar")
+    Picture = Picture["icon:/16/cancel"]
+  }
+  { ButtonAceptar Button
+    MoveScaled(79,64,13,5)
+    Text = ("Aceptar")
+    Picture = Picture["icon:/16/apply"]
+  }
+  { Label5 Label
+    MoveScaled(65,0,21,4)
+    Text = ("Imagen Producto:")
+    Alignment = Align.Center
+  }
+  { PictureBoxImagen PictureBox
+    MoveScaled(58,4,34,29)
+    Picture = Picture["PulsaParaElegirImagen.png"]
+    Stretch = True
+    Border = Border.Plain
+  }
+  { ButtonElegirImagen Button
+    MoveScaled(59,33,15,6)
+    Text = ("Buscar")
+    Picture = Picture["icon:/22/camera"]
+  }
+  { FrameImagenes Frame
+    MoveScaled(1,40,91,23)
+    Text = ("Imágenes")
+    { PanelContenedor Panel
+      MoveScaled(1,2,88,20)
+      Expand = True
+      Arrangement = Arrange.Fill
+    }
+  }
+  { ButtonPasar Button
+    MoveScaled(77,33,14,6)
+    Text = ("Pasar")
+    Picture = Picture["doble.png"]
+  }
+  { ButtonRefrescar Button
+    MoveScaled(8,64,10,6)
+    Visible = False
+    Picture = Picture["icon:/32/refresh"]
+  }
+  { ComboBoxEmpleados ComboBox
+    MoveScaled(39,2,17,4)
+    ReadOnly = True
+  }
+}

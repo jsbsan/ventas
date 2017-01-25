@@ -1,0 +1,16 @@
+' Gambas class file
+
+Public Function sql(consulta As String) As Result
+
+  Dim conectar As New Conexion
+  Dim mRs As Result
+
+  conectar.Conexion()
+  Try mRs = conectar.hconn.Exec(consulta)
+  If Error Then
+    message.info(("Consulta erronea, revisela"))
+  Else
+    Return mRs
+  Endif
+
+End

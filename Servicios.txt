@@ -1,0 +1,32 @@
+Afeitado: afeitado y masaje
+Afeitado: afeitar  
+Afeitado: marcar barba
+Color: baño de color
+Color: cambio de color
+Color: decoloración
+Color: mechas peine
+Color: mechas plata
+Color: tinte permanente
+Cortar: cortar 
+Cortar: corte hombre
+Cortar: corte niño
+Cortar: lavar y marcar
+Cortar: lavar y secar
+Extensiones: extensiones adhesivas
+Extensiones: extensiones de anillas
+Extensiones: extensiones de cortina
+Extensiones: extensiones de keratina
+Extensiones: postizos
+Extensiones: quitar extensiones  
+Moldeado: alisado de keratina
+Moldeado: alisado Japonés
+Moldeado: alisado normal
+Moldeado: moldeado corto
+Moldeado: moldeado largo
+Peinados: recogido lavar+secar
+Peinados: recogido novia
+Peinados: semirecogido lavar+secar
+Tratamentos: tratamiento anticaida
+Tratamentos: tratamiento anticaspa
+Tratamentos: tratamiento cauterizacion keratina
+Tratamentos: tratamiento de hidratacion

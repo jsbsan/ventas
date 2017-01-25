@@ -1,0 +1,17 @@
+CREATE VIEW INVENTARIO AS 
+select 
+sumaEntrada.nombre,
+sumaEntrada.idproducto,
+sumaEntrada.suma_Entrada as "ENTRADA",
+sumaSalida.suma_Venta as "VENTA",
+sumaRotura.suma_Rotura as "ROTURA",
+sumaRobo.suma_Robo as "ROBO",
+sumaEntrada.suma_Entrada-sumaSalida.suma_Venta-sumaRotura.suma_Rotura-sumaRobo.suma_Robo as "EXISTENCIA_ALMACEN"
+from 
+sumaEntrada,sumaSalida,sumaRotura,sumaRobo 
+where 
+sumaEntrada.idproducto=sumaSalida.idproducto 
+and 
+sumaEntrada.idproducto=sumaRotura.idproducto 
+and 
+sumaEntrada.idproducto=sumaRobo.idproducto

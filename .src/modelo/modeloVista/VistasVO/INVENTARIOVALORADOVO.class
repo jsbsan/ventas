@@ -1,0 +1,223 @@
+PROPERTY sumaEntrada_codigo AS string 
+PRIVATE hsumaEntrada_codigo AS string
+
+PROPERTY sumaEntrada_nombre AS string 
+PRIVATE hsumaEntrada_nombre AS string
+
+PROPERTY sumaEntrada_idproducto AS string 
+PRIVATE hsumaEntrada_idproducto AS string
+
+PROPERTY sumaEntrada_precio AS string 
+PRIVATE hsumaEntrada_precio AS string
+
+PROPERTY ENTRADA AS string 
+PRIVATE hENTRADA AS string
+
+PROPERTY COSTE_ENTRADA AS string 
+PRIVATE hCOSTE_ENTRADA AS string
+
+PROPERTY VENTA AS string 
+PRIVATE hVENTA AS string
+
+PROPERTY COSTE_VENTA AS string 
+PRIVATE hCOSTE_VENTA AS string
+
+PROPERTY ROTURA AS string 
+PRIVATE hROTURA AS string
+
+PROPERTY COSTE_ROTURA AS string 
+PRIVATE hCOSTE_ROTURA AS string
+
+PROPERTY ROBO AS string 
+PRIVATE hROBO AS string
+
+PROPERTY COSTE_ROBO AS string 
+PRIVATE hCOSTE_ROBO AS string
+
+PROPERTY EXISTENCIA_ALMACEN AS string 
+PRIVATE hEXISTENCIA_ALMACEN AS string
+
+PROPERTY COSTE_ALMACEN AS string 
+PRIVATE hCOSTE_ALMACEN AS string
+
+PROPERTY campo AS string[] 
+PRIVATE hcampo AS new string[]
+
+PROPERTY campotipo AS string[] 
+PRIVATE hcampotipo AS new string[]
+
+PROPERTY campovisible AS string[] 
+PRIVATE hcampovisible AS new string[]
+
+PRIVATE FUNCTION sumaEntrada_codigo_read() AS string
+ RETURN hsumaEntrada_codigo 
+END 
+ 
+PRIVATE SUB sumaEntrada_codigo_write(Valor AS string)
+ hsumaEntrada_codigo= Valor 
+END  
+ 
+PRIVATE FUNCTION sumaEntrada_nombre_read() AS string
+ RETURN hsumaEntrada_nombre 
+END 
+ 
+PRIVATE SUB sumaEntrada_nombre_write(Valor AS string)
+ hsumaEntrada_nombre= Valor 
+END  
+ 
+PRIVATE FUNCTION sumaEntrada_idproducto_read() AS string
+ RETURN hsumaEntrada_idproducto 
+END 
+ 
+PRIVATE SUB sumaEntrada_idproducto_write(Valor AS string)
+ hsumaEntrada_idproducto= Valor 
+END  
+ 
+PRIVATE FUNCTION sumaEntrada_precio_read() AS string
+ RETURN hsumaEntrada_precio 
+END 
+ 
+PRIVATE SUB sumaEntrada_precio_write(Valor AS string)
+ hsumaEntrada_precio= Valor 
+END  
+ 
+PRIVATE FUNCTION ENTRADA_read() AS string
+ RETURN hENTRADA 
+END 
+ 
+PRIVATE SUB ENTRADA_write(Valor AS string)
+ hENTRADA= Valor 
+END  
+ 
+PRIVATE FUNCTION COSTE_ENTRADA_read() AS string
+ RETURN hCOSTE_ENTRADA 
+END 
+ 
+PRIVATE SUB COSTE_ENTRADA_write(Valor AS string)
+ hCOSTE_ENTRADA= Valor 
+END  
+ 
+PRIVATE FUNCTION VENTA_read() AS string
+ RETURN hVENTA 
+END 
+ 
+PRIVATE SUB VENTA_write(Valor AS string)
+ hVENTA= Valor 
+END  
+ 
+PRIVATE FUNCTION COSTE_VENTA_read() AS string
+ RETURN hCOSTE_VENTA 
+END 
+ 
+PRIVATE SUB COSTE_VENTA_write(Valor AS string)
+ hCOSTE_VENTA= Valor 
+END  
+ 
+PRIVATE FUNCTION ROTURA_read() AS string
+ RETURN hROTURA 
+END 
+ 
+PRIVATE SUB ROTURA_write(Valor AS string)
+ hROTURA= Valor 
+END  
+ 
+PRIVATE FUNCTION COSTE_ROTURA_read() AS string
+ RETURN hCOSTE_ROTURA 
+END 
+ 
+PRIVATE SUB COSTE_ROTURA_write(Valor AS string)
+ hCOSTE_ROTURA= Valor 
+END  
+ 
+PRIVATE FUNCTION ROBO_read() AS string
+ RETURN hROBO 
+END 
+ 
+PRIVATE SUB ROBO_write(Valor AS string)
+ hROBO= Valor 
+END  
+ 
+PRIVATE FUNCTION COSTE_ROBO_read() AS string
+ RETURN hCOSTE_ROBO 
+END 
+ 
+PRIVATE SUB COSTE_ROBO_write(Valor AS string)
+ hCOSTE_ROBO= Valor 
+END  
+ 
+PRIVATE FUNCTION EXISTENCIA_ALMACEN_read() AS string
+ RETURN hEXISTENCIA_ALMACEN 
+END 
+ 
+PRIVATE SUB EXISTENCIA_ALMACEN_write(Valor AS string)
+ hEXISTENCIA_ALMACEN= Valor 
+END  
+ 
+PRIVATE FUNCTION COSTE_ALMACEN_read() AS string
+ RETURN hCOSTE_ALMACEN 
+END 
+ 
+PRIVATE SUB COSTE_ALMACEN_write(Valor AS string)
+ hCOSTE_ALMACEN= Valor 
+END  
+ 
+PRIVATE FUNCTION campo_read() AS string[]
+ RETURN hcampo 
+END 
+ 
+PRIVATE SUB campo_write(Valor AS string[])
+ hcampo= Valor 
+END  
+ 
+PRIVATE FUNCTION campotipo_read() AS string[]
+ RETURN hcampotipo 
+END 
+ 
+PRIVATE SUB campotipo_write(Valor AS string[])
+ hcampotipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campovisible_read() AS string[]
+ RETURN hcampovisible 
+END 
+ 
+PRIVATE SUB campovisible_write(Valor AS string[])
+ hcampovisible= Valor 
+END  
+ 
+PUBLIC FUNCTION ConvertirVOaColeccion(dato as INVENTARIOVALORADOVO) AS collection
+Dim colecciontmp as new collection
+colecciontmp.add(dato.sumaEntrada_codigo,"sumaEntrada_codigo")
+colecciontmp.add(dato.sumaEntrada_nombre,"sumaEntrada_nombre")
+colecciontmp.add(dato.sumaEntrada_idproducto,"sumaEntrada_idproducto")
+colecciontmp.add(dato.sumaEntrada_precio,"sumaEntrada_precio")
+colecciontmp.add(dato.ENTRADA,"ENTRADA")
+colecciontmp.add(dato.COSTE_ENTRADA,"COSTE_ENTRADA")
+colecciontmp.add(dato.VENTA,"VENTA")
+colecciontmp.add(dato.COSTE_VENTA,"COSTE_VENTA")
+colecciontmp.add(dato.ROTURA,"ROTURA")
+colecciontmp.add(dato.COSTE_ROTURA,"COSTE_ROTURA")
+colecciontmp.add(dato.ROBO,"ROBO")
+colecciontmp.add(dato.COSTE_ROBO,"COSTE_ROBO")
+colecciontmp.add(dato.EXISTENCIA_ALMACEN,"EXISTENCIA_ALMACEN")
+colecciontmp.add(dato.COSTE_ALMACEN,"COSTE_ALMACEN")
+return colecciontmp
+end
+PUBLIC FUNCTION ConvertirColeccionaVO(dato as collection) AS INVENTARIOVALORADOVO
+Dim datoVOtmp as new INVENTARIOVALORADOVO
+try datoVOtmp.sumaEntrada_codigo=dato["sumaEntrada_codigo"]
+try datoVOtmp.sumaEntrada_nombre=dato["sumaEntrada_nombre"]
+try datoVOtmp.sumaEntrada_idproducto=dato["sumaEntrada_idproducto"]
+try datoVOtmp.sumaEntrada_precio=dato["sumaEntrada_precio"]
+try datoVOtmp.ENTRADA=dato["ENTRADA"]
+try datoVOtmp.COSTE_ENTRADA=dato["COSTE_ENTRADA"]
+try datoVOtmp.VENTA=dato["VENTA"]
+try datoVOtmp.COSTE_VENTA=dato["COSTE_VENTA"]
+try datoVOtmp.ROTURA=dato["ROTURA"]
+try datoVOtmp.COSTE_ROTURA=dato["COSTE_ROTURA"]
+try datoVOtmp.ROBO=dato["ROBO"]
+try datoVOtmp.COSTE_ROBO=dato["COSTE_ROBO"]
+try datoVOtmp.EXISTENCIA_ALMACEN=dato["EXISTENCIA_ALMACEN"]
+try datoVOtmp.COSTE_ALMACEN=dato["COSTE_ALMACEN"]
+return datoVOtmp
+end

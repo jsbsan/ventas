@@ -1,0 +1,27 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,113,59)
+  Icon = Picture["icon:/22/image"]
+  { FileChooser1 FileChooser
+    MoveScaled(1,1,69,56)
+    ShowDetailed = True
+    ReadOnly = True
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(72,5,39,45)
+    Picture = Picture["SinImagen2.png"]
+    Stretch = True
+    Border = Border.Plain
+  }
+  { ButtonCancelar Button
+    MoveScaled(75,52,13,5)
+    Text = ("Cancelar")
+    Picture = Picture["icon:/22/cancel"]
+  }
+  { ButtonAceptar Button
+    MoveScaled(94,52,12,5)
+    Text = ("Aceptar")
+    Picture = Picture["icon:/22/apply"]
+  }
+}

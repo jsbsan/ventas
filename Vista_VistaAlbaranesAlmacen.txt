@@ -1,0 +1,7 @@
+CREATE VIEW "VistaAlbaranesAlmacen" AS 
+select 
+lineaAlmacen.id,fecha,idProducto,nombre,cantidad,tipo 
+from 
+lineaAlmacen,producto 
+where 
+lineaAlmacen.idproducto=producto.id

@@ -1,0 +1,8 @@
+CREATE VIEW sumaRobo AS 
+select 
+producto.nombre,lineaAlmacen.idproducto,SUM(lineaAlmacen.cantidad) AS "suma_ROBO" 
+from 
+producto, lineaAlmacen 
+where 
+producto.id=lineaAlmacen.idproducto AND lineaAlmacen.tipo="ROBO" 
+GROUP by producto.id

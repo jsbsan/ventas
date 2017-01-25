@@ -1,0 +1,11 @@
+' Gambas class file
+
+Create Static
+
+Public Const servicios As Integer = 0
+Public Const productos As Integer = 1
+Public Const cupones As Integer = 2
+
+Public Const cliente As String = "Clientes"
+
+Public Const empleado As String = "Empleados"

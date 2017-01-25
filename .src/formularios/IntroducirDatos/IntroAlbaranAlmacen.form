@@ -1,0 +1,74 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,76,50)
+  Icon = Picture["carrito.png"]
+  { Label1 Label
+    MoveScaled(28,6,12,5)
+    Text = ("Fecha:")
+    Alignment = Align.Right
+  }
+  { DateBoxFecha DateBox
+    MoveScaled(42,6,19,5)
+  }
+  { Label2 Label
+    MoveScaled(20,12,10,5)
+    Text = ("Producto:")
+    Alignment = Align.Right
+  }
+  { LabelProducto Label
+    MoveScaled(4,17,63,5)
+    Background = &HBFBFBF&
+    Border = Border.Plain
+  }
+  { ButtonBuscarProducto Button
+    MoveScaled(68,17,6,5)
+    Tag = "buscar en lista de productos"
+    Picture = Picture["icon:/16/find"]
+  }
+  { Label3 Label
+    MoveScaled(1,23,13,5)
+    Text = ("Cantidad:")
+    Alignment = Align.Right
+  }
+  { ComboBoxTipo ComboBox
+    MoveScaled(43,23,21,5)
+    ReadOnly = True
+    List = [("ENTRADA"), ("ROBO"), ("ROTURA")]
+    Text = ("ComboBox1")
+  }
+  { Label4 Label
+    MoveScaled(26,0,49,5)
+    Font = Font["Bold,+2"]
+    Text = ("ALBARÁN PARA ALMACÉN")
+    Alignment = Align.Center
+  }
+  { Label5 Label
+    MoveScaled(34,23,8,5)
+    Text = ("Tipo:")
+    Alignment = Align.Right
+  }
+  { ButtonCancelar Button
+    MoveScaled(44,43,13,5)
+    Text = ("Cancelar")
+    Picture = Picture["icon:/16/cancel"]
+  }
+  { ButtonAceptar Button
+    MoveScaled(61,43,13,5)
+    Text = ("Aceptar")
+    Picture = Picture["icon:/16/apply"]
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(2,33,72,10)
+    Text = ("<u>  Explicación de Tipo  </u><br>\n<b>ENTRADA</b>: Producto comprado al  proveedor y entra en el almacén<br>\n<b>ROTURA</b>: Producto roto o estropeado que no se pueda vender<br>\n<b>ROBO</b>: Producto robado o que falta inexplicablemente en el almacén.<br>")
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(4,1,15,15)
+    Stretch = True
+    Border = Border.Raised
+  }
+  { ValueBoxCantidad SpinBox
+    MoveScaled(16,23,12,4)
+    MaxValue = 1000000
+  }
+}

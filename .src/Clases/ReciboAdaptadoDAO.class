@@ -1,0 +1,112 @@
+' Gambas class file
+
+Inherits ReciboDAO
+
+Public Sub Observar_Data(row As Integer, column As Integer)
+  
+  'para rellenar el nombre de cliente y el empleado en la tabla
+  Dim hresultado2 As Result 'para obtener cliente
+  Dim hresultado3 As Result 'para obtener empleado
+  
+  Dim manejadorClienteDatos As ClienteDAO
+  Dim manejadorEmpleado As EmpleadoDAO
+  
+  Dim f As New Font
+  Dim datocontenido As Variant
+  
+  f.name = "Sans"
+  f.size = Me.sizefont
+  
+  '-------------------------------------------
+  'colores....filas impar / par ge regillas
+  '-------------------------------------------
+  If row Mod 2 = 0 Then
+    Me.gridviewPropio.Data.Background = Me.ColorFilaImPar
+  Else
+    Me.gridviewPropio.Data.Background = Me.ColorFilaPar
+  Endif
+  
+  Me.hresultadoNuevo.MoveTo(row)
+  'comprobar si hay datos en TAG
+  If IsNull(Me.gridviewPropio.tag) Then
+    Try datocontenido = Me.hresultadoNuevo[Me.gridviewPropio.columns[column].text]
+    If IsDate(Str$(datocontenido)) Then
+      Me.gridviewPropio.Data.text = Format(Date(datocontenido), Me.formatofecha)
+    Else
+      If IsBoolean(Str$(datocontenido)) Then
+        If datocontenido Then
+          Me.gridviewPropio.data.picture = picture[Me.iconoTrue]
+        Else
+          Me.gridviewPropio.data.picture = picture[Me.iconoFalse]
+        Endif
+      Else
+        Me.gridviewPropio.Data.text = datocontenido
+      Endif
+    Endif
+    
+  Else
+    ''hay datos en  TAG
+    Try datocontenido = Me.hresultadoNuevo[Me.GridViewPropio.tag[column]]
+    
+    '' If IsDate(Str$(datocontenido)) Then
+    '   Me.gridviewPropio.Data.text = Format(Date(datocontenido), Me.formatofecha)
+    ' Else
+    If IsBoolean(Str$(datocontenido)) Then
+      If datocontenido Then
+        Me.gridviewPropio.data.picture = picture[Me.iconoTrue]
+      Else
+        Me.gridviewPropio.data.picture = picture[Me.iconoFalse]
+      Endif
+    Else
+      
+      Select Case Me.GridViewPropio.tag[column]
+        Case "idempleado"
+          manejadorEmpleado = New EmpleadoDAO
+          hresultado3 = manejadorEmpleado.BuscarIgualId(datocontenido)
+          Try Me.gridviewPropio.Data.text = hresultado3["nombre"]
+          If Error Then
+            Message.error("Fallo de integridad de la base de datos Error: posiblemente se ha borrado un Empleado ")
+            
+          Else
+            Me.gridviewPropio.Data.text = datocontenido & "| " & Me.gridviewPropio.Data.text
+            
+          Endif
+        Case "idcliente"
+          manejadorClienteDatos = New ClienteDAO
+          hresultado2 = manejadorClienteDatos.BuscarIgualId(datocontenido)
+          Try Me.gridviewPropio.Data.text = hresultado2["nombre"]
+          If Error Then
+            Message.error("Fallo de integridad de la base de datos Error: posiblemente se ha borrado un cliente ")
+            ' TextLabelError.text = ("IMPORTENTE: SE HAN PRODUCIDO ERRORES DE INTEGRIDAD EN LA BASE DE DATOS (CLIENTES O EMPLEADOS HAN SIDO BORRADO)")
+            Return
+          Else
+            Me.gridviewPropio.Data.text = datocontenido & "| " & Me.gridviewPropio.Data.text
+          Endif
+        Default
+          Me.gridviewPropio.Data.text = datocontenido
+      End Select
+      
+    Endif
+    ' Endif
+  Endif
+  
+  '-----------------------------------------------
+  ' columna con id, con ancho 0, para que no se vea
+  '-----------------------------------------------
+  If Upper$(Me.gridviewPropio.Columns[column].title) = Upper$("id") Then
+    Me.arrayAnchoColumnas[column] = 0
+    Return 'salgo de la funcion
+  Endif
+  
+  If Upper$(Me.gridviewPropio.Columns[column].title) = Upper$("importe") Then
+    Me.gridviewPropio.Data.text = Format(Me.gridviewPropio.Data.text, "#.#0")
+    Me.gridviewPropio.Columns[column].Alignment = Align.Right
+    Return 'salgo de la funcion
+  Endif
+  
+  'Compruebo ancho y amplio si es necesario.
+  If Me.arrayAnchoColumnas[column] < F.textwidth(Me.gridviewPropio.Data.text) Then
+    Me.arrayAnchoColumnas[column] = F.textwidth(Me.gridviewPropio.Data.text & "m")
+  Endif
+  
+End

@@ -1,0 +1,242 @@
+' Gambas module file
+
+Public Function AnalizaEstructura() As String
+
+  Dim arreglos As String
+  Dim manejar As New ReciboDAO
+  Dim resultado As Result
+  Dim empleado As Integer
+  Dim cliente As Integer
+  Dim a As Integer
+  Dim listaEmpleados As New Integer[]
+  Dim listaCliente As New Integer[]
+  'comprobar recibos...
+  'de todos los recibos compruebo si el cliente y el empleado existe
+  'sino creo un cliente/empleado y lo enlace con el nuevo creado..
+
+  resultado = manejar.sql("SELECT idempleado,idcliente FROM recibo")
+
+  While resultado.Available
+    empleado = resultado["idempleado"]
+
+    If Not listaEmpleados.Exist(empleado) Then
+      listaEmpleados.Add(empleado)
+    Endif
+
+    cliente = resultado["idcliente"]
+    If Not listaCliente.Exist(cliente) Then
+      listaCliente.Add(cliente)
+    Endif
+    resultado.MoveNext
+  Wend
+
+  ' Print "obtengo la lista de empleados y clientes usados..."
+
+  'compruebo cada valor....
+  'Empleado
+  For a = 0 To listaEmpleados.Max
+    resultado = manejar.sql("SELECT * FROM Empleado where id=" & Str$(listaEmpleados[a]))
+    If resultado.count = 0 Then
+      'hace falta crear un empleado con esa ID
+      manejar.sql(creaEmpleado(listaEmpleados[a]))
+      arreglos &= "\n Añadido empleado " & listaEmpleados[a]
+    Endif
+  Next
+
+  'CLIENTES
+  For a = 0 To listaCliente.Max
+    resultado = manejar.sql("SELECT * FROM cliente where id=" & Str$(listaCliente[a]))
+    If resultado.count = 0 Then
+      'hace falta crear un empleado con esa ID
+      manejar.sql(creacliente(listacliente[a]))
+      arreglos &= "\n Añadido cliente " & listacliente[a]
+    Endif
+  Next
+  '--------------------------------------
+  'fin de comprobacion clientes-empleados
+  '--------------------------------------
+  arreglos &= comprobarProductosServiciosBonos()
+
+  Return arreglos
+
+End
+
+Public Function creaEmpleado(id As Integer) As String
+
+  Dim NuevaEmpleado As New EmpleadoVO
+  Dim SQLString As String
+
+  SQLString = "INSERT INTO Empleado(id,dni,nombre,telefono,correo,domicilio,comentario) Values ("
+  SQLString &= Str$(id)
+  SQLString &= ",'" & NuevaEmpleado.dni & "'"
+  SQLString &= ",'Empleado-Borrado'"
+  SQLString &= ",'" & NuevaEmpleado.telefono & "'"
+  SQLString &= ",'" & NuevaEmpleado.correo & "'"
+  SQLString &= ",'" & NuevaEmpleado.domicilio & "'"
+  SQLString &= ",'Empleado-Borrado')"
+
+  Return SQLString
+
+End
+
+Public Function creacliente(id As Integer) As String
+
+  Dim Nuevacliente As New ClienteVO
+  Dim SQLString As String
+
+  SQLString = "INSERT INTO cliente(id,dni,nombre,telefono,correo,domicilio,comentario) Values ("
+  SQLString &= Str$(id)
+  SQLString &= ",'" & Nuevacliente.dni & "'"
+  SQLString &= ",'Cliente-Borrado'"
+  SQLString &= ",'" & Nuevacliente.telefono & "'"
+  SQLString &= ",'" & Nuevacliente.correo & "'"
+  SQLString &= ",'" & Nuevacliente.domicilio & "'"
+  SQLString &= ",'Cliente-Borrado')"
+
+  Return SQLString
+
+End
+
+Public Sub comprobarProductosServiciosBonos() As String
+
+  Dim a As Integer
+
+  Dim arreglos As String
+  Dim manejar As New ReciboDAO
+  Dim resultado As Result
+
+  Dim listaProductos As New String[]
+  Dim listaServicios As New String[]
+  Dim listaBonus As New String[]
+  Dim lista As String[]
+  Dim producto As String
+  'comprobar servicios, bonos y productos, en lineas de recibo "linearecibo"
+
+  resultado = manejar.sql("SELECT idproducto,tabla FROM linearecibo")
+  'creo lista de comprobacion
+  While resultado.Available
+    producto = resultado["idproducto"]
+    Select Case resultado["tabla"]
+      Case "1" 'tabla servicios
+        lista = listaServicios
+        If Not lista.Exist(producto) Then
+          lista.Add(producto)
+        Endif
+      Case "2"
+        lista = listaProductos
+        If Not lista.Exist(producto) Then
+          lista.Add(producto)
+        Endif
+      Case "3"
+        lista = listaBonus
+        If Not lista.Exist(producto) Then
+          lista.Add(producto)
+        Endif
+    End Select
+
+    resultado.MoveNext
+  Wend
+
+  '-------------------------------------------------
+  'comprobar lista de Almacen entrada:
+  '-------------------------------------------------
+  resultado = manejar.sql("SELECT idProducto FROM lineaAlmacen")
+  'creo lista de comprobacion
+  lista = listaProductos
+  While resultado.Available
+    producto = resultado["idProducto"]
+    If Not lista.Exist(producto) Then
+      lista.Add(producto)
+    Endif
+    resultado.MoveNext
+  Wend
+
+  'compruebo cada valor....
+  'Sercivios
+  '
+  lista = listaServicios
+  For a = 0 To lista.Max
+    resultado = manejar.sql("SELECT * FROM servicio where id=" & Str$(lista[a]))
+    If resultado.count = 0 Then
+      'hace falta crear un empleado con esa ID
+      manejar.sql(creaServicio(lista[a]))
+      arreglos &= "\n Añadido Servicio " & lista[a]
+    Endif
+  Next
+
+  'productos
+  'lista de productos
+  lista = listaProductos
+  For a = 0 To lista.Max
+    resultado = manejar.sql("SELECT * FROM producto where id=" & Str$(lista[a]))
+    If resultado.count = 0 Then
+      'hace falta crear un empleado con esa ID
+      manejar.sql(creaProducto(lista[a]))
+      arreglos &= "\n Añadido Producto " & lista[a]
+    Endif
+  Next
+
+  'bonus
+  lista = listaBonus
+  For a = 0 To lista.Max
+    resultado = manejar.sql("SELECT * FROM cupon where id=" & Str$(lista[a]))
+    If resultado.count = 0 Then
+      'hace falta crear un empleado con esa ID
+      manejar.sql(creaBonus(lista[a]))
+      arreglos &= "\n Añadido Bonus " & lista[a]
+    Endif
+  Next
+
+  Return arreglos
+
+End
+
+Public Function creaServicio(id As Integer) As String
+
+  Dim Nueva As New ServicioVO
+  Dim SQLString As String
+
+  SQLString = "INSERT INTO servicio(id,nombre,precio,comentario) Values ("
+  SQLString &= Str$(id)
+  SQLString &= ",'Servicio-Borrado'"
+  SQLString &= ",'" & Nueva.precio & "'"
+  SQLString &= ",'Servicio-Borrado')"
+
+  Return SQLString
+
+End
+
+Public Function creaProducto(id As Integer) As String
+
+  Dim Nueva As New Productovo
+  Dim SQLString As String
+
+  SQLString = "INSERT INTO producto(id,codigo,nombre,ubicacion,precio,comentario) Values ("
+  SQLString &= Str$(id)
+  SQLString &= ",'" & "'"
+  SQLString &= ",'Producto-Borrado'"
+  SQLString &= ",'" & "'"
+  SQLString &= ",'0" & "'"
+  SQLString &= ",'Producto-Borrado')"
+
+  Return SQLString
+
+End
+
+Public Function creaBonus(id As Integer) As String
+
+  Dim Nueva As New CuponVO
+  Dim SQLString As String
+
+  SQLString = "INSERT INTO cupon(id,codigo,nombre,descripcion,precio,comentario) Values ("
+  SQLString &= Str$(id)
+  SQLString &= ",'" & Nueva.codigo & "'"
+  SQLString &= ",'Cupon-Borrado'"
+  SQLString &= ",'" & Nueva.descripcion & "'"
+  SQLString &= ",'" & Nueva.precio & "'"
+
+  SQLString &= ",'Cupon-Borrado')"
+
+  Return SQLString
+
+End

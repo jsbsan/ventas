@@ -1,0 +1,606 @@
+' Gambas class file
+
+'se se hace doble click, hay que pasar la informacion al ticket sobre un columview y cerrar la ventana..
+Private manejarServicio As New ServicioDAO
+Private manejarCupon As New CuponDAO
+Private manejarProducto As New ProductoAdaptadoDAO ' para poder reescribir la existencias del producto
+
+Private hresultCupon As Result
+Private hresultProducto As Result
+Private hresultServicio As Result
+
+Private $nombre As Collection ''NOTE: modificacion ventas
+
+Public Sub Form_Open()
+  
+  If Settings["BorradoTipos", False] = False Then Settings["BorradoTipos"] = False
+  
+  MenuServicios.Children[4].Enabled = Settings["BorradoTipos"]
+  MenuProductos.Children[4].Enabled = Settings["BorradoTipos"]
+  MenuCupones.Children[4].enabled = Settings["BorradoTipos"]
+  
+  manejarServicio.ColorFilaPar = Settings["ColorRegillaPar", Color.orange]
+  manejarServicio.ColorFilaImPar = Settings["ColorRegillaImPar", color.white]
+  
+  manejarCupon.ColorFilaPar = Settings["ColorRegillaPar", Color.orange]
+  manejarCupon.ColorFilaImPar = Settings["ColorRegillaImPar", color.white]
+  manejarProducto.ColorFilaPar = Settings["ColorRegillaPar", Color.orange]
+  manejarProducto.ColorFilaImPar = Settings["ColorRegillaImPar", color.white]
+  
+End
+
+Public Sub ButtonSalir_Click()
+  
+  If IsNull($nombre) Then
+    Me.Close()
+    Return
+  Endif
+  
+  Me.Close()
+  
+End
+
+Public Sub irtab(t As Integer, Optional tabServicios As String, Optional tabProductos As String, Optional tabCupones As String)
+  
+  If tabServicios = "no mostrar" Then TabStrip1[0].Enabled = False
+  If tabProductos = "no mostrar" Then TabStrip1[1].Enabled = False
+  If tabCupones = "no mostrar" Then TabStrip1[2].Enabled = False
+  
+  Select Case t
+    Case tipos.servicios
+      TabStrip1.index = 0
+    Case tipos.productos
+      TabStrip1.index = 1
+    Case tipos.cupones
+      TabStrip1.index = 2
+      
+  End Select
+  
+  manejarCupon = New CuponDAO
+  manejarProducto = New ProductoAdaptadoDAO
+  manejarServicio = New ServicioDAO
+  
+  manejarCupon.MostrarGridView(GridViewCupon)
+  manejarProducto.MostrarGridView(GridViewProducto)
+  manejarServicio.MostrarGridView(GridViewServicio)
+  
+  ' 'cupones
+  ' manejarCupon.gridFormatearColumnas(GridViewCupon)
+  ' hresultCupon = manejarCupon.contenido()
+  ' escribedatosCupon()
+  ' 'productos
+  ' manejarProducto.gridFormatearColumnas(GridViewProducto)
+  ' hresultProducto = manejarProducto.contenido()
+  ' escribedatosProducto()
+  ' 'servicios
+  ' manejarServicio.gridFormatearColumnas(GridViewServicio)
+  ' hresultServicio = manejarServicio.contenido()
+  ' escribedatosServicio()
+  
+End
+
+'Escribir datos....
+Public Sub escribedatosCupon()
+  
+  manejarCupon.MostrarGridView(GridViewCupon)
+  
+End
+
+Public Sub escribedatosProducto()
+  
+  GridViewProducto.Clear()
+  manejarProducto.MostrarGridView(GridViewProducto)
+  
+End
+
+Public Sub escribedatosServicio()
+  
+  manejarServicio.MostrarGridView(GridViewServicio)
+  
+End
+'---------------------------------------------
+'evento _data para rellenar las regillas:
+'---------------------------------------------
+
+' Public Sub GridViewServicio_Data(row As Integer, column As Integer)
+'
+'   hresultServicio.MoveTo(row)
+'
+'   If GridViewServicio.Columns[column].text = "precio" Then
+'     GridViewServicio.Data.text = Format$(hresultServicio[GridViewServicio.Columns[column].text], "0,.#0")
+'
+'   Else
+'
+'     GridViewServicio.Data.text = hresultServicio[GridViewServicio.Columns[column].text]
+'   Endif
+'
+' End
+'
+' Public Sub GridViewProducto_Data(row As Integer, column As Integer)
+'
+'   hresultProducto.MoveTo(row)
+'
+'   If GridViewProducto.Columns[column].text = "precio" Then
+'     Try GridViewProducto.Data.text = Format$(hresultProducto[GridViewProducto.Columns[column].text], "0,.#0")
+'     GridViewProducto.data.Alignment = Align.Right
+'   Else
+'
+'     GridViewProducto.Data.text = hresultProducto[GridViewProducto.Columns[column].text]
+'   Endif
+'
+' End
+'
+' Public Sub GridViewCupon_Data(row As Integer, column As Integer)
+'
+'   hresultCupon.MoveTo(row)
+'
+'   If GridViewCupon.Columns[column].text = "precio" Then
+'     GridViewCupon.data.text = Format$(hresultCupon[GridViewCupon.Columns[column].text], "0,.#0")
+'     GridViewCupon.data.Alignment = Align.Right
+'   Else
+'     GridViewCupon.data.text = hresultCupon[GridViewCupon.Columns[column].text]
+'   Endif
+'
+' End
+
+'--------------------------------------
+'opciones del menu....
+'--------------------------------------
+'**********************************************
+'SERVICIOS
+'**********************************************
+Public Sub AddServicios_Click()
+  
+  IntroServicio.setmodo("add", Null, manejarServicio)
+  hresultServicio = manejarServicio.contenido()
+  escribedatosServicio()
+  
+End
+
+Public Sub editarServicios_Click()
+  
+  Dim servicioEditar As New ServicioVO
+  Dim indice As Integer
+  Dim extraeResultado As Result
+  
+  Try indice = Val(GridViewServicio[GridViewServicio.row, 0].text)
+  If Error Then
+    Message.Info(("Debe de elegir un registro"))
+    Return
+  Endif
+  
+  'extraigo datos del registro seleccionado...
+  extraeResultado = manejarServicio.BuscarIgualId(indice)
+  
+  'convierte resultado en clase VO
+  servicioEditar.id = extraeResultado["id"]
+  servicioEditar.nombre = extraeResultado["nombre"]
+  servicioEditar.precio = extraeResultado["precio"]
+  servicioEditar.comentario = extraeResultado["comentario"]
+  
+  IntroServicio.setindice(indice)
+  IntroServicio.setmodo("editar", servicioEditar, manejarServicio)
+  'escribo todos los datos....
+  hresultServicio = manejarServicio.contenido()
+  escribedatosServicio()
+  
+End
+
+Public Sub BorrarServicios_Click()
+  
+  Dim indice As Integer
+  
+  Try indice = Val(GridViewServicio[GridViewServicio.row, 0].text)
+  If Error Then
+    Message.Info(("Debe elegir un registro"))
+    Return
+  Endif
+  
+  'comprobobar si esta siendo usado por una linea de recibo
+  'si lo esta, no se puede borrar...!!!
+  
+  If comprobarBorrado(1, indice) Then
+    
+    Message.Info(("Ese servicio se esta usando en algun recibo, no se puede borrar"))
+    Return
+    
+  Endif
+  
+  'borrar el dato del registro
+  manejarServicio.BorrarId(indice)
+  hresultServicio = manejarServicio.contenido()
+  escribedatosServicio()
+  
+End
+
+Public Sub FiltroServicios_Click()
+  
+  Dim contenidonombre As String
+  
+  contenidonombre = InputBox("Nombre:")
+  
+  If contenidonombre <> "" Then
+    hresultServicio = manejarServicio.BuscarContenidoNombre(contenidonombre)
+    manejarServicio.MostrarGridView(GridViewServicio,, hresultServicio)
+    
+  Endif
+  
+End
+
+Public Sub QuitarFiltroServicios_Click()
+  
+  hresultServicio = manejarServicio.contenido()
+  escribedatosServicio()
+  
+End
+
+'**********************************************
+'cupones
+'**********************************************
+
+Public Sub addCupones_Click()
+  
+  IntroCupon.setmodo("add", Null, manejarCupon)
+  hresultCupon = manejarCupon.contenido()
+  escribedatosCupon()
+  
+End
+
+Public Sub editarCupones_Click()
+  
+  Dim cuponEditar As New CuponVO
+  Dim indice As Integer
+  Dim extraeResultado As Result
+  
+  Try indice = Val(GridViewCupon[GridViewCupon.row, 0].text)
+  If Error Then
+    Message.Info(("Debe de elegir un registro"))
+    Return
+  Endif
+  
+  'extraigo datos del registro seleccionado...
+  extraeResultado = manejarCupon.BuscarIgualId(indice)
+  
+  'convierte resultado en clase VO
+  cuponEditar.codigo = extraeResultado["codigo"]
+  cuponEditar.comentario = extraeResultado["comentario"]
+  cuponEditar.descripcion = extraeResultado["descripcion"]
+  cuponEditar.id = extraeResultado["id"]
+  cuponEditar.nombre = extraeResultado["nombre"]
+  cuponEditar.precio = extraeResultado["precio"]
+  
+  IntroCupon.setindice(indice)
+  IntroCupon.setmodo("editar", cuponEditar, manejarCupon)
+  'escribo todos los datos....
+  hresultCupon = manejarCupon.contenido()
+  escribedatosCupon()
+  
+End
+
+Public Sub BorrarCupones_Click()
+  
+  Dim indice As Integer
+  
+  Try indice = Val(GridViewCupon[GridViewCupon.row, 0].text)
+  If Error Then
+    Message.Info(("Debe elegir un registro"))
+    Return
+  Endif
+  
+  If comprobarBorrado(3, indice) Then
+    
+    Message.Info(("Ese cupon se esta usando en algun recibo, no se puede borrar"))
+    Return
+    
+  Endif
+  
+  'borrar el dato del registro
+  manejarCupon.BorrarId(indice)
+  hresultCupon = manejarCupon.contenido()
+  escribedatosCupon()
+  
+End
+
+Public Sub FiltrarCupones_Click()
+  
+  Dim contenidonombre As String
+  
+  contenidonombre = InputBox("Nombre:")
+  
+  If contenidonombre <> "" Then
+    hresultCupon = manejarCupon.BuscarContenidoNombre(contenidonombre)
+    manejarCupon.MostrarGridView(GridViewCupon,, hresultCupon)
+    'escribedatosCupon()
+    
+  Endif
+  
+End
+
+Public Sub QuitarFiltroCupones_Click()
+  
+  hresultCupon = manejarCupon.contenido()
+  escribedatosCupon()
+  
+End
+
+'**********************************************
+'Productos
+'**********************************************
+
+Public Sub addProductos_Click()
+  
+  Dim hprod As New ProductoVO
+  
+  IntroProductos.setmodo("add", hprod, manejarProducto)
+  hresultProducto = manejarProducto.contenido()
+  escribedatosProducto()
+  
+End
+
+Public Sub editarProductos_Click()
+  
+  Dim productoEditar As New ProductoVO
+  Dim indice As Integer
+  Dim extraeResultado As Result
+  
+  Try indice = Val(GridViewProducto[GridViewProducto.row, 0].text)
+  If Error Then
+    Message.Info(("Debe de elegir un registro"))
+    Return
+  Endif
+  
+  'extraigo datos del registro seleccionado...
+  extraeResultado = manejarProducto.BuscarIgualId(indice)
+  
+  'convierte resultado en clase VO
+  productoEditar.id = extraeResultado["id"]
+  productoEditar.codigo = extraeResultado["codigo"]
+  productoEditar.comentario = extraeResultado["comentario"]
+  productoEditar.id = extraeResultado["id"]
+  productoEditar.nombre = extraeResultado["nombre"]
+  productoEditar.precio = extraeResultado["precio"]
+  productoEditar.ubicacion = extraeResultado["ubicacion"]
+  
+  IntroProductos.setindice(indice)
+  IntroProductos.setmodo("editar", productoEditar, manejarProducto)
+  'escribo todos los datos....
+  hresultProducto = manejarProducto.contenido()
+  escribedatosProducto()
+  GridViewProducto.Refresh()
+  
+End
+
+Public Sub BorrarProductos_Click()
+  
+  Dim indice As Integer
+  
+  Try indice = Val(GridViewProducto[GridViewProducto.row, 0].text)
+  If Error Then
+    Message.Info(("Debe elegir un registro"))
+    Return
+  Endif
+  
+  If comprobarBorrado(2, indice) Then
+    'true: se esta usando
+    Message.Info(("Ese producto se esta usando en algun recibo, no se puede borrar"))
+    Return
+    
+  Endif
+  
+  'borrar el dato del registro
+  manejarProducto.BorrarId(indice)
+  hresultProducto = manejarProducto.contenido()
+  escribedatosProducto()
+  
+End
+
+Public Sub FiltroProductos_Click()
+  
+  Dim contenidonombre As String
+  
+  contenidonombre = InputBox("Codigo:")
+  
+  If contenidonombre <> "" Then
+    hresultProducto = manejarProducto.BuscarContenidoCodigo(contenidonombre)
+    manejarProducto.MostrarGridView(GridViewProducto,, hresultProducto)
+    
+  Endif
+  
+End
+
+Public Sub QuitarFiltroProductos_Click()
+  
+  hresultProducto = manejarProducto.contenido()
+  escribedatosProducto()
+  
+End
+
+'---------------------------------------------------------------------------------
+Public Sub setnombre(n As Collection)
+  
+  $nombre = n
+  
+End
+
+Public Sub GridViewServicio_DblClick()
+  
+  Dim id As Integer
+  Dim nombre As String
+  Dim precio As Float
+  
+  $nombre.Add("1", "tabla") 'tabla: servicio htmp.tag["tabla"] = nombre[0]
+  id = Val(GridViewServicio[GridViewServicio.row, 0].text)
+  $nombre.Add(id, "id") '    htmp.tag["id"] = nombre[1]
+  nombre = GridViewServicio[GridViewServicio.row, 2].text
+  $nombre.Add(nombre, "descripcion") 'htmp.tag["descripcion"].text = nombre[2]
+  precio = Val(Replace$(GridViewServicio[GridViewServicio.row, 3].text, ".", ","))
+  $nombre.Add(precio, "precio") '  htmp.Tag["precio"].value = nombre[3]
+  $nombre.Add("ok", "salida")
+  Me.Close()
+  
+End
+
+Public Sub GridViewProducto_DblClick()
+  
+  Dim id As Integer
+  Dim nombre As String
+  Dim precio As Float
+  
+  $nombre.Add("2", "tabla")
+  Try id = Val(GridViewProducto[GridViewProducto.row, 0].text)
+  $nombre.Add(id, "id")
+  nombre = GridViewProducto[GridViewProducto.row, 3].text
+  $nombre.Add(nombre, "descripcion")
+  precio = Val(Replace(GridViewProducto[GridViewProducto.row, 5].text, ".", ","))
+  $nombre.Add(precio, "precio")
+  $nombre.Add(id, "imagen") 'añadido)
+  $nombre.Add("ok", "salida")
+  
+  $nombre.Add(GridViewProducto[GridViewProducto.row, 1].text, "codigo")
+  Me.Close()
+  
+End
+
+Public Sub GridViewCupon_DblClick()
+  
+  Dim id As Integer
+  Dim nombre As String
+  Dim precio As Float
+  
+  $nombre.Add("3", "tabla") 'tabla: cupon
+  Try id = Val(GridViewCupon[GridViewCupon.row, 0].text)
+  $nombre.Add(id, "id")
+  nombre = GridViewCupon[GridViewCupon.row, 2].text
+  $nombre.Add(nombre, "descripcion")
+  precio = Val(Replace$(GridViewCupon[GridViewCupon.row, 4].text, ".", ","))
+  $nombre.Add(precio, "precio")
+  $nombre.Add("ok", "salida")
+  
+  Me.Close()
+  
+End
+
+Public Function comprobarBorrado(tipo As Integer, id As Integer) As Boolean
+  
+  Dim manejarLineasRecibo As New LineaReciboAdaptadaDAO
+  Dim hres As Result
+  
+  'borrar lineas de recibo cuyos totales sean =0
+  
+  hres = manejarLineasRecibo.sql("DELETE FROM linearecibo WHERE total=0")
+  Wait 0.001
+  
+  hres = manejarLineasRecibo.sql(Subst$("SELECT * FROM linearecibo  WHERE tabla like '&1' AND  idproducto like '&2'", tipo, id))
+  If hres.Count <> 0 Then
+    'true: se esta usando
+    Return True
+  Else
+    Return False
+  Endif
+  
+End
+
+Public Sub Form_Close()
+  
+  If $nombre["salida"] = "ok" Then
+    
+    Return
+  Else
+    $nombre.Add(Null, "salida")
+  Endif
+  
+End
+
+Public Sub ButtonRefrescar_Click()
+  
+  GridViewProducto.Clear()
+  manejarProducto.MostrarGridView(GridViewProducto)
+  
+End
+
+Public Sub form_Show()
+  
+  ButtonRefrescar_Click()
+  
+End
+
+Public Sub ButtonAgregar_Click()
+  
+  addProductos_Click()
+  
+End
+
+Public Sub ButtonEditar_Click()
+  
+  editarProductos_Click()
+  
+End
+
+Public Sub ButtonFiltrar_Click()
+  
+  Dim contenidonombre As String
+  
+  contenidonombre = TextBoxFiltro.text
+  
+  If contenidonombre <> "" Then
+    hresultProducto = manejarProducto.BuscarContenidoCodigo(contenidonombre)
+    manejarProducto.MostrarGridView(GridViewProducto,, hresultProducto)
+    
+  Endif
+  
+  TextBoxFiltro2.Enabled = False
+  TextBoxFiltro2.TEXT = ""
+  
+End
+
+Public Sub ButtonFiltrarQuitar_Click()
+
+  Application.busy = 1
+  QuitarFiltroProductos_Click()
+  
+  TextBoxFiltro2.Enabled = True
+  TextBoxFiltro2.TEXT = ""
+  TextBoxFiltro.Enabled = True
+  TextBoxFiltro.TEXT = ""
+  Application.busy = 0
+
+End
+
+Public Sub ButtonBorrar_Click()
+  
+  BorrarProductos_Click()
+  
+End
+
+Public Sub TextBoxFiltro_KeyPress()
+  
+  If Key.code = Key.enter Or Key.code = Key.return Then 
+    ButtonFiltrar_Click()
+  Endif
+  
+End
+
+Public Sub ButtonFiltrar2_Click()
+  
+  Dim contenidonombre As String
+  
+  contenidonombre = TextBoxFiltro2.text
+  
+  If contenidonombre <> "" Then
+    hresultProducto = manejarProducto.BuscarContenidoNombre(contenidonombre)
+    manejarProducto.MostrarGridView(GridViewProducto,, hresultProducto)
+    
+  Endif
+  
+  TextBoxFiltro.TEXT = ""
+  TextBoxFiltro.Enabled = False
+  
+End
+
+Public Sub TextBoxFiltro2_KeyPress()
+  
+  If Key.code = Key.enter Or Key.code = Key.return Then 
+    ButtonFiltrar2_Click()
+  Endif
+  
+End

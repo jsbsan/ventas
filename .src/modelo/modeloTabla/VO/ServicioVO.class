@@ -1,0 +1,106 @@
+PROPERTY id AS Integer 
+PRIVATE hid AS Integer
+
+PROPERTY nombre AS String 
+PRIVATE hnombre AS String
+
+PROPERTY precio AS float 
+PRIVATE hprecio AS float
+
+PROPERTY comentario AS String 
+PRIVATE hcomentario AS String
+
+PROPERTY campo AS string[] 
+PRIVATE hcampo AS new string[]
+
+PROPERTY campotipo AS string[] 
+PRIVATE hcampotipo AS new string[]
+
+PROPERTY campovisible AS string[] 
+PRIVATE hcampovisible AS new string[]
+
+PRIVATE FUNCTION id_read() AS Integer
+ RETURN hid 
+END 
+ 
+PRIVATE SUB id_write(Valor AS Integer)
+ hid= Valor 
+END  
+ 
+PRIVATE FUNCTION nombre_read() AS String
+ RETURN hnombre 
+END 
+ 
+PRIVATE SUB nombre_write(Valor AS String)
+ hnombre= Valor 
+END  
+ 
+PRIVATE FUNCTION precio_read() AS float
+ RETURN hprecio 
+END 
+ 
+PRIVATE SUB precio_write(Valor AS float)
+ hprecio= Valor 
+END  
+ 
+PRIVATE FUNCTION comentario_read() AS String
+ RETURN hcomentario 
+END 
+ 
+PRIVATE SUB comentario_write(Valor AS String)
+ hcomentario= Valor 
+END  
+ 
+PRIVATE FUNCTION campo_read() AS string[]
+ RETURN hcampo 
+END 
+ 
+PRIVATE SUB campo_write(Valor AS string[])
+ hcampo= Valor 
+END  
+ 
+PRIVATE FUNCTION campotipo_read() AS string[]
+ RETURN hcampotipo 
+END 
+ 
+PRIVATE SUB campotipo_write(Valor AS string[])
+ hcampotipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campovisible_read() AS string[]
+ RETURN hcampovisible 
+END 
+ 
+PRIVATE SUB campovisible_write(Valor AS string[])
+ hcampovisible= Valor 
+END  
+ 
+PUBLIC FUNCTION Copia(Optional dato as ServicioVO) AS ServicioVO
+Dim datoVOtmp as new ServicioVO
+Dim datoVOtmpOriginal as ServicioVO
+If isnull(dato) then
+dato=me 'se copia a si mismo
+endif
+datoVOtmp.id=dato.id
+datoVOtmp.nombre=dato.nombre
+datoVOtmp.precio=dato.precio
+datoVOtmp.comentario=dato.comentario
+return datoVOtmp
+end
+
+PUBLIC FUNCTION ConvertirVOaColeccion(dato as ServicioVO) AS collection
+Dim colecciontmp as new collection
+colecciontmp.add(dato.id,"id")
+colecciontmp.add(dato.nombre,"nombre")
+colecciontmp.add(dato.precio,"precio")
+colecciontmp.add(dato.comentario,"comentario")
+return colecciontmp
+end
+PUBLIC FUNCTION ConvertirColeccionaVO(dato as collection) AS ServicioVO
+Dim datoVOtmp as new ServicioVO
+try datoVOtmp.id=dato["id"]
+try datoVOtmp.nombre=dato["nombre"]
+try datoVOtmp.precio=dato["precio"]
+try datoVOtmp.comentario=dato["comentario"]
+return datoVOtmp
+end

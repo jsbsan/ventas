@@ -1,0 +1,50 @@
+' Gambas class file
+
+Private valores As Variant[]
+
+Public Sub setValores(v As Variant[])
+
+  valores = v
+
+  LabelCobrar.text = Format$(v[0], ",#.#0")
+
+End
+
+Public Sub Form_Open()
+
+  Me.Title = "Cálculo del cambio"
+  Timer1.Start()
+
+End
+
+Public Sub ButtonCancelar_Click()
+
+  Timer1.Stop()
+  valores.Clear()
+  valores.Add(Null)
+  Me.close()
+
+End
+
+Public Sub ButtonGenerar_Click()
+
+  Timer1.Stop()
+  valores.Clear()
+  valores.Add(ValueBoxRecibido.value)
+  valores.Add(ValueBoxCambio.value)
+  Me.Close()
+
+End
+
+Public Sub Timer1_Timer()
+
+  ValueBoxCambio.value = ValueBoxRecibido.value - Val(LabelCobrar.text)
+
+End
+
+Public Sub ButtonAbrirCajon_Click()
+
+  Cajon.abrir()
+  ButtonGenerar_Click()
+
+End

@@ -1,0 +1,39 @@
+' Gambas class file
+
+Inherits LineareciboDAO
+
+Public Function BorrarCantidad(valor As Float) As Boolean
+
+  Dim conectar As New Conexion
+  Dim SQLString As String
+
+  conectar.Conexion()
+  sqlstring = "DELETE FROM Linearecibo WHERE cantidad=&1"
+  Try conectar.hconn.Exec(SQLString, valor)
+  If Error Then
+    Message.Error(" Se ha producido un ERROR al intentar Borrar datos, revise ID , " & "\nError: " & error.text)
+    Return False
+  Else
+    conectar.desconectar()
+    Return True
+  Endif
+
+End
+
+Public Function BorrarIdlinearecibo(valor As String) As Boolean
+
+  Dim conectar As New Conexion
+  Dim SQLString As String
+
+  conectar.Conexion()
+  sqlstring = "DELETE FROM Linearecibo WHERE idlinearecibo=&1"
+  Try conectar.hconn.Exec(SQLString, valor)
+  If Error Then
+    Message.Error(" Se ha producido un ERROR al intentar Borrar datos, revise ID , " & "\nError: " & error.text)
+    Return False
+  Else
+    conectar.desconectar()
+    Return True
+  Endif
+
+End

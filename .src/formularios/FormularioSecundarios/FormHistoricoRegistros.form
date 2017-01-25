@@ -1,0 +1,87 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,109,68)
+  Resizable = False
+  { MenuRecibos Menu
+    Text = ("Menu")
+    Visible = False
+    { Menu1 Menu
+    }
+    { quitarFiltros Menu
+      Text = ("Quitar Filtros")
+      Picture = Picture["icon:/16/cancel"]
+    }
+    { Menu3 Menu
+    }
+    { ReciboImprimir Menu
+      Text = ("Imprimir Recibo")
+      Picture = Picture["icon:/16/print"]
+    }
+    { Menu2 Menu
+    }
+    { BorrarRecibo Menu
+      Text = ("Borrar Recibo")
+      Picture = Picture["icon:/16/erase"]
+    }
+  }
+  { LabelTitulo Label
+    MoveScaled(2,0,106,4)
+    Font = Font["Italic,+3"]
+    Text = ("Histórico de Recibos")
+    Alignment = Align.Center
+  }
+  { ButtonSalir Button
+    MoveScaled(89,63,19,4)
+    Text = ("Salir")
+    Picture = Picture["icon:/16/quit"]
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(1,60,72,6)
+    Text = ("Nota:<br>\nPulsar el boton izquierdo para acceder al menú")
+  }
+  { ButtonFiltroEmpleado Button
+    MoveScaled(4,51,27,4)
+    Text = ("Filtrar por empleado:")
+  }
+  { ButtonFiltroFecha Button
+    MoveScaled(4,56,27,4)
+    Text = ("Filtrar por fecha:")
+  }
+  { DateBoxFecha DateBox
+    MoveScaled(34,56,17,4)
+  }
+  { GridView1 GridView
+    MoveScaled(1,4,107,46)
+    PopupMenu = "MenuRecibos"
+    Mode = Select.Single
+  }
+  { LabelSumaTotal Label
+    MoveScaled(89,51,19,5)
+    Alignment = Align.Right
+    Border = Border.Plain
+  }
+  { Label1 Label
+    MoveScaled(75,51,12,5)
+    Text = ("Suma:")
+    Alignment = Align.Right
+  }
+  { ComboBoxEmpleado ComboBox
+    MoveScaled(34,51,28,4)
+    ReadOnly = True
+    Text = ("ComboBox1")
+  }
+  { TextLabelError TextLabel
+    MoveScaled(1,65,105,4)
+  }
+  { ButtonImprimir Button
+    MoveScaled(74,56,13,4)
+    Text = ("Imprimir")
+    Picture = Picture["icon:/22/print"]
+  }
+  { ButtonQuitarFiltro Button
+    MoveScaled(52,56,17,4)
+    Text = ("Quitar Filtros")
+    Picture = Picture["icon:/22/cancel"]
+  }
+}

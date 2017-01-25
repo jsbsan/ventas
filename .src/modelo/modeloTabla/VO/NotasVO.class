@@ -1,0 +1,106 @@
+PROPERTY id AS Integer 
+PRIVATE hid AS Integer
+
+PROPERTY idcliente AS INTEGER 
+PRIVATE hidcliente AS INTEGER
+
+PROPERTY fecha AS Date 
+PRIVATE hfecha AS Date
+
+PROPERTY Comentario AS String 
+PRIVATE hComentario AS String
+
+PROPERTY campo AS string[] 
+PRIVATE hcampo AS new string[]
+
+PROPERTY campotipo AS string[] 
+PRIVATE hcampotipo AS new string[]
+
+PROPERTY campovisible AS string[] 
+PRIVATE hcampovisible AS new string[]
+
+PRIVATE FUNCTION id_read() AS Integer
+ RETURN hid 
+END 
+ 
+PRIVATE SUB id_write(Valor AS Integer)
+ hid= Valor 
+END  
+ 
+PRIVATE FUNCTION idcliente_read() AS INTEGER
+ RETURN hidcliente 
+END 
+ 
+PRIVATE SUB idcliente_write(Valor AS INTEGER)
+ hidcliente= Valor 
+END  
+ 
+PRIVATE FUNCTION fecha_read() AS Date
+ RETURN hfecha 
+END 
+ 
+PRIVATE SUB fecha_write(Valor AS Date)
+ hfecha= Valor 
+END  
+ 
+PRIVATE FUNCTION Comentario_read() AS String
+ RETURN hComentario 
+END 
+ 
+PRIVATE SUB Comentario_write(Valor AS String)
+ hComentario= Valor 
+END  
+ 
+PRIVATE FUNCTION campo_read() AS string[]
+ RETURN hcampo 
+END 
+ 
+PRIVATE SUB campo_write(Valor AS string[])
+ hcampo= Valor 
+END  
+ 
+PRIVATE FUNCTION campotipo_read() AS string[]
+ RETURN hcampotipo 
+END 
+ 
+PRIVATE SUB campotipo_write(Valor AS string[])
+ hcampotipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campovisible_read() AS string[]
+ RETURN hcampovisible 
+END 
+ 
+PRIVATE SUB campovisible_write(Valor AS string[])
+ hcampovisible= Valor 
+END  
+ 
+PUBLIC FUNCTION Copia(Optional dato as NotasVO) AS NotasVO
+Dim datoVOtmp as new NotasVO
+Dim datoVOtmpOriginal as NotasVO
+If isnull(dato) then
+dato=me 'se copia a si mismo
+endif
+datoVOtmp.id=dato.id
+datoVOtmp.idcliente=dato.idcliente
+datoVOtmp.fecha=dato.fecha
+datoVOtmp.Comentario=dato.Comentario
+return datoVOtmp
+end
+
+PUBLIC FUNCTION ConvertirVOaColeccion(dato as NotasVO) AS collection
+Dim colecciontmp as new collection
+colecciontmp.add(dato.id,"id")
+colecciontmp.add(dato.idcliente,"idcliente")
+colecciontmp.add(dato.fecha,"fecha")
+colecciontmp.add(dato.Comentario,"Comentario")
+return colecciontmp
+end
+PUBLIC FUNCTION ConvertirColeccionaVO(dato as collection) AS NotasVO
+Dim datoVOtmp as new NotasVO
+try datoVOtmp.id=dato["id"]
+try datoVOtmp.idcliente=dato["idcliente"]
+try datoVOtmp.fecha=dato["fecha"]
+try datoVOtmp.Comentario=dato["Comentario"]
+return datoVOtmp
+end

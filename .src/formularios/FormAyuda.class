@@ -1,0 +1,33 @@
+' Gambas class file
+
+Public Sub Label3_MouseDown()
+  
+  Desktop.Open(Label3.Text)
+  
+End
+
+Public Sub Button1_Click()
+  
+  Me.Close()
+  
+End
+
+Public Sub ButtonActualiza_Click()
+  
+  Application.busy = 1
+  ModuleUpdate.comprobar("ventas", Application.Version, "http://seguimientodeapuestas.blogspot.com.es/2016/02/ventas.html")
+  Application.busy = 0
+  
+End
+
+Public Sub Form_Open()
+  
+  Labelversion.text = "Version: " & Application.Version
+  
+End
+
+Public Sub Label5_MouseDown()
+  
+  Desktop.Open("http://softwarelibreventas.blogspot.com.es/")
+  
+End

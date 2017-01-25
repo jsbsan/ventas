@@ -1,0 +1,10 @@
+' Gambas module file
+
+Public Sub main()
+  
+  'pongo el que se ha puesto en el sistema forzado
+  System.Language = Settings["InicioIdioma", "es_ES"] & ".UTF-8"
+  
+  FormRecibos.ShowModal()
+  
+End

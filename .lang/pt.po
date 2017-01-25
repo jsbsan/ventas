@@ -1,0 +1,1333 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2002-11-01 04:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .project:1
+msgid "Cortes"
+msgstr "Cortes"
+
+#: .project:2
+msgid "Gestión de peluquería:  Servicios, Productos, Cupones descuentos, Empleados, Clientes,  Agenda y Recibos.\n"
+msgstr ""
+
+#: BDCortes.class:11
+msgid "Consulta erronea, revisela"
+msgstr "Consulta errónea, reveja os termos"
+
+#: ProductoDAO.class:368 ReciboDAO.class:368 ServicioDAO.class:270
+msgid "id"
+msgstr "id"
+
+#: ClienteDAO.class:443 EmpleadoDAO.class:443
+msgid "dni"
+msgstr "cc-bi (identificação)"
+
+#: VistaAlbaranesAlmacenDAO.class:186
+msgid "nombre"
+msgstr "nome"
+
+#: ClienteDAO.class:449 EmpleadoDAO.class:449
+msgid "telefono"
+msgstr "telefone"
+
+#: ClienteDAO.class:452 EmpleadoDAO.class:452
+msgid "correo"
+msgstr "Correio "
+
+#: ClienteDAO.class:455 EmpleadoDAO.class:455
+msgid "domicilio"
+msgstr "domicílio"
+
+#: ProductoDAO.class:383 ServicioDAO.class:279
+msgid "comentario"
+msgstr "comentário"
+
+#: SumaSalidaDAO.class:494 VistaAlbaranesAlmacenDAO.class:593
+msgid "No hay registro seleccionado"
+msgstr "Não há registo seleccionado"
+
+#: SumaSalidaDAO.class:580 VistaAlbaranesAlmacenDAO.class:679
+msgid "INFORME"
+msgstr "RELATÓRIO"
+
+#: SumaSalidaDAO.class:599 VistaAlbaranesAlmacenDAO.class:698
+msgid "Seleccione un registro"
+msgstr "Seleccione um registo"
+
+#: CuponDAO.class:371 ProductoDAO.class:371
+msgid "codigo"
+msgstr "código"
+
+#: CuponDAO.class:377
+msgid "descripcion"
+msgstr "descrição"
+
+#: ServicioDAO.class:276 SumaEntradaDAO.class:136
+msgid "precio"
+msgstr "preço"
+
+#: FormAlmacen.class:46 FormClientes.class:93 FormServicios.class:203
+msgid "Debe elegir un registro"
+msgstr "Deve eleger um registo"
+
+#: FormAlmacen.class:100
+msgid "ID"
+msgstr "ID"
+
+#: FormAlmacen.class:101
+msgid "Fecha"
+msgstr "Data"
+
+#: VistaAlbaranesAlmacenDAO.class:183
+msgid "idProducto"
+msgstr "idProduto"
+
+#: FormAlmacen.class:104 FormListadoVentas.class:112
+msgid "Producto"
+msgstr "Produto"
+
+#: FormAlmacen.class:105 FormRecibos.form:183 ModuleVarios.module:134
+msgid "Cantidad"
+msgstr "Quantidade"
+
+#: FormAlmacen.class:106
+msgid "Tipo"
+msgstr "Tipo"
+
+#: FormAlmacen.form:25 FormClientes.form:24 FormHistoricoRegistros.form:28
+msgid "Menu1"
+msgstr "Menu1"
+
+#: FormAlmacen.form:29
+msgid "Albaranes:"
+msgstr "Entrega"
+
+#: FormAlmacen.form:36
+msgid "Añadir Entrada/Rotura/Robo"
+msgstr "Adicionar Entrada/rotura de stock/Perdas roubos"
+
+#: FormAlmacen.form:41 FormClientes.form:33 FormServicios.form:44
+msgid "Editar"
+msgstr "Editar"
+
+#: FormAlmacen.form:46
+msgid "Filtrar por Fecha"
+msgstr "Filtrar por data"
+
+#: FormAlmacen.form:51 FormClientes.form:43
+msgid "Quitar Filtro"
+msgstr "Retirar Filtro"
+
+#: FormServicios.form:59
+msgid "Borrar"
+msgstr "Apagar"
+
+#: FormAlmacen.form:69
+msgid "Listado de albaranes de almacén"
+msgstr "Lista de entregas de Armazém"
+
+#: FormAlmacen.form:91
+msgid "Cerrar"
+msgstr "Fechar"
+
+#: IntroServicio.form:56
+msgid "Aceptar"
+msgstr "Aceitar"
+
+#: IntroServicio.form:50
+msgid "Cancelar"
+msgstr "Cancelar"
+
+#: FormAyuda.form:22 FormConfigurar.form:144
+msgid "Realizado por:"
+msgstr "Realizado por:"
+
+#: FormAyuda.form:53
+msgid "CORTES"
+msgstr "CORTES"
+
+#: FormAyuda.form:59 FormConfigurar.form:172
+msgid "<b>Gestión de peluquería y pequeñas tiendas: </b><br>Servicios, Productos, Cupones descuentos, Empleados, Clientes,  Agenda y Recibos. <br><b>Gestión del almacén:</b><br> Entrada de productos desde nuestro proveedor, roturas, o robo, para llevar el control del almacén de la tienda o peluquería."
+msgstr "<b>Gestão de Cabeleireiro e pequenas lojas:</b><br>Serviços,Produtos,Cupões desconto, Empregados, Clientes, Agenda e Recibos.<br><b>Gestão de armazém:</b><br>Entrada de produtos do provedor, roturas,roubos, controlo de armazém da loja e Cabeleireiro."
+
+#: FormAyuda.form:65
+msgid "cerrar"
+msgstr "fechar"
+
+#: FormAyuda.form:71
+msgid "Actualización Programa"
+msgstr "Actualizar Programa"
+
+#: FormAyuda.form:77
+msgid "Label5"
+msgstr "Label5"
+
+#: FormClientes.class:139
+msgid "No es posible borrar esta persona, tiene recibos asignados"
+msgstr "Não é possivel esta identidade, tem recibos já adicionados"
+
+#: FormClientes.form:28 FormServicios.form:39
+msgid "Añadir"
+msgstr "Adicionar"
+
+#: FormClientes.form:38 FormServicios.form:49
+msgid "Filtrar"
+msgstr "Filtrar"
+
+#: FormClientes.form:58
+msgid "Titulo"
+msgstr "Título"
+
+#: FormClientes.form:87
+msgid "Nota:<br>\nPulsar el boton izquierdo para acceder al menú. Y doble click para elergir registro."
+msgstr "Nota:<br>\nPressionar o botão ezquerdo para aceder ao menu. E duplo clique para eleger registo."
+
+#: FormCobro.form:23
+msgid "Importe a cobrar:"
+msgstr "Porte a cobrar:"
+
+#: FormCobro.form:32
+msgid "Label2"
+msgstr "Labels"
+
+#: IntroProductos.form:35
+msgid "ValueBox1"
+msgstr "ValueBox1"
+
+#: FormCobro.form:46
+msgid "Cambio a devolver al cliente:"
+msgstr "Troco a devolver ao cliente"
+
+#: FormCobro.form:53
+msgid "Importe a Recibido por el cliente:"
+msgstr "Porte a Recibo por Cliente:"
+
+#: FormCobro.form:60 FormRecibos.form:257
+msgid "Generar Recibo"
+msgstr "Gerar recibo"
+
+#: FormCobro.form:75
+msgid "ValueBox2"
+msgstr "ValueBox2"
+
+#: FormCobro.form:85 FormRecibos.form:368
+msgid "Abrir cajon monedero"
+msgstr "Abrir Caixa"
+
+#: FormCobro.form:86
+msgid "Generar Recibo y Abrir Cajón"
+msgstr "Gerar Recibo e Abrir Caixa"
+
+#: FormConfigurar.class:92
+msgid "La contraseña se ha cambiado"
+msgstr "A Senha foi mudade (actualizada)"
+
+#: FormConfigurar.class:94
+msgid "La contraseña nueva  no es igual en las dos etiquetas"
+msgstr "A nova Senha não, corresponde,  não é igual nas duas etiquetas"
+
+#: FormConfigurar.class:97
+msgid "La contraseña no es la correcta, no he realizado el cambio"
+msgstr "A Senha é incorrecta, não se pôde actualizar"
+
+#: FormConfigurar.class:132
+msgid "Crear copia de seguridad"
+msgstr "Criar cópia de dados (segurança)"
+
+#: FormConfigurar.class:137
+msgid "Se va a copiar la base de datos, con el nombre:"
+msgstr "Vai proceder à cópia da base de dados, com o nome:"
+
+#: FormConfigurar.class:137
+msgid "en la ruta"
+msgstr "em rota"
+
+#: FormConfigurar.class:140
+msgid "Ha habido un error al intentar copiar la base de datos"
+msgstr "Houve um erro ao tentar copiar a base de dados"
+
+#: FormConfigurar.class:150
+msgid "Al restaurar una copia de seguridad, se borrarán los datos actuales!!!"
+msgstr "Ao restaurar uma cópia de dados, apagar-se-ão os dados actuais!!!"
+
+#: FormConfigurar.class:150
+msgid "Continuar"
+msgstr "Continuar"
+
+#: FormConfigurar.class:154
+msgid "Restaurar una copia de seguridad"
+msgstr "Restaurar uma cópia de dados de segurança"
+
+#: FormConfigurar.class:165
+msgid "Se ha producido un error al intentar copiar el archivo"
+msgstr "Houve um erro ao tentar copiar o arquivo"
+
+#: FormConfigurar.class:167
+msgid "Restauración realizada"
+msgstr "Restauro realizado"
+
+#: FormConfigurar.class:177
+msgid "espere...."
+msgstr "espere por favor...."
+
+#: FormConfigurar.class:180
+msgid "No ha habido nada que arreglar"
+msgstr "Não houve nada encontrado para arranjar"
+
+#: FormConfigurar.class:181
+msgid "Estructura Comprobada."
+msgstr "Estructura Comprovada OK!"
+
+#: FormConfigurar.class:182
+msgid "comprobar"
+msgstr "comprovar"
+
+#: FormConfigurar.class:189
+msgid "La proxima vez se iniciara el programa en Portugues"
+msgstr "A próxima vez que execute o programa ele iniciar-se-á em Português"
+
+#: FormConfigurar.class:196
+msgid "La proxima vez se iniciara el programa en Castellano"
+msgstr "A próxima vez que execute o programa ele iniciar-se-á em Castelhano"
+
+#: FormConfigurar.class:203
+msgid "La proxima vez se iniciara el programa en Portugues-Brasil"
+msgstr "A próxima vez que execute o programa ele iniciar-se-á em Português-Brasil"
+
+#: FormConfigurar.class:210
+msgid "La proxima vez se iniciara el programa en Ingles"
+msgstr "A próxima vez que execute o programa ele iniciar-se-á em Inglês"
+
+#: FormConfigurar.class:242
+msgid "se ha producido un error al intentar rellenar el combobox de empleados"
+msgstr "produziu-se um ERRO ao tentar preencher o combobox de empregados"
+
+#: FormConfigurar.class:250 FormLibroClientes.class:100
+msgid "se ha producido un error al intentar rellenar el combobox de clientes"
+msgstr "produziu-se um ERRO ao tentar preencher o combobox de clientes"
+
+#: FormLibroClientes.form:56 FormListadoVentas.form:164 FormRecibos.form:151
+msgid "Salir"
+msgstr "Saír"
+
+#: FormConfigurar.form:93
+msgid "Datos Imprimir Recibo"
+msgstr "Dados Imprimir recibos"
+
+#: FormConfigurar.form:95
+msgid "Permisos y datos de cálculo"
+msgstr "Permissões e dados de cálculo"
+
+#: FormConfigurar.form:97
+msgid "Borrado"
+msgstr "Apagado"
+
+#: FormConfigurar.form:99
+msgid "Contraseña"
+msgstr "Senha"
+
+#: FormConfigurar.form:101
+msgid "Actualización"
+msgstr "Actualizar"
+
+#: FormConfigurar.form:103
+msgid "Copia de Seguridad"
+msgstr "Cópia de dados"
+
+#: FormConfigurar.form:105
+msgid "Estructura"
+msgstr "Estructura"
+
+#: FormConfigurar.form:118
+msgid "Configuración"
+msgstr "Configuração"
+
+#: FormConfigurar.form:133
+msgid "Configuracion"
+msgstr "Configuração"
+
+#: FormConfigurar.form:138
+msgid "Sistema de Configuración"
+msgstr "Sistema de configuração"
+
+#: FormConfigurar.form:178
+msgid "Label19"
+msgstr "Label19"
+
+#: FormConfigurar.form:186
+msgid "Datos que aparecerán en el recibo"
+msgstr "Dados que aparacem no reecibo"
+
+#: FormConfigurar.form:190
+msgid "Nombre de la peluqueria:"
+msgstr "Nome da loja:"
+
+#: FormConfigurar.form:199
+msgid "Dirección:"
+msgstr "Direcção:"
+
+#: FormConfigurar.form:208
+msgid "Contacto (teléfono, movil, email): "
+msgstr "Contacto(tlf,e-mail):"
+
+#: FormConfigurar.form:217
+msgid "Tipo de Negocio:"
+msgstr "Tipo de serviço negócio"
+
+#: FormConfigurar.form:234
+msgid "Elegir carpeta"
+msgstr "Escolha a pasta"
+
+#: FormConfigurar.form:245
+msgid "Ruta donde se guardan los informes .pdf:"
+msgstr "Rota de alocação de info .pdf:"
+
+#: FormConfigurar.form:250
+msgid "¿Es posible borrar un recibo o ticket?"
+msgstr "É possivel apagar um recibo ou ticket?"
+
+#: FormConfigurar.form:256
+msgid "¿Es posible modificar el precio desde la pantalla de recibo?"
+msgstr "É possivel modificar o preço no aba de recibo?"
+
+#: FormConfigurar.form:262
+msgid "¿A los Cupones se les aplica IVA?"
+msgstr "IVA aplicado a cupão."
+
+#: IntroAlbaranAlmacen.form:64
+msgid "ComboBox1"
+msgstr "ComboBox1"
+
+#: FormConfigurar.form:279
+msgid "¿A los Servicios se le aplica IVA?"
+msgstr "IVA aplicado À prestação de serviço?"
+
+#: FormConfigurar.form:290
+msgid "%IVA a aplicar:"
+msgstr "% IVA a aplicar:"
+
+#: FormConfigurar.form:303
+msgid "Activar Borrar en menu Empleados/Clientes"
+msgstr "Activar apagar em menu empregados/Clientes"
+
+#: FormConfigurar.form:308
+msgid "Activar Borrar en menu Recibos"
+msgstr "Activar apagar em menu Recibos"
+
+#: FormConfigurar.form:313
+msgid "Activar Borrar en menu Servicios/Productos/Cupones"
+msgstr "Activar apagar em menu Serviços/Produtos/Cupões"
+
+#: FormConfigurar.form:318
+msgid "Menu de borrado"
+msgstr "Menu de apagados"
+
+#: FormConfigurar.form:331
+msgid "Contraseña Actual:"
+msgstr "Senha Actual:"
+
+#: FormConfigurar.form:337
+msgid "Cambiar Contraseña"
+msgstr "Mudar Senha"
+
+#: FormConfigurar.form:341
+msgid "Repita Nueva Contraseña:"
+msgstr "Repita nova Senha"
+
+#: FormConfigurar.form:347
+msgid "Nueva Contraseña:"
+msgstr "Nova Senha:"
+
+#: FormConfigurar.form:364
+msgid "Actualizar Contraseña"
+msgstr "Actualizar Senha"
+
+#: FormConfigurar.form:372
+msgid "Realizar Comprobación manual de actualización"
+msgstr "Realizar Comprovação manual de actualização"
+
+#: FormConfigurar.form:377
+msgid "Cada vez que se inicie el programa comprobar"
+msgstr "Cada vez que se inicia o programa comprovar "
+
+#: FormConfigurar.form:382
+msgid "Update: Sistema de Actualizacion mediante Conexión a Internet:"
+msgstr "Update: Sistema de actualização mediante Internet:"
+
+#: FormConfigurar.form:385
+msgid "Comprobar Estructura"
+msgstr "Comprovar Estructura"
+
+#: FormConfigurar.form:389
+msgid "Comprobar"
+msgstr "Comprovar"
+
+#: FormConfigurar.form:394
+msgid "Analisis de Estructura:<br>\nComprueba la estructura de la base de datos, arreglando borrados accidentales de Clientes, Empleados, Servicios , Productos y Cupones que se sigan usando en los Registros."
+msgstr "Análise da estructura:<br>\nComprove a estructura da base de dados, resgate de dados apagados acidentalmente de Clientes,Empregados,Serviços, Produtos e Cupões que ainda estejam em registos."
+
+#: FormConfigurar.form:401
+msgid "Restaura Copia Seguridad de la base de datos"
+msgstr "Restaura Cópia de dados da base de dados"
+
+#: FormConfigurar.form:407
+msgid "Crear Copia Seguridad de la base de datos"
+msgstr "Criar Cópia de dados (segurança) da base de dados"
+
+#: FormConfigurar.form:411
+msgid "Empleado/Cliente Por defecto"
+msgstr "Empregado/Cliente Por definição"
+
+#: FormConfigurar.form:415
+msgid "Empleado por defecto...."
+msgstr "Empregado por definição...."
+
+#: FormConfigurar.form:430
+msgid "Cliente por defecto......."
+msgstr "Cliente por definição"
+
+#: FormConfigurar.form:435
+msgid "Nota: <br>\nCada vez que se cree un recibo, se pondrán este Empleado y Cliente por defecto, los cuales puede cambiar pulsando el botón de lupa."
+msgstr "Nota:<br>\nCada vez que se crie um recibo, por definição serão colocados (preenchidos por) este Empregado e Cliente, os quais pode mudar premindo o botão lupa."
+
+#: FormConfigurar.form:440
+msgid "Guardar Empleado/Cliente"
+msgstr "Guardar Empregado/Cliente"
+
+#: FormConfigurar.form:444
+msgid "USB Cajón monedero"
+msgstr "USB gaveta de dinheiro"
+
+#: FormConfigurar.form:448
+msgid "/dev/ttyUSB0"
+msgstr ""
+
+#: FormConfigurar.form:453
+msgid "Nombre del Dispositivo:"
+msgstr "Nome do dispositivo"
+
+#: FormConfigurar.form:458
+msgid "Contraseña usuario admin / root:"
+msgstr "Senha root:"
+
+#: FormConfigurar.form:468
+msgid "Guardar Datos"
+msgstr "Guardar"
+
+#: FormConfigurar.form:474
+msgid "     Prueba para Abrir Cajón"
+msgstr "    Tente abrir a gaveta"
+
+#: FormConfigurar.form:478
+msgid "Idiomas"
+msgstr "Idiomas"
+
+#: FormConfigurar.form:482
+msgid "Español"
+msgstr "Espanhol"
+
+#: FormConfigurar.form:488
+msgid "Portugués"
+msgstr "Português"
+
+#: FormConfigurar.form:494
+msgid "Forzar el idioma del programa:"
+msgstr "Forçar idioma do programa para:"
+
+#: FormConfigurar.form:499
+msgid "Brasil"
+msgstr "Brasil"
+
+#: FormConfigurar.form:505
+msgid "English"
+msgstr "Inglês"
+
+#: FormFiltrarClientesEmpleados.form:20
+msgid "Por Nombre"
+msgstr "Por Nome"
+
+#: FormFiltrarClientesEmpleados.form:26
+msgid "Por Teléfono"
+msgstr "Por Telefone"
+
+#: FormFiltrarClientesEmpleados.form:31
+msgid "Contenido:"
+msgstr "Conteúdo:"
+
+#: FormHistoricoRegistros.class:200
+msgid "Error: Seleccione un  recibo"
+msgstr "ERRO: Seleccione um recibo"
+
+#: FormHistoricoRegistros.class:218
+msgid "No se pueden borrar los recibos<br>Actualice la Configuración "
+msgstr "Não se podem Apagar os recibos <br> Actualiza a Configuração "
+
+#: FormHistoricoRegistros.class:220
+msgid "El borrado de Registros es DEFINITIVO"
+msgstr "Apagar Registos é uma opção DEFINITIVA!"
+
+#: FormHistoricoRegistros.form:35
+msgid "Quitar Filtros"
+msgstr "Retirar Filtros"
+
+#: FormHistoricoRegistros.form:43
+msgid "Imprimir Recibo"
+msgstr "Imprimir Recibo"
+
+#: FormHistoricoRegistros.form:51
+msgid "Borrar Recibo"
+msgstr "Apagar recibo"
+
+#: FormHistoricoRegistros.form:59
+msgid "Histórico de Recibos"
+msgstr "Histórico de Recibos"
+
+#: FormHistoricoRegistros.form:71
+msgid "Nota:<br>\nPulsar el boton izquierdo para acceder al menú"
+msgstr "Nota:<br>\nPressione o botão ezquerdo para aceder ao menu"
+
+#: FormHistoricoRegistros.form:76
+msgid "Filtrar por empleado:"
+msgstr "Filtrar por empregado:"
+
+#: FormHistoricoRegistros.form:81
+msgid "Filtrar por fecha:"
+msgstr "Filtrar por data:"
+
+#: FormHistoricoRegistros.form:102
+msgid "Suma:"
+msgstr "Soma:"
+
+#: FormLibroClientes.class:11
+msgid "Seguimiento de tratamientos"
+msgstr "Seguimento de tratamentos "
+
+#: FormLibroClientes.form:19
+msgid "MenuLibroCliente"
+msgstr "MenuLivroCliente"
+
+#: FormLibroClientes.form:23
+msgid "Agregar nota"
+msgstr "Adicionar nota"
+
+#: FormLibroClientes.form:27
+msgid "Editar nota"
+msgstr "Editar nota"
+
+#: FormLibroClientes.form:34
+msgid "Borrar nota"
+msgstr "Apagar nota"
+
+#: FormLibroClientes.form:46 FormListadoVentas.form:133 FormRecibos.form:164
+msgid "Cliente:"
+msgstr "Cliente:"
+
+#: FormListadoVentas.class:23
+msgid "Elija un empleado"
+msgstr "Escolha um empregado"
+
+#: FormListadoVentas.class:33
+msgid "No puedo mostrar ese periodo de fechas"
+msgstr "Não se pode mostrar o período de Datas requerido"
+
+#: FormListadoVentas.class:66
+msgid "Informe de Empleado"
+msgstr "Relatório de Empregado"
+
+#: FormListadoVentas.class:67 ModuleVarios.module:130
+msgid "Empleado"
+msgstr "Empregado"
+
+#: FormListadoVentas.class:68 ReciboDAO.class:371
+msgid "idempleado"
+msgstr "idempregado"
+
+#: FormListadoVentas.class:69
+msgid "Periodo"
+msgstr "Período"
+
+#: FormListadoVentas.class:70
+msgid "fecha inicial"
+msgstr "data inicial:"
+
+#: FormListadoVentas.class:71
+msgid "fecha final"
+msgstr "data Final"
+
+#: FormListadoVentas.class:72
+msgid "Recibos"
+msgstr "Recibos"
+
+#: FormListadoVentas.class:81 ModuleVarios.module:129
+msgid "Cliente"
+msgstr "Cliente"
+
+#: FormListadoVentas.class:81
+msgid "Id de Recibo"
+msgstr "Id de Recibo"
+
+#: FormListadoVentas.class:81
+msgid "IdLineaRecibo"
+msgstr "IdLinhaRecibo"
+
+#: FormListadoVentas.class:81
+msgid "Importe"
+msgstr "Valor"
+
+#: FormListadoVentas.class:95
+msgid "Importe Total"
+msgstr "Valor Total"
+
+#: FormListadoVentas.class:96
+msgid "Número Total de Recibos"
+msgstr "Número Total de Recibos"
+
+#: ModuleVarios.module:153
+msgid "Servicios"
+msgstr "Serviços"
+
+#: LineareciboDAO.class:392 VistaAlbaranesAlmacenDAO.class:189
+msgid "cantidad"
+msgstr "quantidade"
+
+#: FormListadoVentas.class:126 FormRecibos.form:85 FormServicios.form:145
+msgid "Cupones"
+msgstr "Cupões"
+
+#: FormListadoVentas.class:182
+msgid "Informe de Cliente"
+msgstr "Relatório de Cliente"
+
+#: ReciboDAO.class:374
+msgid "idcliente"
+msgstr "idcliente"
+
+#: FormListadoVentas.class:197
+msgid " Id de Recibo "
+msgstr "Id de Recibo"
+
+#: FormListadoVentas.class:335
+msgid "Elija un cliente"
+msgstr "Escolha um cliente"
+
+#: FormListadoVentas.class:364
+msgid "Informe de Inventario"
+msgstr "Relatório de Inventário"
+
+#: FormListadoVentas.class:365
+msgid "Fecha informe: "
+msgstr "Data de Relatório:"
+
+#: FormListadoVentas.class:367
+msgid " Nombre Producto "
+msgstr "Nome Produto"
+
+#: FormListadoVentas.class:367
+msgid "Entrada"
+msgstr "Entrada"
+
+#: FormListadoVentas.class:367
+msgid "IdProd"
+msgstr "IdProd"
+
+#: FormListadoVentas.class:367
+msgid "Venta"
+msgstr "Venda"
+
+#: FormListadoVentas.class:368
+msgid "Existencia Almacen"
+msgstr "Existência Armazém"
+
+#: FormListadoVentas.class:368
+msgid "Robo"
+msgstr "Roubo"
+
+#: FormListadoVentas.class:368
+msgid "Rotura"
+msgstr "Rotura"
+
+#: FormListadoVentas.class:383
+msgid "INVENTARIO"
+msgstr "INVENTÁRIO"
+
+#: FormListadoVentas.class:475
+msgid "Precio Unitario"
+msgstr "Preço por unidade"
+
+#: FormListadoVentas.class:478
+msgid "Coste Entrada"
+msgstr "Custo Entrada (Armazém)"
+
+#: FormListadoVentas.class:480
+msgid "Coste Venta"
+msgstr "Custo da Venda"
+
+#: FormListadoVentas.class:482
+msgid "Coste Rotura"
+msgstr "Custo da Rotura"
+
+#: FormListadoVentas.class:485
+msgid "Coste Robo"
+msgstr "Custo de Roubo "
+
+#: FormListadoVentas.class:488
+msgid "Coste Almacen"
+msgstr "Custo Armazém"
+
+#: FormListadoVentas.form:37 FormRecibos.form:100
+msgid "Empleados"
+msgstr "Empregados"
+
+#: FormListadoVentas.form:48 FormRecibos.form:158
+msgid "Empleado:"
+msgstr "Empregado:"
+
+#: FormListadoVentas.form:54
+msgid "Listado desde.... hasta ...."
+msgstr "Lista desde .... até ...."
+
+#: FormListadoVentas.form:58
+msgid "Desde:"
+msgstr "Desde:"
+
+#: FormListadoVentas.form:64
+msgid "Hasta:"
+msgstr "Até:"
+
+#: FormListadoVentas.form:78
+msgid "Realiza la consulta"
+msgstr "Realiza a consulta"
+
+#: FormListadoVentas.form:79
+msgid "Consultar"
+msgstr "Consultar"
+
+#: FormListadoVentas.form:90 FormRecibos.form:94
+msgid "Clientes"
+msgstr "Clientes"
+
+#: FormListadoVentas.form:143
+msgid "Inventario"
+msgstr "Inventário"
+
+#: FormListadoVentas.form:149
+msgid "Crear Informe de inventario:Entradas,Ventas,Roturas,Robos y Existencias Almacen"
+msgstr "Criar Inventário, informação: Entradas, Vendas, Roturas, Perdas de Armazém"
+
+#: FormListadoVentas.form:156
+msgid "Crear Informe de inventario con valoración de productos"
+msgstr "Criar Inventário con valores dos produtos"
+
+#: FormListadoVentas.form:171
+msgid "INFORMES"
+msgstr "RELATÓRIO"
+
+#: FormPassword.form:21
+msgid "Contraseña:"
+msgstr "Senha:"
+
+#: FormRecibos.class:338
+msgid "Contraseña no valida"
+msgstr "Senha Inválida "
+
+#: FormRecibos.class:483
+msgid "Debe de instalar el programa plan (sudo apt-get install plan)"
+msgstr "Deve instalar o programa plan (abra terminal e dê comando - sudo apt-get install plan)"
+
+#: FormRecibos.class:551
+msgid "Debe de indicar un cliente"
+msgstr "Deve indicar um cliente"
+
+#: FormRecibos.class:558
+msgid "Debe de indicar un empleado"
+msgstr "Deve indicar um empregado"
+
+#: FormRecibos.form:63
+msgid "Menu"
+msgstr "Menu"
+
+#: FormRecibos.form:66
+msgid "Agenda Plan"
+msgstr "Agenda Plan - plano"
+
+#: FormRecibos.form:80 FormServicios.form:137 ModuleVarios.module:162
+msgid "Productos"
+msgstr "Produtos"
+
+#: FormRecibos.form:108
+msgid "Historico de Recibos"
+msgstr "Histórico de Recibos"
+
+#: FormRecibos.form:116
+msgid "Listado de Productos Vendidos por Empleado"
+msgstr "Lista de produtos vendidos por Empregado"
+
+#: FormRecibos.form:124
+msgid "Almacén: Entrada Productos"
+msgstr "Armazém:Entradas de produtos"
+
+#: FormRecibos.form:129
+msgid "Almacén: Inventario de Productos"
+msgstr "Armazém : Inventário"
+
+#: FormRecibos.form:138
+msgid "Configurar"
+msgstr "Configurar"
+
+#: FormRecibos.form:143
+msgid "Ayuda"
+msgstr "Ajuda"
+
+#: FormRecibos.form:173 ModuleVarios.module:134
+msgid "Descripción"
+msgstr "Descrição"
+
+#: FormRecibos.form:193 ModuleVarios.module:134
+msgid "Precio"
+msgstr "Preço"
+
+#: FormRecibos.form:203
+msgid "dto %"
+msgstr "dto%"
+
+#: FormRecibos.form:213
+msgid "IVA"
+msgstr "IVA"
+
+#: FormRecibos.form:223 ModuleVarios.module:134
+msgid "Total"
+msgstr "Total"
+
+#: FormRecibos.form:235
+msgid "Añadir linea"
+msgstr "Adicionar linha"
+
+#: FormRecibos.form:242
+msgid "Importe:"
+msgstr "Porte:"
+
+#: FormRecibos.form:310
+msgid "Id"
+msgstr "ID"
+
+#: FormRecibos.form:320
+msgid "T"
+msgstr "T"
+
+#: FormRecibos.form:327
+msgid "recibo nuevo"
+msgstr "recibo novo"
+
+#: FormRecibos.form:328
+msgid "Nuevo Recibo"
+msgstr "Novo Recibo"
+
+#: FormRecibos.form:334
+msgid "agenda"
+msgstr "agenda"
+
+#: FormRecibos.form:335
+msgid "Agenda"
+msgstr "Agenda"
+
+#: FormRecibos.form:342
+msgid "Historico"
+msgstr "Histórico"
+
+#: FormRecibos.form:348
+msgid "Informe de Empleados"
+msgstr "Inforelação Empregados"
+
+#: FormRecibos.form:349
+msgid "Informes"
+msgstr "Relatório"
+
+#: FormRecibos.form:362
+msgid "Gestión Almacén"
+msgstr "Gestão do Armazém"
+
+#: FormRecibos.form:374
+msgid "Libro De Clientes para llevar apuntados los tratamientos"
+msgstr "Livro De Clientes para seguimento de tratamentos e opções personalizadas de serviço"
+
+#: FormServicios.class:176
+msgid "Debe de elegir un registro"
+msgstr "Deve escolher um registo"
+
+#: FormServicios.class:212
+msgid "Ese servicio se esta usando en algun recibo, no se puede borrar"
+msgstr "Esse serviço está-se a usar em algum recibo neste momento, não se pode apagar"
+
+#: FormServicios.class:300
+msgid "Ese cupon se esta usando en algun recibo, no se puede borrar"
+msgstr "Esse cupão está-se a usar em algum recibo neste momento, não se pode apagar"
+
+#: FormServicios.class:390
+msgid "Ese producto se esta usando en algun recibo, no se puede borrar"
+msgstr "Esse produto está-se a usar em algum recibo neste momento, não se pode apagar"
+
+#: FormServicios.form:35
+msgid "MenuServicios"
+msgstr "MenuServiços"
+
+#: FormServicios.form:54
+msgid "Quitar filtro"
+msgstr "Retirar filtro"
+
+#: FormServicios.form:65
+msgid "MenuProductos"
+msgstr "MenuProdutos"
+
+#: FormServicios.form:95
+msgid "MenuCupones"
+msgstr "MenuCupões"
+
+#: FormServicios.form:99
+msgid "Añade"
+msgstr "Adicione"
+
+#: FormServicios.form:163
+msgid "Nota:  Haga doble click para elegir un servicio/producto o cupon"
+msgstr "Nota: Faça duplo clique para escolher um serviço/produto ou cupão"
+
+#: INVENTARIODAO.class:199 INVENTARIOVALORADODAO.class:331
+msgid "sumaEntrada_nombre"
+msgstr "somaEntrada_nome"
+
+#: INVENTARIODAO.class:202 INVENTARIOVALORADODAO.class:334
+msgid "sumaEntrada_idproducto"
+msgstr "somaEntrada_idproduto"
+
+#: IntroAlbaranAlmacen.form:63
+msgid "ENTRADA"
+msgstr "ENTRADA"
+
+#: INVENTARIODAO.class:208 INVENTARIOVALORADODAO.class:346
+msgid "VENTA"
+msgstr "VENDA"
+
+#: IntroAlbaranAlmacen.form:63
+msgid "ROTURA"
+msgstr "ROTURA"
+
+#: IntroAlbaranAlmacen.form:63
+msgid "ROBO"
+msgstr "ROUBO"
+
+#: INVENTARIODAO.class:217 INVENTARIOVALORADODAO.class:364
+msgid "EXISTENCIA_ALMACEN"
+msgstr "EXISTÊNCIA_ARMAZÉM"
+
+#: INVENTARIOVALORADODAO.class:337
+msgid "sumaEntrada_precio"
+msgstr "somaEntrada_preço"
+
+#: INVENTARIOVALORADODAO.class:343
+msgid "COSTE_ENTRADA"
+msgstr "CUSTO_ENTRADA"
+
+#: INVENTARIOVALORADODAO.class:349
+msgid "COSTE_VENTA"
+msgstr "CUSTO_VENDA"
+
+#: INVENTARIOVALORADODAO.class:355
+msgid "COSTE_ROTURA"
+msgstr "CUSTO_ROTURA"
+
+#: INVENTARIOVALORADODAO.class:361
+msgid "COSTE_ROBO"
+msgstr "CUSTO_ROUBO"
+
+#: INVENTARIOVALORADODAO.class:367
+msgid "COSTE_ALMACEN"
+msgstr "CUSTO_ARMAZÉM"
+
+#: IntroAlbaranAlmacen.class:57
+msgid "Debe de elegir un producto"
+msgstr "Deve escolher um produto"
+
+#: IntroAlbaranAlmacen.form:23
+msgid "Fecha:"
+msgstr "Data:"
+
+#: IntroAlbaranAlmacen.form:33 IntroProductos.form:45
+msgid "Producto:"
+msgstr "Producto:"
+
+#: IntroAlbaranAlmacen.form:51
+msgid "Cantidad:"
+msgstr "Quantidade:"
+
+#: IntroAlbaranAlmacen.form:70
+msgid "ALBARÁN PARA ALMACÉN"
+msgstr "Entrega para Armazém"
+
+#: IntroAlbaranAlmacen.form:76
+msgid "Tipo:"
+msgstr "Tipo:"
+
+#: IntroAlbaranAlmacen.form:94
+msgid "<u>  Explicación de Tipo  </u><br>\n<b>ENTRADA</b>: Producto comprado al  proveedor y entra en el almacén<br>\n<b>ROTURA</b>: Producto roto o estropeado que no se pueda vender<br>\n<b>ROBO</b>: Producto robado o que falta inexplicablemente en el almacén.<br>"
+msgstr "<u>Explicação de tipo</u><br>\n<b>ENTRADA</b>:Producto comprado, origem e armazém<br>\n>b>ROTURA</b>:Producto em rotura, caducado inviabilizado, que não pode vender<br>\n<b> PERDAS</b>: Porducto roubado o em falta sem motivo no armazém.<br>"
+
+#: IntroClienteEmpleado.form:25
+msgid "Nombre y Apellidos:"
+msgstr "Nome e Apelidos:"
+
+#: IntroClienteEmpleado.form:31
+msgid "DNI:"
+msgstr "CC-BI:"
+
+#: IntroClienteEmpleado.form:37
+msgid "Telefono:"
+msgstr "Telefone:"
+
+#: IntroClienteEmpleado.form:43
+msgid "correo-e:"
+msgstr "Correio-caixa:"
+
+#: IntroClienteEmpleado.form:49
+msgid "Domicilio:"
+msgstr "Domicílio:"
+
+#: IntroServicio.form:44
+msgid "Comentarios:"
+msgstr "Comentários:"
+
+#: IntroCupon.form:35
+msgid "Código:"
+msgstr "Código:"
+
+#: IntroCupon.form:45
+msgid "Nombre:"
+msgstr "Nome:"
+
+#: IntroCupon.form:55
+msgid "Descripción:"
+msgstr "Descrição:"
+
+#: IntroCupon.form:69 IntroProductos.form:63 IntroServicio.form:38
+msgid "Precio:"
+msgstr "Preço:"
+
+#: IntroProductos.form:51
+msgid "Codigo:"
+msgstr "Código:"
+
+#: IntroProductos.form:57
+msgid "Ubicación:"
+msgstr "Local:"
+
+#: IntroServicio.form:32
+msgid "Tipo de Corte:"
+msgstr "Tipo de Corte:"
+
+#: LineaAlmacenDAO.class:351 VistaAlbaranesAlmacenDAO.class:192
+msgid "tipo"
+msgstr "tipo"
+
+#: ReciboDAO.class:377 VistaAlbaranesAlmacenDAO.class:180
+msgid "fecha"
+msgstr "data"
+
+#: LineareciboDAO.class:383
+msgid "idproducto"
+msgstr "idproduto"
+
+#: LineareciboDAO.class:386 ReciboDAO.class:380
+msgid "idlinearecibo"
+msgstr "idlinharecibo"
+
+#: LineareciboDAO.class:395
+msgid "descuento"
+msgstr "desconto"
+
+#: LineareciboDAO.class:398
+msgid "total"
+msgstr "total"
+
+#: LineareciboDAO.class:401
+msgid "tabla"
+msgstr "tabela"
+
+#: LineareciboDAO.class:404
+msgid "iva"
+msgstr "iva"
+
+#: ModuleAlbaranesVistas.module:36
+msgid "Se ha producido un ERROR al Intentar obtener lista"
+msgstr "Produziu-se um ERRO ao tentar obter a lista"
+
+#: ModuleAlbaranesVistas.module:70
+msgid "Se ha producido un error al intentar añadir la tabla de Notas nueva"
+msgstr "Produziu-se um ERRO ao tentar adicionar a tabela de Notas nova"
+
+#: ModuleAlbaranesVistas.module:124
+msgid "Se ha producido un error al intentar añadir la tabla de lineaAlamacen nueva"
+msgstr "Produziu-se um ERRO ao tentar adicionar a nova  tabela de lineaAlamcen (linha-armazem) "
+
+#: ModuleAlbaranesVistas.module:144
+msgid " Se ha producido un ERROR al Intentar obtener lista"
+msgstr "Produziu-se um ERRO ao tentar obter a lista"
+
+#: ModuleAlbaranesVistas.module:178
+msgid "Se ha producido un error al intentar añadir la vista "
+msgstr "Produziu-se um ERRO ao tentar adicionar a nova vista"
+
+#: ModuleComun.module:18
+msgid "Error al conectarse a la base de datos"
+msgstr "ERRO ao conectar à base de dados"
+
+#: ModuleUpdate.module:20
+msgid "No ha sido posible conectarse al servidor"
+msgstr "Não foi possivel conectar com servidor"
+
+#: ModuleUpdate.module:20
+msgid "No puedo comprobar si hay nueva versión"
+msgstr "Não posso comprovar se existe nova versão"
+
+#: ModuleUpdate.module:33
+msgid "El archivo de versión no es para este programa"
+msgstr "O A rquivo de versão nã oé para este programa"
+
+#: ModuleUpdate.module:36
+msgid "Dirección Url de descarga:"
+msgstr "Direccção Url de descarga"
+
+#: ModuleUpdate.module:36
+msgid "Existe una nueva versión"
+msgstr "Existe uma nova versão"
+
+#: ModuleUpdate.module:36
+msgid "Mejoras:"
+msgstr "Melhoras:"
+
+#: ModuleUpdate.module:36
+msgid "Programa:"
+msgstr "Programa:"
+
+#: ModuleUpdate.module:36
+msgid "Versión encontrada:"
+msgstr "Versão encontrada:"
+
+#: ModuleUpdate.module:37
+msgid "Ir a la página de descarga"
+msgstr "Ir para a página de descarga"
+
+#: ModuleUpdate.module:37
+msgid "No actualización"
+msgstr "Não actualiza"
+
+#: ModuleUpdate.module:45
+msgid "La versión actual:"
+msgstr "A versão actuala é:"
+
+#: ModuleUpdate.module:45
+msgid "No necesita actualizarla"
+msgstr "Não precisa actualizar"
+
+#: ModuleUpdate.module:45
+msgid "es igual o superior que la que hay en el servidor"
+msgstr "é igual ou superior que a existente no servidor base de dados"
+
+#: ModuleVarios.module:11
+msgid "Debe de estar instalado el programa wkhtmltopdf (sudo apt-get install wkhtmltopdf)"
+msgstr "Deve instalar o programa wkhtmltopdf (abra terminal e dê comando - sudo apt-get install wkhtmltopdf)"
+
+#: ModuleVarios.module:122
+msgid "Domicilio"
+msgstr "Domicílio"
+
+#: ModuleVarios.module:124
+msgid "Contacto"
+msgstr "Contacto"
+
+#: ModuleVarios.module:127
+msgid "Recibo"
+msgstr "Recibo"
+
+#: ModuleVarios.module:134
+msgid "Codigo"
+msgstr "Código"
+
+#: ModuleVarios.module:134
+msgid "Descuento"
+msgstr "Desconto"
+
+#: ModuleVarios.module:134
+msgid "Iva"
+msgstr "Iva"
+
+#: ModuleVarios.module:148
+msgid "Problemas: Un servicio se ha borrado de la base de dato y era usado en un recibo "
+msgstr "Problemas: Um Serviço foi apagado da base de dados enquanto era usado em um recibo"
+
+#: ModuleVarios.module:157
+msgid "Problemas: Un producto se ha borrado de la base de dato y era usado en un recibo"
+msgstr "Problemas: Um Produto foi apagado da base de dados enquanto era usado em um recibo"
+
+#: ModuleVarios.module:166
+msgid "Problemas: Un cupon se ha borrado de la base de dato y era usado en un recibo"
+msgstr "Problemas: Um Cupão foi apagado da base de dados enquanto era usado em um recibo"
+
+#: ModuleVarios.module:188
+msgid "Recibido"
+msgstr "Recebido"
+
+#: ModuleVarios.module:189
+msgid "Cambio"
+msgstr "Troco"
+
+#: NotasAdaptadaDAO.class:13 NotasDAO.class:325
+msgid "Comentario"
+msgstr "Comentário"
+
+#: ProductoDAO.class:377
+msgid "ubicacion"
+msgstr "Localização"
+
+#: ReciboDAO.class:383
+msgid "importe"
+msgstr "Valor/porte"
+
+#: SumaSalidaDAO.class:111
+msgid "producto_nombre"
+msgstr "produto_nome"
+
+#: SumaEntradaDAO.class:139 SumaRoboDAO.class:114 SumaRoturaDAO.class:114
+msgid "lineaAlmacen_idproducto"
+msgstr "linhaArmazém_idproduto"
+
+#: SumaEntradaDAO.class:142
+msgid "suma_ENTRADA"
+msgstr "soma_ENTRADA"
+
+#: SumaRoboDAO.class:117
+msgid "suma_ROBO"
+msgstr "soma_ROUBO"
+
+#: SumaRoturaDAO.class:117
+msgid "suma_ROTURA"
+msgstr "soma_ROTURA"
+
+#: SumaSalidaDAO.class:114
+msgid "linearecibo_idproducto"
+msgstr "linharecibo_idproduto"
+
+#: SumaSalidaDAO.class:117
+msgid "suma_VENTA"
+msgstr "soma_VENDA"
+
+#: VistaAlbaranesAlmacenDAO.class:177
+msgid "lineaAlmacen_id"
+msgstr "linhaArmazém_id"
+

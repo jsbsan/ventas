@@ -1,0 +1,66 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,85,49)
+  Icon = Picture["carrito.png"]
+  Resizable = False
+  { Label1 Label
+    MoveScaled(1,2,21,4)
+    Text = ("Nombre y Apellidos:")
+    Alignment = Align.Right
+  }
+  { Label2 Label
+    MoveScaled(0,7,16,4)
+    Text = ("DNI:")
+    Alignment = Align.Right
+  }
+  { Label3 Label
+    MoveScaled(0,12,16,4)
+    Text = ("Telefono:")
+    Alignment = Align.Right
+  }
+  { Label4 Label
+    MoveScaled(0,16,16,5)
+    Text = ("correo-e:")
+    Alignment = Align.Right
+  }
+  { Label5 Label
+    MoveScaled(0,21,16,5)
+    Text = ("Domicilio:")
+    Alignment = Align.Right
+  }
+  { Label6 Label
+    MoveScaled(1,26,16,5)
+    Text = ("Comentarios:")
+    Alignment = Align.Center
+  }
+  { TextBoxNombre TextBox
+    MoveScaled(24,2,57,4)
+  }
+  { TextBoxDNI TextBox
+    MoveScaled(18,7,34,4)
+  }
+  { TextBoxTelefono TextBox
+    MoveScaled(18,12,63,4)
+  }
+  { TextBoxCorreo TextBox
+    MoveScaled(18,17,63,4)
+  }
+  { TextBoxDomicilio TextBox
+    MoveScaled(18,22,63,4)
+  }
+  { TextAreaComentario TextArea
+    MoveScaled(1,31,82,12)
+    Wrap = True
+  }
+  { ButtonCancelar Button
+    MoveScaled(53,44,13,5)
+    Text = ("Cancelar")
+    Picture = Picture["icon:/16/cancel"]
+  }
+  { ButtonAceptar Button
+    MoveScaled(69,44,13,5)
+    Text = ("Aceptar")
+    Picture = Picture["icon:/16/apply"]
+  }
+}

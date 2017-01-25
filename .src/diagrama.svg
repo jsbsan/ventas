@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd"><svg width="10cm" height="4cm" viewBox="86 92 1950 750" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="g1"> 
+ <rect style="fill: #ffffff" x="80" y="88" width="250" height="180"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="80" y="88" width="250" height="180"/>
+<rect style="fill: #ffffff" x="80" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="80" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="90" y="113">Empleado</text>/n/n<rect style="fill: #ffffff" x="80" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="80" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="136">id: Null</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="156">dni: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="176">nombre: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="196">telefono: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="216">correo: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="236">domicilio: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="256">comentario: String</text>
+
+ </g>
+<g id="g2"> 
+ <rect style="fill: #ffffff" x="340" y="88" width="250" height="180"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="340" y="88" width="250" height="180"/>
+<rect style="fill: #ffffff" x="340" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="340" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="350" y="113">Cliente</text>/n/n<rect style="fill: #ffffff" x="340" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="340" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="136">id: Null</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="156">dni: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="176">nombre: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="196">telefono: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="216">correo: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="236">domicilio: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="256">comentario: String</text>
+
+ </g>
+<g id="g3"> 
+ <rect style="fill: #ffffff" x="600" y="88" width="250" height="160"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="600" y="88" width="250" height="160"/>
+<rect style="fill: #ffffff" x="600" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="600" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="610" y="113">Cupon</text>/n/n<rect style="fill: #ffffff" x="600" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="600" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="136">id: Null</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="156">codigo: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="176">nombre: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="196">descripcion: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="216">precio: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="236">comentario: String</text>
+
+ </g>
+<g id="g4"> 
+ <rect style="fill: #ffffff" x="860" y="88" width="250" height="120"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="860" y="88" width="250" height="120"/>
+<rect style="fill: #ffffff" x="860" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="860" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="870" y="113">Servicio</text>/n/n<rect style="fill: #ffffff" x="860" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="860" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="870" y="136">id: Null</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="870" y="156">nombre: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="870" y="176">precio: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="870" y="196">comentario: String</text>
+
+ </g>
+<g id="g5"> 
+ <rect style="fill: #ffffff" x="1120" y="88" width="250" height="220"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1120" y="88" width="250" height="220"/>
+<rect style="fill: #ffffff" x="1120" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1120" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="1130" y="113">Linearecibo</text>/n/n<rect style="fill: #ffffff" x="1120" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1120" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="136">id: Null</text>
+<rect style="fill: #ffffff" x="1120" y="140" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1120" y="140" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="156">idproducto: float</text>
+<rect style="fill: #ffffff" x="1120" y="160" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1120" y="160" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="176">idlinearecibo: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="196">precio: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="216">cantidad: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="236">descuento: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="256">total: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="276">tabla: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="296">iva: float</text>
+
+ </g>
+<g id="g6"> 
+ <rect style="fill: #ffffff" x="1380" y="88" width="250" height="160"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1380" y="88" width="250" height="160"/>
+<rect style="fill: #ffffff" x="1380" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1380" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="1390" y="113">Recibo</text>/n/n<rect style="fill: #ffffff" x="1380" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1380" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="136">id: Null</text>
+<rect style="fill: #ffffff" x="1380" y="140" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1380" y="140" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="156">idempleado: float</text>
+<rect style="fill: #ffffff" x="1380" y="160" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1380" y="160" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="176">idcliente: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="196">fecha: Date</text>
+<rect style="fill: #ffffff" x="1380" y="200" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1380" y="200" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="216">idlinearecibo: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="236">importe: float</text>
+
+ </g>
+<g id="g7"> 
+ <rect style="fill: #ffffff" x="1640" y="88" width="250" height="140"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1640" y="88" width="250" height="140"/>
+<rect style="fill: #ffffff" x="1640" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1640" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="1650" y="113">LineaAlmacen</text>/n/n<rect style="fill: #ffffff" x="1640" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1640" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="136">id: Null</text>
+<rect style="fill: #ffffff" x="1640" y="140" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1640" y="140" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="156">idProducto: INTEGER</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="176">cantidad: FLOAT</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="196">tipo: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="216">fecha: Date</text>
+
+ </g>
+<g id="g8"> 
+ <rect style="fill: #ffffff" x="80" y="425" width="250" height="120"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="80" y="425" width="250" height="120"/>
+<rect style="fill: #ffffff" x="80" y="425" width="250" height="30"/>/n<rect style="fill:#00FFFF; fill-opacity:1; stroke-width: 2; stroke: #000000" x="80" y="425" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="90" y="450">SumaEntrada</text>/n/n<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="473">producto_nombre: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="493">precio: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="513">lineaAlmacen_idproducto: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="90" y="533">suma_ENTRADA: string</text>
+
+ </g>
+<g id="g9"> 
+ <rect style="fill: #ffffff" x="340" y="425" width="250" height="100"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="340" y="425" width="250" height="100"/>
+<rect style="fill: #ffffff" x="340" y="425" width="250" height="30"/>/n<rect style="fill:#00FFFF; fill-opacity:1; stroke-width: 2; stroke: #000000" x="340" y="425" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="350" y="450">SumaRotura</text>/n/n<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="473">producto_nombre: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="493">lineaAlmacen_idproducto: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="350" y="513">suma_ROTURA: string</text>
+
+ </g>
+<g id="g10"> 
+ <rect style="fill: #ffffff" x="600" y="425" width="250" height="100"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="600" y="425" width="250" height="100"/>
+<rect style="fill: #ffffff" x="600" y="425" width="250" height="30"/>/n<rect style="fill:#00FFFF; fill-opacity:1; stroke-width: 2; stroke: #000000" x="600" y="425" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="610" y="450">SumaRobo</text>/n/n<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="473">producto_nombre: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="493">lineaAlmacen_idproducto: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="610" y="513">suma_ROBO: string</text>
+
+ </g>
+<g id="g11"> 
+ <rect style="fill: #ffffff" x="860" y="425" width="250" height="100"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="860" y="425" width="250" height="100"/>
+<rect style="fill: #ffffff" x="860" y="425" width="250" height="30"/>/n<rect style="fill:#00FFFF; fill-opacity:1; stroke-width: 2; stroke: #000000" x="860" y="425" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="870" y="450">SumaSalida</text>/n/n<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="870" y="473">producto_nombre: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="870" y="493">linearecibo_idproducto: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="870" y="513">suma_VENTA: string</text>
+
+ </g>
+<g id="g12"> 
+ <rect style="fill: #ffffff" x="1120" y="425" width="250" height="180"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1120" y="425" width="250" height="180"/>
+<rect style="fill: #ffffff" x="1120" y="425" width="250" height="30"/>/n<rect style="fill:#00FFFF; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1120" y="425" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="1130" y="450">INVENTARIO</text>/n/n<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="473">sumaEntrada_nombre: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="493">sumaEntrada_idproducto: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="513">ENTRADA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="533">VENTA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="553">ROTURA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="573">ROBO: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1130" y="593">EXISTENCIA_ALMACEN: string</text>
+
+ </g>
+<g id="g13"> 
+ <rect style="fill: #ffffff" x="1380" y="425" width="250" height="300"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1380" y="425" width="250" height="300"/>
+<rect style="fill: #ffffff" x="1380" y="425" width="250" height="30"/>/n<rect style="fill:#00FFFF; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1380" y="425" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="1390" y="450">INVENTARIOVALORADO</text>/n/n<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="473">sumaEntrada_nombre: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="493">sumaEntrada_idproducto: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="513">sumaEntrada_precio: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="533">ENTRADA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="553">COSTE_ENTRADA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="573">VENTA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="593">COSTE_VENTA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="613">ROTURA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="633">COSTE_ROTURA: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="653">ROBO: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="673">COSTE_ROBO: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="693">EXISTENCIA_ALMACEN: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1390" y="713">COSTE_ALMACEN: string</text>
+
+ </g>
+<g id="g14"> 
+ <rect style="fill: #ffffff" x="1640" y="88" width="250" height="120"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1640" y="88" width="250" height="120"/>
+<rect style="fill: #ffffff" x="1640" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1640" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="1650" y="113">Notas</text>/n/n<rect style="fill: #ffffff" x="1640" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1640" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="136">id: Null</text>
+<rect style="fill: #ffffff" x="1640" y="140" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1640" y="140" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="156">idcliente: INTEGER</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="176">fecha: Date</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1650" y="196">Comentario: String</text>
+
+ </g>
+<g id="g15"> 
+ <rect style="fill: #ffffff" x="1900" y="88" width="250" height="180"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1900" y="88" width="250" height="180"/>
+<rect style="fill: #ffffff" x="1900" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1900" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="1910" y="113">Producto</text>/n/n<rect style="fill: #ffffff" x="1900" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="1900" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1910" y="136">id: Null</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1910" y="156">codigo: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1910" y="176">imagen: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1910" y="196">nombre: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1910" y="216">ubicacion: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1910" y="236">precio: float</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1910" y="256">comentario: String</text>
+
+ </g>
+<g id="g16"> 
+ <rect style="fill: #ffffff" x="2160" y="88" width="250" height="100"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2160" y="88" width="250" height="100"/>
+<rect style="fill: #ffffff" x="2160" y="88" width="250" height="30"/>/n<rect style="fill:#BFFF7F; fill-opacity:1; stroke-width: 2; stroke: #000000" x="2160" y="88" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="2170" y="113">Imagenes</text>/n/n<rect style="fill: #ffffff" x="2160" y="120" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="2160" y="120" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2170" y="136">idimagen: Null</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2170" y="156">imagen: String</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2170" y="176">rutaimagen: String</text>
+
+ </g>
+<g id="g17"> 
+ <rect style="fill: #ffffff" x="2420" y="425" width="250" height="180"/>/n<rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="2420" y="425" width="250" height="180"/>
+<rect style="fill: #ffffff" x="2420" y="425" width="250" height="30"/>/n<rect style="fill:#00FFFF; fill-opacity:1; stroke-width: 2; stroke: #000000" x="2420" y="425" width="250" height="30"/>
+<text font-size="16" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="2430" y="450">VistaAlbaranesAlmacen</text>/n/n<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2430" y="473">lineaAlmacen_id: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2430" y="493">fecha: string</text>
+<rect style="fill: #ffffff" x="2420" y="497" width="250" height="20"/>/n<rect style="fill:#FFFF00; fill-opacity:1; stroke-width: 2; stroke: #000000" x="2420" y="497" width="250" height="20"/>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2430" y="513">idProducto: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2430" y="533">codigo: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2430" y="553">nombre: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2430" y="573">cantidad: string</text>
+<text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="2430" y="593">tipo: string</text>
+
+ </g>
+<path
+ id="path1"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 80,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g1"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path2"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 340,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g2"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path3"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 600,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g3"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path4"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 860,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g4"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path5"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g5"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path6"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g6"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path7"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g7"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path8"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g14"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path9"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 80,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g1"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path10"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 340,120 340,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g2"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g2"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path11"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 600,120 340,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g3"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g2"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path12"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 860,120 340,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g4"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g2"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path13"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,120 340,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g5"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g2"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path14"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,120 340,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g6"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g2"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path15"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 340,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g7"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g2"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path16"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 340,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g14"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g2"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path17"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 340,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g2"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path18"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 600,120 600,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g3"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g3"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path19"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 860,120 600,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g4"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g3"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path20"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,120 600,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g5"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g3"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path21"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,120 600,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g6"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g3"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path22"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 600,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g7"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g3"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path23"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 600,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g14"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g3"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path24"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 600,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g3"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path25"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 860,120 860,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g4"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g4"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path26"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,120 860,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g5"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g4"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path27"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,120 860,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g6"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g4"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path28"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 860,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g7"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g4"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path29"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 860,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g14"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g4"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path30"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 860,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g4"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path31"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,120 1120,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g5"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g5"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path32"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,120 1120,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g6"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g5"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path33"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 1120,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g7"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g5"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path34"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 1120,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g14"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g5"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path35"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 1120,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g5"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path36"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,120 1380,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g6"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g6"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path37"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 1380,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g7"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g6"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path38"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 1380,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g14"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g6"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path39"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 1380,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g6"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path40"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g7"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g7"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path41"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g14"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g7"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path42"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g7"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path43"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1640,120 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g14"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g14"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path44"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g14"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path45"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1900,120 1900,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g15"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g15"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path46"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 2160,120 2160,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g16"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g16"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path47"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 80,457 1900,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g8"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g15"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path48"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 80,457 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g8"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g7"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path49"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 340,457 1900,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g9"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g15"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path50"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 340,457 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g9"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g7"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path51"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 600,457 1900,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g10"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g15"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path52"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 600,457 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g10"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g7"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path53"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 860,457 1900,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g11"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g15"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path54"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 860,457 1120,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g11"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g5"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path55"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,457 80,457" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g12"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g8"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path56"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,457 860,457" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g12"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g11"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path57"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,457 340,457" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g12"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g9"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path58"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1120,457 600,457" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g12"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g10"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path59"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,457 80,457" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g13"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g8"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path60"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,457 860,457" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g13"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g11"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path61"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,457 340,457" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g13"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g9"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path62"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 1380,457 600,457" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g13"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g10"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path63"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 2420,457 1640,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g17"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g7"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+<path
+ id="path64"
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+    d="M 2420,457 1900,120" inkscape:connector-type="polyline"
+    inkscape:connector-curvature="0"
+    inkscape:connection-start="#g17"
+    inkscape:connection-start-point="d4"
+    inkscape:connection-end="#g15"
+    inkscape:connection-end-point="d4"
+    transform="matrix(5.5033332,0,0,5.5033332,86,77.000008)" />
+</svg>

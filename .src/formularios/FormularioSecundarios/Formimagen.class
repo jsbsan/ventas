@@ -1,0 +1,102 @@
+' Gambas class file
+
+Public ruta As String
+
+Public manejadorImagenes As New ImagenesDAO
+
+Public listaPicturebox As PictureBox[]
+
+Public borrado As Boolean
+Public efectuadoBorrado As String[]
+
+Public Sub Form_Open() 
+  
+  Me.title = ("Ventas")
+  
+  dibujaImagen()
+  
+End
+
+Public Sub dibujaImagen()
+  
+  PictureBox1.Picture = Picture.load(comun.RutaDdeTrabajo & ruta)
+  
+  PictureBox1.w = PictureBox1.Picture.W
+  PictureBox1.h = PictureBox1.Picture.h
+  PictureBox1.Stretch = True
+  PictureBox1.Expand = True
+  
+  If PictureBox1.w = 1152 And PictureBox1.h = 2048 Then 
+    
+    Me.w = 300
+    Me.h = 300 * 1152 / 2048
+    
+  Else
+    
+    Me.w = PictureBox1.w
+    Me.h = PictureBox1.h
+    
+    If Me.w > Screen.w Then Me.w = 300
+    
+    If Me.h > Screen.h Then Me.h = 300
+    
+  Endif
+  
+  If borrado = False Then PictureBoxBorrado.Visible = False
+  
+End
+
+Public Sub form_Show()
+  
+  Me.Center()
+  
+End
+
+Public Sub PictureBoxBorrado_Mouseup()
+  
+  Dim a As Integer
+  Dim registroImagenes As ImagenesVO[]
+  
+  registroImagenes = manejadorImagenes.ConvertirResult(manejadorImagenes.BuscarIgualRutaimagen(ruta))
+  
+  If registroImagenes.max = -1 Then 
+    
+  Else
+    
+    manejadorImagenes.BorrarIdimagen(registroImagenes[0].idimagen)
+    
+  Endif
+  
+  efectuadoBorrado[0] = "siBorrar"
+  Me.Close()
+  
+End
+
+Public Sub PictureBoxRotarImagen_MouseUp()
+  
+  Application.Busy = 1
+  girarimagen(comun.RutaDdeTrabajo & ruta)
+  
+  girarimagen(comun.RutaDdeTrabajo & "mini_" & ruta)
+  
+  dibujaImagen()
+  Application.Busy = 0
+  
+End
+
+Public Sub girarimagen(nombre As String)
+  
+  Dim Ftemporal As String
+  Dim salida As String
+  
+  Ftemporal = "/tmp/a." & File.Ext(nombre)
+  Try Kill Ftemporal
+  
+  Shell "convert -rotate 90 \"" & nombre & "\" /tmp/a." & File.Ext(nombre) To salida
+  
+  Try Kill nombre
+  
+  Copy "/tmp/a." & File.Ext(nombre) To nombre
+  Wait 0.05
+  
+End

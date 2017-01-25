@@ -1,0 +1,67 @@
+' Gambas class file
+
+' Gambas class file
+
+Private modo As String
+Private manejador As New ServicioDAO
+Private indice As Integer
+
+Public Sub Form_Open()
+
+End
+
+Public Sub setmodo(tipo As String, serVo As ServicioVO, serDao As ServicioDAO)
+
+  If tipo = "add" Then
+    'estamos añadiendon
+    modo = "add"
+    Me.Title = "Añadiendo Registro"
+  Else
+    modo = "editar"
+
+    TextBoxNombre.text = serVo.nombre
+    TextAreaComentario.text = serVo.comentario
+    ValueBoxPrecio.value = serVo.precio
+    TextAreaComentario.text = serVo.comentario
+
+    Me.Title = "Editando Registro"
+  Endif
+  manejador = serDao
+  Me.Showmodal()
+
+End
+
+Public Sub setindice(i As Integer)
+
+  indice = i
+
+End
+
+Public Sub ButtonAceptar_Click()
+
+  Dim serDatos As New ServicioVO
+
+  If modo = "add" Then
+    serDatos.comentario = TextAreaComentario.Text
+    serDatos.nombre = TextBoxNombre.Text
+    serDatos.precio = ValueBoxPrecio.Value
+
+    manejador.registrar(serDatos)
+
+  Else
+    'editando
+    serDatos.comentario = TextAreaComentario.Text
+    serDatos.nombre = TextBoxNombre.Text
+    serDatos.precio = ValueBoxPrecio.Value
+    serDatos.id = indice
+    manejador.ModificarId(indice, serDatos)
+  Endif
+  Me.Close()
+
+End
+
+Public Sub ButtonCancelar_Click()
+
+  Me.Close()
+
+End

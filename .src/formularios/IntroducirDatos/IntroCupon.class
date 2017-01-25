@@ -1,0 +1,70 @@
+' Gambas class file
+
+Private modo As String
+Private manejador As New CuponDAO
+Private indice As Integer
+
+Public Sub Form_Open()
+
+End
+
+Public Sub setmodo(tipo As String, cupVo As CuponVO, cupDao As CuponDAO)
+
+  If tipo = "add" Then
+    'estamos añadiendon
+    modo = "add"
+    Me.Title = "Añadiendo Registro"
+  Else
+    modo = "editar"
+
+    TextBoxCodigo.text = cupVO.codigo
+    TextBoxNombre.text = cupVO.nombre
+    TextAreaComentario.text = cupVO.comentario
+    TextBoxDescripcion.text = cupVO.descripcion
+    ValueBoxPrecio.value = cupVO.precio
+
+    Me.Title = "Editando Registro"
+  Endif
+  manejador = cupDao
+  Me.Showmodal()
+
+End
+
+Public Sub setindice(i As Integer)
+
+  indice = i
+
+End
+
+Public Sub ButtonAceptar_Click()
+
+  Dim cuponDatos As New CuponVO
+
+  If modo = "add" Then
+    cuponDatos.codigo = textBoxCodigo.text
+    cuponDatos.nombre = TextBoxNombre.text
+    cuponDatos.comentario = TextAreaComentario.text
+    cuponDatos.descripcion = TextBoxDescripcion.text
+    cuponDatos.precio = ValueBoxPrecio.value
+
+    manejador.registrar(cuponDatos)
+
+  Else
+    'editando
+    cuponDatos.codigo = textBoxCodigo.text
+    cuponDatos.nombre = TextBoxNombre.text
+    cuponDatos.comentario = TextAreaComentario.text
+    cuponDatos.descripcion = TextBoxDescripcion.text
+    cuponDatos.precio = ValueBoxPrecio.value
+    cuponDatos.id = indice
+    manejador.ModificarId(indice, cuponDatos)
+  Endif
+  Me.Close()
+
+End
+
+Public Sub ButtonCancelar_Click()
+
+  Me.Close()
+
+End

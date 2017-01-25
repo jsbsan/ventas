@@ -1,0 +1,179 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,116,70)
+  Icon = Picture["carrito.png"]
+  Arrangement = Arrange.Vertical
+  { MenuServicios Menu
+    Text = ("MenuServicios")
+    Visible = False
+    { AddServicios Menu
+      Text = ("Añadir")
+      Picture = Picture["icon:/16/add"]
+    }
+    { editarServicios Menu
+      Text = ("Editar")
+      Picture = Picture["icon:/16/edit"]
+    }
+    { FiltroServicios Menu
+      Text = ("Filtrar")
+      Picture = Picture["icon:/16/filter"]
+    }
+    { QuitarFiltroServicios Menu
+      Text = ("Quitar filtro")
+      Picture = Picture["icon:/16/cancel"]
+    }
+    { BorrarServicios Menu
+      Text = ("Borrar")
+      Picture = Picture["icon:/16/erase"]
+    }
+  }
+  { MenuProductos Menu
+    Text = ("Menu de Productos")
+    { addProductos Menu
+      Text = ("Añadir")
+      Picture = Picture["icon:/16/add"]
+    }
+    { editarProductos Menu
+      Text = ("Editar")
+      Picture = Picture["icon:/16/edit"]
+    }
+    { FiltroProductos Menu
+      Text = ("Filtrar")
+      Picture = Picture["icon:/16/filter"]
+    }
+    { QuitarFiltroProductos Menu
+      Text = ("Quitar filtro")
+      Picture = Picture["icon:/16/cancel"]
+    }
+    { BorrarProductos Menu
+      Text = ("Borrar")
+      Picture = Picture["icon:/16/erase"]
+    }
+  }
+  { MenuCupones Menu
+    Text = ("MenuCupones")
+    Visible = False
+    { addCupones Menu
+      Text = ("Añade")
+      Picture = Picture["icon:/16/add"]
+    }
+    { editarCupones Menu
+      Text = ("Editar")
+      Picture = Picture["icon:/16/edit"]
+    }
+    { FiltrarCupones Menu
+      Text = ("Filtrar")
+      Picture = Picture["icon:/16/filter"]
+    }
+    { QuitarFiltroCupones Menu
+      Text = ("Quitar filtro")
+      Picture = Picture["icon:/16/cancel"]
+    }
+    { BorrarCupones Menu
+      Text = ("Borrar")
+      Picture = Picture["icon:/16/erase"]
+    }
+  }
+  { HBox1 HBox
+    MoveScaled(1,1,109,7)
+    { ButtonAgregar Button
+      MoveScaled(0,1,15,5)
+      Text = ("Añadir")
+      Picture = Picture["icon:/22/add"]
+    }
+    { ButtonEditar Button
+      MoveScaled(15,1,15,5)
+      Text = ("Editar")
+      Picture = Picture["icon:/22/edit"]
+    }
+    { Separator1 Separator
+      MoveScaled(30,1,3,5)
+    }
+    { Panel2 Panel
+      MoveScaled(32,0,46,7)
+      { TextBoxFiltro TextBox
+        MoveScaled(0,0,17,3)
+      }
+      { ButtonFiltrar Button
+        MoveScaled(17,0,25,3)
+        ToolTip = ("filtrar por código")
+        Text = ("Filtrar por código")
+        Picture = Picture["icon:/22/filter"]
+      }
+      { TextBoxFiltro2 TextBox
+        MoveScaled(0,4,17,3)
+      }
+      { ButtonFiltrar2 Button
+        MoveScaled(17,4,25,3)
+        ToolTip = ("filtrar por nombre")
+        Text = ("Filtrar por nombre")
+        Picture = Picture["icon:/22/filter"]
+      }
+    }
+    { ButtonFiltrarQuitar Button
+      MoveScaled(78,1,16,5)
+      Text = ("Quitar Filtro")
+      Picture = Picture["icon:/22/cancel"]
+    }
+    { Separator2 Separator
+      MoveScaled(87,0,3,7)
+    }
+    { ButtonBorrar Button
+      MoveScaled(91,1,16,5)
+      Text = ("Borrar")
+      Picture = Picture["icon:/22/erase"]
+    }
+  }
+  { TabStrip1 TabStrip
+    MoveScaled(107,3,45,4)
+    Visible = False
+    PopupMenu = "MenuProductos"
+    Count = 3
+    Index = 0
+    Text = ("Productos")
+    { Button1 Button
+      MoveScaled(65,48,7,5)
+      Text = ("Button1")
+    }
+    Index = 1
+    Text = ("Cupones")
+    { GridViewCupon GridView
+      MoveScaled(1,1,94,45)
+      PopupMenu = "MenuCupones"
+      Mode = Select.Single
+    }
+    Index = 2
+    Text = ("Servicios")
+    { GridViewServicio GridView
+      MoveScaled(1,1,94,45)
+      PopupMenu = "MenuServicios"
+      Mode = Select.Single
+    }
+    Index = 0
+  }
+  { GridViewProducto GridView
+    MoveScaled(3,9,110,53)
+    Expand = True
+    PopupMenu = "MenuProductos"
+    Mode = Select.Single
+  }
+  { Panel1 Panel
+    MoveScaled(3,62,102,5)
+    { Label1 Label
+      MoveScaled(2,1,64,3)
+      Text = ("Nota:  Haga doble click para elegir un producto\n")
+      Alignment = Align.TopNormal
+    }
+    { ButtonRefrescar Button
+      MoveScaled(66,0,7,5)
+      Visible = False
+      Picture = Picture["icon:/22/refresh"]
+    }
+    { ButtonSalir Button
+      MoveScaled(85,0,16,5)
+      Text = ("Cancelar")
+      Picture = Picture["icon:/16/cancel"]
+    }
+  }
+}

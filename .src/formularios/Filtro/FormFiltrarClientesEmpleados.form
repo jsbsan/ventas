@@ -1,0 +1,32 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,61,27)
+  { TextBoxFiltro TextBox
+    MoveScaled(18,1,41,5)
+  }
+  { RadioButtonNombre RadioButton
+    MoveScaled(16,7,22,6)
+    Text = ("Por Nombre")
+    Value = True
+  }
+  { RadioButtonTelefono RadioButton
+    MoveScaled(16,14,22,6)
+    Text = ("Por Teléfono")
+  }
+  { Label1 Label
+    MoveScaled(1,1,15,5)
+    Text = ("Contenido:")
+    Alignment = Align.Right
+  }
+  { ButtonAceptar Button
+    MoveScaled(47,21,13,5)
+    Text = ("Aceptar")
+    Picture = Picture["icon:/16/apply"]
+  }
+  { ButtonCancelar Button
+    MoveScaled(31,21,13,5)
+    Text = ("Cancelar")
+    Picture = Picture["icon:/16/cancel"]
+  }
+}

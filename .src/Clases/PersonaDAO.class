@@ -1,0 +1,279 @@
+' Gambas class file
+
+Public hresultadoNuevo As Result
+Public gridviewPropio As GridView 'para tener acceso desde clases heredadas
+Public actualiza As Observer
+
+Public iconoTrue As String = "icon:/16/apply"
+Public iconoFalse As String = "icon:/16/cancel"
+Public sizefont As Integer = 10
+
+Public formatoFecha As String
+
+Public FormularioTitulo As String
+
+'Array que contiene los valores del ancho de las columnas.
+Public arrayAnchoColumnas As New Integer[]
+' 
+
+Public Function Total() As Integer
+  
+End
+' 
+' Public Function registrar(Nuevacliente As PersonaVO) As Boolean
+'   
+' ' End
+' 
+' Public Function ModificarId(editado As Integer, Nuevacliente As PersonaVO) As Boolean
+'   
+' End
+' 
+' Public Function ModificarDni(editado As String, Nuevacliente As PersonaVO) As Boolean
+'   
+' End
+' 
+' Public Function ModificarNombre(editado As String, Nuevacliente As PersonaVO) As Boolean
+'   
+' End
+' 
+' Public Function ModificarTelefono(editado As String, Nuevacliente As PersonaVO) As Boolean
+'   
+' End
+' 
+' Public Function ModificarCorreo(editado As String, Nuevacliente As PersonaVO) As Boolean
+'   
+' End
+' 
+' Public Function ModificarDomicilio(editado As String, Nuevacliente As PersonaVO) As Boolean
+'   
+' End
+' 
+' Public Function ModificarComentario(editado As String, Nuevacliente As PersonaVO) As Boolean
+'   
+' End
+' 
+
+Public Function BorrarId(valor As Integer) As Boolean
+  
+End
+
+Public Function BorrarDni(valor As String) As Boolean
+  
+End
+' 
+
+Public Function BorrarNombre(valor As String) As Boolean
+  
+End
+' 
+
+Public Function BorrarTelefono(valor As String) As Boolean
+  
+End
+
+Public Function BorrarCorreo(valor As String) As Boolean
+  
+End
+
+Public Function BorrarDomicilio(valor As String) As Boolean
+  
+End
+
+Public Function BorrarComentario(valor As String) As Boolean
+  
+End
+
+Public Function BuscarIgualId(valor As Integer, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarContenidoDni(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarIgualDni(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarContenidoNombre(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarIgualNombre(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarContenidoTelefono(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarIgualTelefono(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarContenidoCorreo(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarIgualCorreo(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarContenidoDomicilio(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarIgualDomicilio(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarContenidoComentario(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function BuscarIgualComentario(valor As String, Optional CampoOrden As String) As Result
+  
+End
+
+Public Function sql(consulta As String) As Result
+  
+End
+
+Public Function informe() As String
+  
+End
+
+Public Function gridFormatearColumnas(grid As GridView) As Gridview
+  
+End
+
+Public Function gridFormatearFilas(grid As GridView) As Gridview
+  
+End
+
+Public Sub contenido() As Result
+  
+End
+
+Public Function mostrarRegistro(numero As Integer, grid As GridView, Optional sqlcadena As String) As Result
+  
+End
+
+Public Function GridResultanteSQL(res As Result, grid As GridView) As Gridview
+  
+End
+
+Public Sub MostrarGridView(gridviewtrabajo As GridView, Optional cadenaSQL As String, Optional resultado As Result)
+  
+End
+' 
+
+Property ColorFilaPar As Integer
+Private hColorFilaPar As Integer
+
+Private Function ColorFilaPar_read() As Integer
+  
+  Return hColorFilaPar
+  
+End
+
+Private Sub ColorFilaPar_write(Valor As Integer)
+  
+  hColorFilaPar = Valor
+  
+End
+' 
+
+Property ColorFilaImPar As Integer
+Private hColorFilaImPar As Integer
+
+Private Function ColorFilaImPar_read() As Integer
+  
+  Return hColorFilaImPar
+  
+End
+
+Private Sub ColorFilaImPar_write(Valor As Integer)
+  
+  hColorFilaImPar = Valor
+  
+End
+' 
+
+Public Sub Observar_Data(row As Integer, column As Integer)
+  
+End
+' 
+
+'AsignaAnchoGrid
+Public Sub AsignaAnchoGrid()
+  
+End
+
+Public Sub formatearFechaIdioma()
+  
+End
+' 
+' '-----------------------------------------------------
+' 'añadido ordenar por columnas haciendo click...
+' '-----------------------------------------------------
+
+Public ordenlistado As Integer
+' 
+
+Public Sub ord_AZ(grid As GridView, a As Integer)
+  
+End
+
+'------------------------------------------------------------------------
+Public Sub ord_ZA(grid As GridView, a As Integer)
+  
+End
+
+' Public Function ConvertirResult(hr As Result) As PersonaVO[]
+'   
+' End
+' 
+' Public Function filaSeleccionadaVO() As PersonaVO
+'   
+' End
+' 
+' Public Function extraeColumnaArray(datos As PersonaVO[], nombrecampo As String) As String
+'   
+' End
+' 
+
+' 
+Public Sub FormularioRegistrar(numeropaneles As Integer)
+  
+End
+' 
+' Public Function FormularioModificarRegistroId(identificador As Integer, datosEditar As PersonaVO, numeropaneles As Integer) As Boolean
+'   
+' End
+' 
+
+Public Function GeneradorCodigoFormulario(tipo As String, Optional datosEditar As PersonaVO) As String
+  
+End
+' 
+
+Public Function NombreCampos() As Collection
+  
+End
+
+Public Sub ImprimirRapidoTablaHorizontal()
+  
+End
+
+Public Sub ImprimirRapidoTablaVertical()
+  
+End
+
+Public Function ModificarId(editado As Integer, NuevaEmpleado As PersonaVO) As Boolean
+  
+End
+
+Public Function registrar(NuevaEmpleado As PersonaVO) As Boolean
+  
+End

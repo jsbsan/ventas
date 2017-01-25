@@ -1,0 +1,1 @@
+CREATE TABLE notas ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "idcliente" INTEGER, "fecha" DATETIME, "Comentario" TEXT)

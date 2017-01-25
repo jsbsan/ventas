@@ -1,0 +1,517 @@
+PROPERTY Empleado_id AS Integer 
+PRIVATE hEmpleado_id AS Integer
+
+PROPERTY Empleado_dni AS String 
+PRIVATE hEmpleado_dni AS String
+
+PROPERTY Empleado_nombre AS String 
+PRIVATE hEmpleado_nombre AS String
+
+PROPERTY Empleado_telefono AS String 
+PRIVATE hEmpleado_telefono AS String
+
+PROPERTY Empleado_correo AS String 
+PRIVATE hEmpleado_correo AS String
+
+PROPERTY Empleado_domicilio AS String 
+PRIVATE hEmpleado_domicilio AS String
+
+PROPERTY Empleado_comentario AS String 
+PRIVATE hEmpleado_comentario AS String
+
+PROPERTY cliente_id AS Integer 
+PRIVATE hcliente_id AS Integer
+
+PROPERTY cliente_dni AS String 
+PRIVATE hcliente_dni AS String
+
+PROPERTY cliente_nombre AS String 
+PRIVATE hcliente_nombre AS String
+
+PROPERTY cliente_telefono AS String 
+PRIVATE hcliente_telefono AS String
+
+PROPERTY cliente_correo AS String 
+PRIVATE hcliente_correo AS String
+
+PROPERTY cliente_domicilio AS String 
+PRIVATE hcliente_domicilio AS String
+
+PROPERTY cliente_comentario AS String 
+PRIVATE hcliente_comentario AS String
+
+PROPERTY cupon_id AS Integer 
+PRIVATE hcupon_id AS Integer
+
+PROPERTY cupon_codigo AS String 
+PRIVATE hcupon_codigo AS String
+
+PROPERTY cupon_nombre AS String 
+PRIVATE hcupon_nombre AS String
+
+PROPERTY cupon_descripcion AS String 
+PRIVATE hcupon_descripcion AS String
+
+PROPERTY cupon_precio AS Float 
+PRIVATE hcupon_precio AS Float
+
+PROPERTY cupon_comentario AS String 
+PRIVATE hcupon_comentario AS String
+
+PROPERTY linearecibo_id AS Integer 
+PRIVATE hlinearecibo_id AS Integer
+
+PROPERTY linearecibo_idproducto AS Integer 
+PRIVATE hlinearecibo_idproducto AS Integer
+
+PROPERTY linearecibo_idlinearecibo AS String 
+PRIVATE hlinearecibo_idlinearecibo AS String
+
+PROPERTY linearecibo_precio AS Float 
+PRIVATE hlinearecibo_precio AS Float
+
+PROPERTY linearecibo_cantidad AS Float 
+PRIVATE hlinearecibo_cantidad AS Float
+
+PROPERTY linearecibo_descuento AS Float 
+PRIVATE hlinearecibo_descuento AS Float
+
+PROPERTY linearecibo_total AS Float 
+PRIVATE hlinearecibo_total AS Float
+
+PROPERTY linearecibo_tabla AS Integer 
+PRIVATE hlinearecibo_tabla AS Integer
+
+PROPERTY producto_id AS Integer 
+PRIVATE hproducto_id AS Integer
+
+PROPERTY producto_codigo AS String 
+PRIVATE hproducto_codigo AS String
+
+PROPERTY producto_nombre AS String 
+PRIVATE hproducto_nombre AS String
+
+PROPERTY producto_ubicacion AS String 
+PRIVATE hproducto_ubicacion AS String
+
+PROPERTY producto_precio AS Float 
+PRIVATE hproducto_precio AS Float
+
+PROPERTY producto_comentario AS String 
+PRIVATE hproducto_comentario AS String
+
+PROPERTY recibo_id AS Integer 
+PRIVATE hrecibo_id AS Integer
+
+PROPERTY recibo_idempleado AS Integer 
+PRIVATE hrecibo_idempleado AS Integer
+
+PROPERTY recibo_idcliente AS Integer 
+PRIVATE hrecibo_idcliente AS Integer
+
+PROPERTY recibo_fecha AS Date 
+PRIVATE hrecibo_fecha AS Date
+
+PROPERTY recibo_idlinearecibo AS String 
+PRIVATE hrecibo_idlinearecibo AS String
+
+PROPERTY recibo_importe AS Float 
+PRIVATE hrecibo_importe AS Float
+
+PROPERTY servicio_id AS Integer 
+PRIVATE hservicio_id AS Integer
+
+PROPERTY servicio_nombre AS String 
+PRIVATE hservicio_nombre AS String
+
+PROPERTY servicio_precio AS Float 
+PRIVATE hservicio_precio AS Float
+
+PROPERTY servicio_comentario AS String 
+PRIVATE hservicio_comentario AS String
+
+PROPERTY campo AS string[] 
+PRIVATE hcampo AS new string[]
+
+PROPERTY campotipo AS string[] 
+PRIVATE hcampotipo AS new string[]
+
+PROPERTY campovisible AS string[] 
+PRIVATE hcampovisible AS new string[]
+
+PRIVATE FUNCTION Empleado_id_read() AS Integer
+ RETURN hEmpleado_id 
+END 
+ 
+PRIVATE SUB Empleado_id_write(Valor AS Integer)
+ hEmpleado_id= Valor 
+END  
+ 
+PRIVATE FUNCTION Empleado_dni_read() AS String
+ RETURN hEmpleado_dni 
+END 
+ 
+PRIVATE SUB Empleado_dni_write(Valor AS String)
+ hEmpleado_dni= Valor 
+END  
+ 
+PRIVATE FUNCTION Empleado_nombre_read() AS String
+ RETURN hEmpleado_nombre 
+END 
+ 
+PRIVATE SUB Empleado_nombre_write(Valor AS String)
+ hEmpleado_nombre= Valor 
+END  
+ 
+PRIVATE FUNCTION Empleado_telefono_read() AS String
+ RETURN hEmpleado_telefono 
+END 
+ 
+PRIVATE SUB Empleado_telefono_write(Valor AS String)
+ hEmpleado_telefono= Valor 
+END  
+ 
+PRIVATE FUNCTION Empleado_correo_read() AS String
+ RETURN hEmpleado_correo 
+END 
+ 
+PRIVATE SUB Empleado_correo_write(Valor AS String)
+ hEmpleado_correo= Valor 
+END  
+ 
+PRIVATE FUNCTION Empleado_domicilio_read() AS String
+ RETURN hEmpleado_domicilio 
+END 
+ 
+PRIVATE SUB Empleado_domicilio_write(Valor AS String)
+ hEmpleado_domicilio= Valor 
+END  
+ 
+PRIVATE FUNCTION Empleado_comentario_read() AS String
+ RETURN hEmpleado_comentario 
+END 
+ 
+PRIVATE SUB Empleado_comentario_write(Valor AS String)
+ hEmpleado_comentario= Valor 
+END  
+ 
+PRIVATE FUNCTION cliente_id_read() AS Integer
+ RETURN hcliente_id 
+END 
+ 
+PRIVATE SUB cliente_id_write(Valor AS Integer)
+ hcliente_id= Valor 
+END  
+ 
+PRIVATE FUNCTION cliente_dni_read() AS String
+ RETURN hcliente_dni 
+END 
+ 
+PRIVATE SUB cliente_dni_write(Valor AS String)
+ hcliente_dni= Valor 
+END  
+ 
+PRIVATE FUNCTION cliente_nombre_read() AS String
+ RETURN hcliente_nombre 
+END 
+ 
+PRIVATE SUB cliente_nombre_write(Valor AS String)
+ hcliente_nombre= Valor 
+END  
+ 
+PRIVATE FUNCTION cliente_telefono_read() AS String
+ RETURN hcliente_telefono 
+END 
+ 
+PRIVATE SUB cliente_telefono_write(Valor AS String)
+ hcliente_telefono= Valor 
+END  
+ 
+PRIVATE FUNCTION cliente_correo_read() AS String
+ RETURN hcliente_correo 
+END 
+ 
+PRIVATE SUB cliente_correo_write(Valor AS String)
+ hcliente_correo= Valor 
+END  
+ 
+PRIVATE FUNCTION cliente_domicilio_read() AS String
+ RETURN hcliente_domicilio 
+END 
+ 
+PRIVATE SUB cliente_domicilio_write(Valor AS String)
+ hcliente_domicilio= Valor 
+END  
+ 
+PRIVATE FUNCTION cliente_comentario_read() AS String
+ RETURN hcliente_comentario 
+END 
+ 
+PRIVATE SUB cliente_comentario_write(Valor AS String)
+ hcliente_comentario= Valor 
+END  
+ 
+PRIVATE FUNCTION cupon_id_read() AS Integer
+ RETURN hcupon_id 
+END 
+ 
+PRIVATE SUB cupon_id_write(Valor AS Integer)
+ hcupon_id= Valor 
+END  
+ 
+PRIVATE FUNCTION cupon_codigo_read() AS String
+ RETURN hcupon_codigo 
+END 
+ 
+PRIVATE SUB cupon_codigo_write(Valor AS String)
+ hcupon_codigo= Valor 
+END  
+ 
+PRIVATE FUNCTION cupon_nombre_read() AS String
+ RETURN hcupon_nombre 
+END 
+ 
+PRIVATE SUB cupon_nombre_write(Valor AS String)
+ hcupon_nombre= Valor 
+END  
+ 
+PRIVATE FUNCTION cupon_descripcion_read() AS String
+ RETURN hcupon_descripcion 
+END 
+ 
+PRIVATE SUB cupon_descripcion_write(Valor AS String)
+ hcupon_descripcion= Valor 
+END  
+ 
+PRIVATE FUNCTION cupon_precio_read() AS Float
+ RETURN hcupon_precio 
+END 
+ 
+PRIVATE SUB cupon_precio_write(Valor AS Float)
+ hcupon_precio= Valor 
+END  
+ 
+PRIVATE FUNCTION cupon_comentario_read() AS String
+ RETURN hcupon_comentario 
+END 
+ 
+PRIVATE SUB cupon_comentario_write(Valor AS String)
+ hcupon_comentario= Valor 
+END  
+ 
+PRIVATE FUNCTION linearecibo_id_read() AS Integer
+ RETURN hlinearecibo_id 
+END 
+ 
+PRIVATE SUB linearecibo_id_write(Valor AS Integer)
+ hlinearecibo_id= Valor 
+END  
+ 
+PRIVATE FUNCTION linearecibo_idproducto_read() AS Integer
+ RETURN hlinearecibo_idproducto 
+END 
+ 
+PRIVATE SUB linearecibo_idproducto_write(Valor AS Integer)
+ hlinearecibo_idproducto= Valor 
+END  
+ 
+PRIVATE FUNCTION linearecibo_idlinearecibo_read() AS String
+ RETURN hlinearecibo_idlinearecibo 
+END 
+ 
+PRIVATE SUB linearecibo_idlinearecibo_write(Valor AS String)
+ hlinearecibo_idlinearecibo= Valor 
+END  
+ 
+PRIVATE FUNCTION linearecibo_precio_read() AS Float
+ RETURN hlinearecibo_precio 
+END 
+ 
+PRIVATE SUB linearecibo_precio_write(Valor AS Float)
+ hlinearecibo_precio= Valor 
+END  
+ 
+PRIVATE FUNCTION linearecibo_cantidad_read() AS Float
+ RETURN hlinearecibo_cantidad 
+END 
+ 
+PRIVATE SUB linearecibo_cantidad_write(Valor AS Float)
+ hlinearecibo_cantidad= Valor 
+END  
+ 
+PRIVATE FUNCTION linearecibo_descuento_read() AS Float
+ RETURN hlinearecibo_descuento 
+END 
+ 
+PRIVATE SUB linearecibo_descuento_write(Valor AS Float)
+ hlinearecibo_descuento= Valor 
+END  
+ 
+PRIVATE FUNCTION linearecibo_total_read() AS Float
+ RETURN hlinearecibo_total 
+END 
+ 
+PRIVATE SUB linearecibo_total_write(Valor AS Float)
+ hlinearecibo_total= Valor 
+END  
+ 
+PRIVATE FUNCTION linearecibo_tabla_read() AS Integer
+ RETURN hlinearecibo_tabla 
+END 
+ 
+PRIVATE SUB linearecibo_tabla_write(Valor AS Integer)
+ hlinearecibo_tabla= Valor 
+END  
+ 
+PRIVATE FUNCTION producto_id_read() AS Integer
+ RETURN hproducto_id 
+END 
+ 
+PRIVATE SUB producto_id_write(Valor AS Integer)
+ hproducto_id= Valor 
+END  
+ 
+PRIVATE FUNCTION producto_codigo_read() AS String
+ RETURN hproducto_codigo 
+END 
+ 
+PRIVATE SUB producto_codigo_write(Valor AS String)
+ hproducto_codigo= Valor 
+END  
+ 
+PRIVATE FUNCTION producto_nombre_read() AS String
+ RETURN hproducto_nombre 
+END 
+ 
+PRIVATE SUB producto_nombre_write(Valor AS String)
+ hproducto_nombre= Valor 
+END  
+ 
+PRIVATE FUNCTION producto_ubicacion_read() AS String
+ RETURN hproducto_ubicacion 
+END 
+ 
+PRIVATE SUB producto_ubicacion_write(Valor AS String)
+ hproducto_ubicacion= Valor 
+END  
+ 
+PRIVATE FUNCTION producto_precio_read() AS Float
+ RETURN hproducto_precio 
+END 
+ 
+PRIVATE SUB producto_precio_write(Valor AS Float)
+ hproducto_precio= Valor 
+END  
+ 
+PRIVATE FUNCTION producto_comentario_read() AS String
+ RETURN hproducto_comentario 
+END 
+ 
+PRIVATE SUB producto_comentario_write(Valor AS String)
+ hproducto_comentario= Valor 
+END  
+ 
+PRIVATE FUNCTION recibo_id_read() AS Integer
+ RETURN hrecibo_id 
+END 
+ 
+PRIVATE SUB recibo_id_write(Valor AS Integer)
+ hrecibo_id= Valor 
+END  
+ 
+PRIVATE FUNCTION recibo_idempleado_read() AS Integer
+ RETURN hrecibo_idempleado 
+END 
+ 
+PRIVATE SUB recibo_idempleado_write(Valor AS Integer)
+ hrecibo_idempleado= Valor 
+END  
+ 
+PRIVATE FUNCTION recibo_idcliente_read() AS Integer
+ RETURN hrecibo_idcliente 
+END 
+ 
+PRIVATE SUB recibo_idcliente_write(Valor AS Integer)
+ hrecibo_idcliente= Valor 
+END  
+ 
+PRIVATE FUNCTION recibo_fecha_read() AS Date
+ RETURN hrecibo_fecha 
+END 
+ 
+PRIVATE SUB recibo_fecha_write(Valor AS Date)
+ hrecibo_fecha= Valor 
+END  
+ 
+PRIVATE FUNCTION recibo_idlinearecibo_read() AS String
+ RETURN hrecibo_idlinearecibo 
+END 
+ 
+PRIVATE SUB recibo_idlinearecibo_write(Valor AS String)
+ hrecibo_idlinearecibo= Valor 
+END  
+ 
+PRIVATE FUNCTION recibo_importe_read() AS Float
+ RETURN hrecibo_importe 
+END 
+ 
+PRIVATE SUB recibo_importe_write(Valor AS Float)
+ hrecibo_importe= Valor 
+END  
+ 
+PRIVATE FUNCTION servicio_id_read() AS Integer
+ RETURN hservicio_id 
+END 
+ 
+PRIVATE SUB servicio_id_write(Valor AS Integer)
+ hservicio_id= Valor 
+END  
+ 
+PRIVATE FUNCTION servicio_nombre_read() AS String
+ RETURN hservicio_nombre 
+END 
+ 
+PRIVATE SUB servicio_nombre_write(Valor AS String)
+ hservicio_nombre= Valor 
+END  
+ 
+PRIVATE FUNCTION servicio_precio_read() AS Float
+ RETURN hservicio_precio 
+END 
+ 
+PRIVATE SUB servicio_precio_write(Valor AS Float)
+ hservicio_precio= Valor 
+END  
+ 
+PRIVATE FUNCTION servicio_comentario_read() AS String
+ RETURN hservicio_comentario 
+END 
+ 
+PRIVATE SUB servicio_comentario_write(Valor AS String)
+ hservicio_comentario= Valor 
+END  
+ 
+PRIVATE FUNCTION campo_read() AS string[]
+ RETURN hcampo 
+END 
+ 
+PRIVATE SUB campo_write(Valor AS string[])
+ hcampo= Valor 
+END  
+ 
+PRIVATE FUNCTION campotipo_read() AS string[]
+ RETURN hcampotipo 
+END 
+ 
+PRIVATE SUB campotipo_write(Valor AS string[])
+ hcampotipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campovisible_read() AS string[]
+ RETURN hcampovisible 
+END 
+ 
+PRIVATE SUB campovisible_write(Valor AS string[])
+ hcampovisible= Valor 
+END  
+ 

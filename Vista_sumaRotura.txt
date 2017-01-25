@@ -1,0 +1,8 @@
+CREATE  VIEW sumaRotura AS 
+select 
+producto.nombre,lineaAlmacen.idproducto,SUM(lineaAlmacen.cantidad) AS "suma_ROTURA" 
+from 
+producto,lineaAlmacen 
+where 
+producto.id=lineaAlmacen.idproducto AND lineaAlmacen.tipo="ROTURA" 
+GROUP by producto.id

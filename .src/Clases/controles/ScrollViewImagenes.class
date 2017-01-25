@@ -1,0 +1,191 @@
+' Gambas class file
+
+Inherits ScrollView
+
+Public observdador As Observer
+Public obsPicture As Observer
+
+Public listaPicturebox As New PictureBox[]
+
+Public hborrado As Boolean
+
+Public listarutas As New String[]
+
+Event borrado
+
+Public Sub _new()
+  
+  Me.Expand = True
+  observdador = New Observer(Me) As "observador"
+  Me.Arrangement = Arrange.horizontal
+  
+End
+
+Public Sub observador_mouseup()
+  
+  Print "-> PULSADO RATON"
+  
+End
+
+Public Sub vaciar()
+  
+  Me.Children.Clear() 'borran todo el contenido
+  
+  listaPicturebox = New PictureBox[]
+  listarutas = New String[]
+  
+End
+
+Public Sub vaciarYrecargar()
+  
+  Dim PictureBoxTmp As PictureBox
+  Dim a As Integer
+  Dim ruta As String
+  
+  Me.Children.Clear() 'borran todo el contenido
+  listaPicturebox.Clear()
+  
+  For a = 0 To listarutas.Max
+    
+    PictureBoxtmp = New PictureBox(Me) As "obsPicture"
+    
+    Try ruta = listarutas[a]
+    If Error Then 
+      'no hace nada..
+    Else
+      PictureBoxtmp.tag = ruta
+      PictureBoxtmp.Picture = Picture[comun.RutaDdeTrabajo & ruta] 'ruta la tengo que pasar completa (user.home & ventas & nombre fichero
+      
+      If IsNull(PictureBoxtmp.Picture) Then Return
+      ' 
+      PictureBoxtmp.h = 200
+      PictureBoxtmp.w = 200 ' PictureBoxtmp.Picture.w / PictureBoxtmp.Picture.h
+      PictureBoxtmp.Border = Border.Raised  
+      PictureBoxtmp.Stretch = True
+      PictureBoxtmp.tag = ruta
+      
+      PictureBoxtmp.tag = ruta
+      PictureBoxtmp.Picture = Picture[comun.RutaDdeTrabajo & ruta] 'ruta la tengo que pasar completa (user.home & ventas & nombre fichero
+      
+      If IsNull(PictureBoxtmp.Picture) Then Return
+      ' 
+      PictureBoxtmp.h = 200
+      PictureBoxtmp.w = 200 ' PictureBoxtmp.Picture.w / PictureBoxtmp.Picture.h
+      PictureBoxtmp.Border = Border.Raised  
+      PictureBoxtmp.Stretch = True
+      PictureBoxtmp.tag = ruta
+      
+      listaPicturebox.add(PictureBoxTmp)
+    Endif
+    
+  Next
+  
+End
+
+Public Sub addimagen(ruta As String)
+  
+  Dim PictureBoxTmp As PictureBox
+  
+  PictureBoxtmp = New PictureBox(Me) As "obsPicture"
+  
+  PictureBoxtmp.tag = ruta
+  PictureBoxtmp.Picture = Picture.Load(comun.RutaDdeTrabajo & ruta) 'ruta la tengo que pasar completa (user.home & ventas & nombre fichero
+  
+  If IsNull(PictureBoxtmp.Picture) Then Return
+  ' 
+  PictureBoxtmp.h = 200
+  PictureBoxtmp.w = 200 ' PictureBoxtmp.Picture.w / PictureBoxtmp.Picture.h
+  PictureBoxtmp.Border = Border.Raised  
+  PictureBoxtmp.Stretch = True
+  PictureBoxtmp.tag = ruta
+  
+  listaPicturebox.add(PictureBoxTmp)
+  listarutas.add(ruta)
+  
+End
+
+Public Sub deleteimagen(ruta As String)
+  
+  Dim a As Integer
+  
+  ' For a = 0 To listarutas.max
+  '   If ruta = listaPicturebox[a].tag Then 
+  '     listaPicturebox.Delete(a)
+  '     Break
+  '   Endif
+  ' Next
+  
+  'borrar tambien el archivo
+  Try Kill comun.RutaDdeTrabajo & "/" & ruta
+  ' If Error Then 
+  '   Message.Error(("Error al intentar borrar el fichero") & "\n" & Error.text)
+  '   Return 
+  ' Endif
+  
+  listarutas.Delete(listarutas.Find(ruta))
+  
+  Me.Refresh()
+  
+End
+
+Public Sub obsPicture_mouseup()
+  
+  Dim Rutapic As String
+  Dim listarutasAntiguas As New String[]
+  Dim a As Integer
+  Dim efectuadoBorrado As New String[]
+  
+  efectuadoBorrado.Add("noBorrar")
+  
+  formimagen.ruta = Last.tag
+  
+  formimagen.listaPicturebox = listaPicturebox
+  formimagen.borrado = hborrado
+  formimagen.efectuadoBorrado = efectuadoBorrado
+  formimagen.showmodal()
+  
+  'redibujar la lista de pictures que hay dentro del scroll
+  
+  If efectuadoBorrado[0] = "noBorrar" Then 
+    'no hago nada
+    
+  Else
+    deleteimagen(Last.tag)
+    
+  Endif
+  
+  vaciarYrecargar()
+  
+End
+
+Public Function contenido() As String[]
+  
+  Dim PictureBoxTmp As PictureBox
+  Dim lista As New String[]
+  
+  If listaPicturebox.max = -1 Then 
+    Return lista
+  Endif
+  
+  For Each PictureBoxTmp In listaPicturebox
+    
+    If Not IsNull(PictureBoxTmp) Then 
+      lista.Add(PictureBoxTmp.tag)
+    Endif
+    
+  Next
+  
+  Return lista
+  
+End
+
+Public Function carga(lista As ImagenesVO[], Optional borrado As Boolean) 
+  
+  Dim a As Integer
+  
+  For a = 0 To lista.Max
+    Me.addimagen(lista[a].rutaimagen)
+  Next
+  hborrado = borrado
+  
+End      

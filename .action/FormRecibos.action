@@ -1,0 +1,10 @@
+# Gambas Action File 3.0
+
+{ Actions
+  { Action configurar
+    Text = "Configurar"
+    Shortcut = ""
+    Picture = "config16.png"
+  }
+}
+

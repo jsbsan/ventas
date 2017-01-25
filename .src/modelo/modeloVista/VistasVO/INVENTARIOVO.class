@@ -1,0 +1,132 @@
+PROPERTY sumaEntrada_nombre AS string 
+PRIVATE hsumaEntrada_nombre AS string
+
+PROPERTY sumaEntrada_idproducto AS string 
+PRIVATE hsumaEntrada_idproducto AS string
+
+PROPERTY ENTRADA AS string 
+PRIVATE hENTRADA AS string
+
+PROPERTY VENTA AS string 
+PRIVATE hVENTA AS string
+
+PROPERTY ROTURA AS string 
+PRIVATE hROTURA AS string
+
+PROPERTY ROBO AS string 
+PRIVATE hROBO AS string
+
+PROPERTY EXISTENCIA_ALMACEN AS string 
+PRIVATE hEXISTENCIA_ALMACEN AS string
+
+PROPERTY campo AS string[] 
+PRIVATE hcampo AS new string[]
+
+PROPERTY campotipo AS string[] 
+PRIVATE hcampotipo AS new string[]
+
+PROPERTY campovisible AS string[] 
+PRIVATE hcampovisible AS new string[]
+
+PRIVATE FUNCTION sumaEntrada_nombre_read() AS string
+ RETURN hsumaEntrada_nombre 
+END 
+ 
+PRIVATE SUB sumaEntrada_nombre_write(Valor AS string)
+ hsumaEntrada_nombre= Valor 
+END  
+ 
+PRIVATE FUNCTION sumaEntrada_idproducto_read() AS string
+ RETURN hsumaEntrada_idproducto 
+END 
+ 
+PRIVATE SUB sumaEntrada_idproducto_write(Valor AS string)
+ hsumaEntrada_idproducto= Valor 
+END  
+ 
+PRIVATE FUNCTION ENTRADA_read() AS string
+ RETURN hENTRADA 
+END 
+ 
+PRIVATE SUB ENTRADA_write(Valor AS string)
+ hENTRADA= Valor 
+END  
+ 
+PRIVATE FUNCTION VENTA_read() AS string
+ RETURN hVENTA 
+END 
+ 
+PRIVATE SUB VENTA_write(Valor AS string)
+ hVENTA= Valor 
+END  
+ 
+PRIVATE FUNCTION ROTURA_read() AS string
+ RETURN hROTURA 
+END 
+ 
+PRIVATE SUB ROTURA_write(Valor AS string)
+ hROTURA= Valor 
+END  
+ 
+PRIVATE FUNCTION ROBO_read() AS string
+ RETURN hROBO 
+END 
+ 
+PRIVATE SUB ROBO_write(Valor AS string)
+ hROBO= Valor 
+END  
+ 
+PRIVATE FUNCTION EXISTENCIA_ALMACEN_read() AS string
+ RETURN hEXISTENCIA_ALMACEN 
+END 
+ 
+PRIVATE SUB EXISTENCIA_ALMACEN_write(Valor AS string)
+ hEXISTENCIA_ALMACEN= Valor 
+END  
+ 
+PRIVATE FUNCTION campo_read() AS string[]
+ RETURN hcampo 
+END 
+ 
+PRIVATE SUB campo_write(Valor AS string[])
+ hcampo= Valor 
+END  
+ 
+PRIVATE FUNCTION campotipo_read() AS string[]
+ RETURN hcampotipo 
+END 
+ 
+PRIVATE SUB campotipo_write(Valor AS string[])
+ hcampotipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campovisible_read() AS string[]
+ RETURN hcampovisible 
+END 
+ 
+PRIVATE SUB campovisible_write(Valor AS string[])
+ hcampovisible= Valor 
+END  
+ 
+PUBLIC FUNCTION ConvertirVOaColeccion(dato as INVENTARIOVO) AS collection
+Dim colecciontmp as new collection
+colecciontmp.add(dato.sumaEntrada_nombre,"sumaEntrada_nombre")
+colecciontmp.add(dato.sumaEntrada_idproducto,"sumaEntrada_idproducto")
+colecciontmp.add(dato.ENTRADA,"ENTRADA")
+colecciontmp.add(dato.VENTA,"VENTA")
+colecciontmp.add(dato.ROTURA,"ROTURA")
+colecciontmp.add(dato.ROBO,"ROBO")
+colecciontmp.add(dato.EXISTENCIA_ALMACEN,"EXISTENCIA_ALMACEN")
+return colecciontmp
+end
+PUBLIC FUNCTION ConvertirColeccionaVO(dato as collection) AS INVENTARIOVO
+Dim datoVOtmp as new INVENTARIOVO
+try datoVOtmp.sumaEntrada_nombre=dato["sumaEntrada_nombre"]
+try datoVOtmp.sumaEntrada_idproducto=dato["sumaEntrada_idproducto"]
+try datoVOtmp.ENTRADA=dato["ENTRADA"]
+try datoVOtmp.VENTA=dato["VENTA"]
+try datoVOtmp.ROTURA=dato["ROTURA"]
+try datoVOtmp.ROBO=dato["ROBO"]
+try datoVOtmp.EXISTENCIA_ALMACEN=dato["EXISTENCIA_ALMACEN"]
+return datoVOtmp
+end

@@ -1,0 +1,8 @@
+CREATE VIEW sumaSalida AS 
+select 
+producto.nombre,linearecibo.idproducto,SUM(linearecibo.cantidad) AS "suma_VENTA" 
+from 
+producto,linearecibo 
+where 
+producto.id=linearecibo.idproducto And linearecibo.tabla=2 
+GROUP by producto.id

@@ -1,0 +1,41 @@
+' Gambas class file
+
+Public $opciones As Variant[]
+
+Public Sub Form_Open()
+  
+  Me.center()
+  
+End
+
+Public Sub opcionesFiltrado(variable As Variant[])
+  
+  $opciones = variable
+  
+End
+
+Public Sub ButtonCancelar_Click()
+  
+  $opciones.Add(Null)
+  
+  Me.Close()
+  
+End
+
+Public Sub ButtonAceptar_Click()
+  
+  If RadioButtonNombre.value = True Then 
+    $opciones.Add("nombre")
+    $opciones.Add(TextBoxFiltro.text)
+    
+    Me.Close()
+  Else
+    If RadioButtonTelefono.Value = True Then
+      $opciones.Add("telefono")
+      $opciones.Add(TextBoxFiltro.text)
+      Me.Close()    
+    Endif
+    
+  Endif
+  
+End

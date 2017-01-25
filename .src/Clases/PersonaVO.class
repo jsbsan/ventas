@@ -1,0 +1,151 @@
+' Gambas class file
+
+Property id As Integer 
+Private hid As Integer
+
+Property dni As String 
+Private hdni As String
+
+Property nombre As String 
+Private hnombre As String
+
+Property telefono As String 
+Private htelefono As String
+
+Property correo As String 
+Private hcorreo As String
+
+Property domicilio As String 
+Private hdomicilio As String
+
+Property comentario As String 
+Private hcomentario As String
+
+Property campo As String[] 
+Private hcampo As New String[]
+
+Property campotipo As String[] 
+Private hcampotipo As New String[]
+
+Property campovisible As String[] 
+Private hcampovisible As New String[]
+
+Private Function id_read() As Integer
+  
+  Return hid 
+  
+End 
+
+Private Sub id_write(Valor As Integer)
+  
+  hid = Valor 
+  
+End  
+
+Private Function dni_read() As String
+  
+  Return hdni 
+  
+End 
+
+Private Sub dni_write(Valor As String)
+  
+  hdni = Valor 
+  
+End  
+
+Private Function nombre_read() As String
+  
+  Return hnombre 
+  
+End 
+
+Private Sub nombre_write(Valor As String)
+  
+  hnombre = Valor 
+  
+End  
+
+Private Function telefono_read() As String
+  
+  Return htelefono 
+  
+End 
+
+Private Sub telefono_write(Valor As String)
+  
+  htelefono = Valor 
+  
+End  
+
+Private Function correo_read() As String
+  
+  Return hcorreo 
+  
+End 
+
+Private Sub correo_write(Valor As String)
+  
+  hcorreo = Valor 
+  
+End  
+
+Private Function domicilio_read() As String
+  
+  Return hdomicilio 
+  
+End 
+
+Private Sub domicilio_write(Valor As String)
+  
+  hdomicilio = Valor 
+  
+End  
+
+Private Function comentario_read() As String
+  
+  Return hcomentario 
+  
+End 
+
+Private Sub comentario_write(Valor As String)
+  
+  hcomentario = Valor 
+  
+End  
+
+Private Function campo_read() As String[]
+  
+  Return hcampo 
+  
+End 
+
+Private Sub campo_write(Valor As String[])
+  
+  hcampo = Valor 
+  
+End  
+
+Private Function campotipo_read() As String[]
+  
+  Return hcampotipo 
+  
+End 
+
+Private Sub campotipo_write(Valor As String[])
+  
+  hcampotipo = Valor 
+  
+End  
+
+Private Function campovisible_read() As String[]
+  
+  Return hcampovisible 
+  
+End 
+
+Private Sub campovisible_write(Valor As String[])
+  
+  hcampovisible = Valor 
+  
+End  

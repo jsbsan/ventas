@@ -1,0 +1,67 @@
+' Gambas class file
+
+Public fichero As String[]
+
+Public Sub Form_Open()
+  
+  FileChooser1.Filter = ["*.png;*.jpg;*.jpeg;*.bmp", "Ficheros de Imagenes"]
+  
+  Me.Center
+  
+End
+
+Public Sub FileChooser1_DblClick()
+  
+  If esimagen(FileChooser1.SelectedPath) Then 
+    PictureBox1.Picture = Picture[FileChooser1.SelectedPath]
+  Endif
+  
+End
+
+Public Function esimagen(archivo As String) As Boolean
+  
+  Dim a As Integer
+  Dim terminaciones As String[]
+  
+  terminaciones = [".png", ".jpg", ".jpeg", ".bmp"]
+  
+  For a = 0 To terminaciones.Max
+    
+    If InStr(Upper$(archivo), Upper$(terminaciones[a])) <> 0 Then 
+      Return True
+    Endif
+    
+  Next
+  
+  Return False
+  
+End
+
+Public Sub FileChooser1_Change()
+  
+  If esimagen(FileChooser1.SelectedPath) Then 
+    PictureBox1.Picture = Picture[FileChooser1.SelectedPath]
+  Endif
+  
+End
+
+Public Sub ButtonAceptar_Click()
+  
+  If esimagen(FileChooser1.SelectedPath) Then 
+    
+    fichero[0] = FileChooser1.SelectedPath
+    Me.Close()
+  Else
+    
+    ButtonCancelar_Click()
+    
+  Endif
+  
+End
+
+Public Sub ButtonCancelar_Click()
+
+  fichero = Null
+  Me.Close()
+  
+End

@@ -1,0 +1,136 @@
+' Gambas class file
+
+Public manejarNotas As New NotasAdaptadaDAO
+
+Public Sub Form_Open()
+  
+  RellenaComboBoxClienteEmpleados()
+  mostrarNotasClientes()
+  manejarNotas.ColorFilaPar = Settings["ColorRegillaPar", Color.orange]
+  manejarNotas.ColorFilaImPar = Settings["ColorRegillaImPar", color.white]
+  Me.Title = ("Seguimiento de tratamientos")
+  
+End
+
+Public Sub add_Click()
+  
+  Dim notaTmp As New NotasVO
+  Dim tmpArrayNotasVo As NotasVO[]
+  Dim hresult As Result
+  Dim realizado As Boolean
+  ''NOTE: Método para agregar un registro, con datos ya iniciales.
+  'realmente no es tan simple como crear un nuevo registro "sin datos"
+  '... es una edicion de un registro con los datos ya introducidos... (idCliente)
+  'crear un registro con el idcliente y texto vacio y fecha la actual
+  'editarlo
+  '0º creo datos actuales
+  notaTmp.fecha = Now
+  notaTmp.idcliente = Split(ComboBoxCliente.text, "|")[0]
+  '1º añado el registro
+  manejarNotas.registrar(notaTmp)
+  hresult = manejarNotas.contenido()
+  
+  hresult.MoveLast
+  tmpArrayNotasVo = manejarNotas.ConvertirResult(hresult)
+  '3º edito el registro
+  realizado = manejarNotas.FormularioModificarRegistroId(tmpArrayNotasVo[0].id, tmpArrayNotasVo[0], 1)
+  
+  If realizado = True Then
+    'mostar registros
+    mostrarNotasClientes()
+  Else
+    manejarNotas.BorrarId(tmpArrayNotasVo[0].id)
+    
+  Endif
+  
+End
+
+Public Sub mostrarNotasClientes()
+  
+  Dim idcliente As String
+  
+  Try idcliente = Split(ComboBoxCliente.text, "|")[0]
+  If Error Then
+    Message.Info(("Debe de elegir a un cliente"))
+    Return
+  Endif
+  manejarNotas.MostrarGridView(GridViewNotas, "select * from notas where idcliente='" & idcliente & "' order by fecha DESC")
+  
+End
+
+Public Sub editarNota_Click()
+  
+  Dim tmpVo As NotasVO
+  
+  tmpVo = manejarNotas.filaSeleccionadaVO()
+  
+  If Not IsNull(tmpvo) Then
+    manejarNotas.FormularioModificarRegistroId(tmpVO.id, tmpVO, 1)
+    mostrarNotasClientes()
+  Endif
+  
+End
+
+Public Sub DeleteNota_Click()
+  
+  Dim tmpVo As NotasVO
+  
+  tmpVo = manejarNotas.filaSeleccionadaVO()
+  
+  If Not IsNull(tmpvo) Then
+    manejarNotas.BorrarId(tmpvo.id)
+    mostrarNotasClientes()
+  Endif
+  
+End
+
+Public Sub ButtonSalir_Click()
+  
+  Me.Close()
+  
+End
+
+Public Sub RellenaComboBoxClienteEmpleados()
+  
+  Dim conectar As New Conexion
+  Dim SQLString As String
+  Dim hresult As Result
+  
+  conectar.Conexion()
+  
+  sqlstring = "SELECT nombre,id FROM cliente order by nombre DESC" ' DESC: desendiente (1,2,3), ASC (3,2,1
+  Try hresult = conectar.hconn.Exec(SQLString)
+  If Error Then
+    Message.Info(("se ha producido un error al intentar rellenar el combobox de clientes"))
+  Else
+    RellenaComboBox(ComboBoxCliente, hresult)
+  Endif
+  
+End
+
+Public Sub RellenaComboBox(comboboxTmp As ComboBox, hresultTMP As Result)
+  
+  Dim nombretmp As String
+  Dim idtmp As String
+  
+  Do While hresultTMP.Available
+    nombretmp = hresultTMP["nombre"] '"Local" es el nombre del campo, que queremos leer sus datos
+    idtmp = hresultTMP["id"]
+    comboboxTmp.Add(idtmp & "|" & nombretmp)
+    
+    hresultTMP.MoveNext()
+  Loop
+  
+End
+
+Public Sub ComboBoxCliente_Click()
+  
+  mostrarNotasClientes()
+  
+End
+
+Public Sub ButtonImprimirRapido_Click()
+  
+  manejarNotas.ImprimirRapidoTablaHorizontal()
+  
+End

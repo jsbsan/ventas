@@ -1,0 +1,160 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,96,61)
+  Resizable = False
+  { TabStrip1 TabStrip
+    MoveScaled(2,7,91,47)
+    Font = Font["+2"]
+    Count = 3
+    Index = 0
+    Text = ("Empleados")
+    Picture = Picture["empleadoS.png"]
+    { ComboBoxEmpleado ComboBox
+      MoveScaled(29,3,43,5)
+      ReadOnly = True
+      Text = ("ComboBox1")
+    }
+    { Label1 Label
+      MoveScaled(4,3,22,5)
+      Text = ("Empleado:")
+      Alignment = Align.Right
+    }
+    { Frame1 Frame
+      MoveScaled(8,10,75,29)
+      Text = ("Listado desde.... hasta ....")
+      { Label3 Label
+        MoveScaled(9,7,20,4)
+        Text = ("Desde:")
+        Alignment = Align.Right
+      }
+      { Label2 Label
+        MoveScaled(9,13,20,4)
+        Text = ("Hasta:")
+        Alignment = Align.Right
+      }
+      { DateBoxDesde DateBox
+        MoveScaled(34,7,21,4)
+      }
+      { DateBoxHasta DateBox
+        MoveScaled(34,13,21,4)
+      }
+      { ButtonConsultaEmpleado Button
+        MoveScaled(11,20,23,6)
+        ToolTip = ("Realiza la consulta")
+        Text = ("Consultar")
+        Picture = Picture["odf.png"]
+      }
+      { ButtonConsultaEmpleadoCSV Button
+        MoveScaled(46,20,23,6)
+        ToolTip = ("Realiza la consulta")
+        Text = ("Consultar")
+        Picture = Picture["libreofficeCSV.png"]
+      }
+    }
+    { PictureBox2 PictureBox
+      MoveScaled(77,1,10,10)
+      Picture = Picture["empleadoS.png"]
+      Stretch = True
+    }
+    Index = 1
+    Text = ("Clientes")
+    Picture = Picture["cliente.png"]
+    { Frame2 Frame
+      MoveScaled(8,10,75,29)
+      Text = ("Listado desde.... hasta ....")
+      { Label4 Label
+        MoveScaled(10,7,20,4)
+        Text = ("Desde:")
+        Alignment = Align.Right
+      }
+      { Label5 Label
+        MoveScaled(10,13,20,4)
+        Text = ("Hasta:")
+        Alignment = Align.Right
+      }
+      { DateBoxDesdeCliente DateBox
+        MoveScaled(35,7,21,4)
+      }
+      { DateBoxHastaCliente DateBox
+        MoveScaled(35,13,21,4)
+      }
+      { ButtonConsultaCliente Button
+        MoveScaled(11,20,23,6)
+        ToolTip = ("Realiza la consulta")
+        Text = ("Consultar")
+        Picture = Picture["odf.png"]
+      }
+      { ButtonConsultaClienteCSV Button
+        MoveScaled(46,20,23,6)
+        ToolTip = ("Realiza la consulta")
+        Text = ("Consultar")
+        Picture = Picture["libreofficeCSV.png"]
+      }
+    }
+    { ComboBoxCliente ComboBox
+      MoveScaled(29,3,43,5)
+      ReadOnly = True
+      Text = ("ComboBox1")
+    }
+    { Label6 Label
+      MoveScaled(4,3,22,5)
+      Text = ("Cliente:")
+      Alignment = Align.Right
+    }
+    { PictureBox1 PictureBox
+      MoveScaled(76,1,10,10)
+      Picture = Picture["cliente.png"]
+      Stretch = True
+    }
+    Index = 2
+    Text = ("Inventario")
+    Picture = Picture["inventario.png"]
+    { ButtonInventario Button
+      MoveScaled(2,3,86,8)
+      Font = Font["-1"]
+      Text = ("Crear Informe de inventario:Entradas,Ventas,Roturas,Robos y Existencias Almacen")
+      Picture = Picture["almacen-icono-5695-48(1).png"]
+    }
+    { ButtonInventarioValorado Button
+      MoveScaled(2,13,86,8)
+      Font = Font["-1"]
+      Text = ("Crear Informe de inventario con valoración de productos")
+      Picture = Picture["almacendolar.png"]
+    }
+    { PictureBoxPDF PictureBox
+      MoveScaled(20,32,6,6)
+      Picture = Picture["odf.png"]
+    }
+    { RadioButtonPdfInventario RadioButton
+      MoveScaled(27,30,12,10)
+      Text = ("PDF")
+      Value = True
+    }
+    { PictureBoxLibreOffice PictureBox
+      MoveScaled(46,32,6,6)
+      Picture = Picture["libreofficeCSV.png"]
+    }
+    { RadioButtonCSVInventario RadioButton
+      MoveScaled(53,30,19,10)
+      Text = ("Hoja de Cálculo")
+    }
+    { ButtonListaProductosVendidos Button
+      MoveScaled(2,23,86,7)
+      Text = ("Crear informe de productos vendidos")
+      Picture = Picture["Ropas Productos.png"]
+    }
+    Index = 0
+  }
+  { ButtonSalir Button
+    MoveScaled(39,55,22,5)
+    Text = ("Salir")
+    Picture = Picture["icon:/16/quit"]
+  }
+  { Label7 Label
+    MoveScaled(4,0,87,5)
+    Font = Font["Bold,Underline,+3"]
+    Text = ("INFORMES")
+    Alignment = Align.Center
+  }
+}

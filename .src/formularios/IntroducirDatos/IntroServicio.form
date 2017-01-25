@@ -1,0 +1,42 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,85,35)
+  Icon = Picture["carrito.png"]
+  Resizable = False
+  { TextBoxNombre TextBox
+    MoveScaled(18,2,63,4)
+  }
+  { ValueBoxPrecio ValueBox
+    MoveScaled(18,7,8,4)
+  }
+  { TextAreaComentario TextArea
+    MoveScaled(1,16,82,12)
+    Wrap = True
+  }
+  { Label1 Label
+    MoveScaled(0,2,16,4)
+    Text = ("Tipo de Corte:")
+    Alignment = Align.Right
+  }
+  { Label2 Label
+    MoveScaled(0,7,16,4)
+    Text = ("Precio:")
+    Alignment = Align.Right
+  }
+  { Label6 Label
+    MoveScaled(1,12,16,5)
+    Text = ("Comentarios:")
+    Alignment = Align.Center
+  }
+  { ButtonCancelar Button
+    MoveScaled(52,29,13,5)
+    Text = ("Cancelar")
+    Picture = Picture["icon:/16/cancel"]
+  }
+  { ButtonAceptar Button
+    MoveScaled(70,29,13,5)
+    Text = ("Aceptar")
+    Picture = Picture["icon:/16/apply"]
+  }
+}

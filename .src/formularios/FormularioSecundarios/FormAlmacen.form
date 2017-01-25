@@ -1,0 +1,87 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,139,82)
+  Icon = Picture["almacen-icono-5695-48(1).png"]
+  Arrangement = Arrange.Vertical
+  { Menu1 Menu
+    Text = ("Menu")
+    { Albaran Menu
+      Text = ("Albaranes:")
+    }
+    { Menu2 Menu
+    }
+    { addentrada Menu
+      Text = ("Añadir Entrada/Rotura/Robo")
+      Picture = Picture["icon:/16/add"]
+    }
+    { editarentrada Menu
+      Text = ("Editar")
+      Picture = Picture["icon:/16/edit"]
+    }
+    { filtradoFecha Menu
+      Text = ("Filtrar por Fecha")
+      Picture = Picture["icon:/16/calendar"]
+    }
+    { quitafiltro Menu
+      Text = ("Quitar Filtro")
+      Picture = Picture["icon:/16/filter"]
+    }
+    { Borrar Menu
+      Text = ("Borrar")
+      Picture = Picture["icon:/16/erase"]
+      Enabled = False
+    }
+  }
+  { HBox1 HBox
+    MoveScaled(3,0,91,7)
+    { Label1 Label
+      MoveScaled(15,1,60,6)
+      Font = Font["+3"]
+      Expand = True
+      Text = ("Listado de albaranes de almacén")
+      Alignment = Align.Center
+    }
+  }
+  { HBox4 HBox
+    MoveScaled(0,8,126,6)
+    { ButtonAgregar Button
+      MoveScaled(0,0,42,5)
+      Text = ("Añadir Albarán de Entrada/Rotura/Robo")
+      Picture = Picture["icon:/22/add"]
+    }
+    { ButtonEditor Button
+      MoveScaled(44,0,13,5)
+      Text = ("Editar")
+      Picture = Picture["icon:/22/edit"]
+    }
+    { ButtonFiltraFecha Button
+      MoveScaled(59,0,22,5)
+      Text = ("Filtra por Fecha")
+      Picture = Picture["icon:/22/calendar"]
+    }
+    { ButtonQuitarFiltro Button
+      MoveScaled(84,0,16,5)
+      Text = ("Quitar Filtro")
+      Picture = Picture["icon:/22/cancel"]
+    }
+  }
+  { GridView1 GridView
+    MoveScaled(0,15,126,34)
+    Expand = True
+    PopupMenu = "Menu1"
+    Mode = Select.Single
+  }
+  { HBox2 HBox
+    MoveScaled(5,51,71,5)
+    { HBox3 HBox
+      MoveScaled(12,2,18,1)
+      Expand = True
+    }
+    { ButtonSalir Button
+      MoveScaled(51,0,16,4)
+      Text = ("Cerrar")
+      Picture = Picture["icon:/16/cancel"]
+    }
+  }
+}

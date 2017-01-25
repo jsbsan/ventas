@@ -1,0 +1,158 @@
+PROPERTY total3_fecha AS string 
+PRIVATE htotal3_fecha AS string
+
+PROPERTY total3_codigo AS string 
+PRIVATE htotal3_codigo AS string
+
+PROPERTY total3_nombre AS string 
+PRIVATE htotal3_nombre AS string
+
+PROPERTY total3_cantidad AS string 
+PRIVATE htotal3_cantidad AS string
+
+PROPERTY total3_precio AS string 
+PRIVATE htotal3_precio AS string
+
+PROPERTY total3_descuento AS string 
+PRIVATE htotal3_descuento AS string
+
+PROPERTY total3_iva AS string 
+PRIVATE htotal3_iva AS string
+
+PROPERTY cliente AS string 
+PRIVATE hcliente AS string
+
+PROPERTY empleado AS string 
+PRIVATE hempleado AS string
+
+PROPERTY campo AS string[] 
+PRIVATE hcampo AS new string[]
+
+PROPERTY campotipo AS string[] 
+PRIVATE hcampotipo AS new string[]
+
+PROPERTY campovisible AS string[] 
+PRIVATE hcampovisible AS new string[]
+
+PRIVATE FUNCTION total3_fecha_read() AS string
+ RETURN htotal3_fecha 
+END 
+ 
+PRIVATE SUB total3_fecha_write(Valor AS string)
+ htotal3_fecha= Valor 
+END  
+ 
+PRIVATE FUNCTION total3_codigo_read() AS string
+ RETURN htotal3_codigo 
+END 
+ 
+PRIVATE SUB total3_codigo_write(Valor AS string)
+ htotal3_codigo= Valor 
+END  
+ 
+PRIVATE FUNCTION total3_nombre_read() AS string
+ RETURN htotal3_nombre 
+END 
+ 
+PRIVATE SUB total3_nombre_write(Valor AS string)
+ htotal3_nombre= Valor 
+END  
+ 
+PRIVATE FUNCTION total3_cantidad_read() AS string
+ RETURN htotal3_cantidad 
+END 
+ 
+PRIVATE SUB total3_cantidad_write(Valor AS string)
+ htotal3_cantidad= Valor 
+END  
+ 
+PRIVATE FUNCTION total3_precio_read() AS string
+ RETURN htotal3_precio 
+END 
+ 
+PRIVATE SUB total3_precio_write(Valor AS string)
+ htotal3_precio= Valor 
+END  
+ 
+PRIVATE FUNCTION total3_descuento_read() AS string
+ RETURN htotal3_descuento 
+END 
+ 
+PRIVATE SUB total3_descuento_write(Valor AS string)
+ htotal3_descuento= Valor 
+END  
+ 
+PRIVATE FUNCTION total3_iva_read() AS string
+ RETURN htotal3_iva 
+END 
+ 
+PRIVATE SUB total3_iva_write(Valor AS string)
+ htotal3_iva= Valor 
+END  
+ 
+PRIVATE FUNCTION cliente_read() AS string
+ RETURN hcliente 
+END 
+ 
+PRIVATE SUB cliente_write(Valor AS string)
+ hcliente= Valor 
+END  
+ 
+PRIVATE FUNCTION empleado_read() AS string
+ RETURN hempleado 
+END 
+ 
+PRIVATE SUB empleado_write(Valor AS string)
+ hempleado= Valor 
+END  
+ 
+PRIVATE FUNCTION campo_read() AS string[]
+ RETURN hcampo 
+END 
+ 
+PRIVATE SUB campo_write(Valor AS string[])
+ hcampo= Valor 
+END  
+ 
+PRIVATE FUNCTION campotipo_read() AS string[]
+ RETURN hcampotipo 
+END 
+ 
+PRIVATE SUB campotipo_write(Valor AS string[])
+ hcampotipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campovisible_read() AS string[]
+ RETURN hcampovisible 
+END 
+ 
+PRIVATE SUB campovisible_write(Valor AS string[])
+ hcampovisible= Valor 
+END  
+ 
+PUBLIC FUNCTION ConvertirVOaColeccion(dato as TotalVO) AS collection
+Dim colecciontmp as new collection
+colecciontmp.add(dato.total3_fecha,"total3_fecha")
+colecciontmp.add(dato.total3_codigo,"total3_codigo")
+colecciontmp.add(dato.total3_nombre,"total3_nombre")
+colecciontmp.add(dato.total3_cantidad,"total3_cantidad")
+colecciontmp.add(dato.total3_precio,"total3_precio")
+colecciontmp.add(dato.total3_descuento,"total3_descuento")
+colecciontmp.add(dato.total3_iva,"total3_iva")
+colecciontmp.add(dato.cliente,"cliente")
+colecciontmp.add(dato.empleado,"empleado")
+return colecciontmp
+end
+PUBLIC FUNCTION ConvertirColeccionaVO(dato as collection) AS TotalVO
+Dim datoVOtmp as new TotalVO
+try datoVOtmp.total3_fecha=dato["total3_fecha"]
+try datoVOtmp.total3_codigo=dato["total3_codigo"]
+try datoVOtmp.total3_nombre=dato["total3_nombre"]
+try datoVOtmp.total3_cantidad=dato["total3_cantidad"]
+try datoVOtmp.total3_precio=dato["total3_precio"]
+try datoVOtmp.total3_descuento=dato["total3_descuento"]
+try datoVOtmp.total3_iva=dato["total3_iva"]
+try datoVOtmp.cliente=dato["cliente"]
+try datoVOtmp.empleado=dato["empleado"]
+return datoVOtmp
+end

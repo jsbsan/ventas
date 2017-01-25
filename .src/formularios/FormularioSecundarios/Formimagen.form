@@ -1,0 +1,32 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,59,58)
+  Icon = Picture["carrito.png"]
+  Arrangement = Arrange.Fill
+  { PictureBox1 PictureBox
+    MoveScaled(0,0,51,54)
+    Expand = True
+    Border = Border.Plain
+  }
+  { HBox1 Panel
+    MoveScaled(0,0,11,31)
+    Enabled = False
+    Arrangement = Arrange.Row
+    { PictureBoxBorrado PictureBox
+      MoveScaled(0,0,10,10)
+      ToolTip = ("borrar")
+      Picture = Picture["icon:/64/trash"]
+      Border = Border.Raised
+    }
+    { Panel1 Panel
+      MoveScaled(3,10,6,10)
+    }
+    { PictureBoxRotarImagen PictureBox
+      MoveScaled(1,21,10,10)
+      ToolTip = ("girar imagen")
+      Picture = Picture["rotarimagen.jpg"]
+      Border = Border.Raised
+    }
+  }
+}

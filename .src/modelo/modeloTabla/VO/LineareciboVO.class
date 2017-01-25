@@ -1,0 +1,176 @@
+PROPERTY id AS Integer 
+PRIVATE hid AS Integer
+
+PROPERTY idproducto AS float 
+PRIVATE hidproducto AS float
+
+PROPERTY idlinearecibo AS String 
+PRIVATE hidlinearecibo AS String
+
+PROPERTY precio AS float 
+PRIVATE hprecio AS float
+
+PROPERTY cantidad AS float 
+PRIVATE hcantidad AS float
+
+PROPERTY descuento AS float 
+PRIVATE hdescuento AS float
+
+PROPERTY total AS float 
+PRIVATE htotal AS float
+
+PROPERTY tabla AS float 
+PRIVATE htabla AS float
+
+PROPERTY iva AS float 
+PRIVATE hiva AS float
+
+PROPERTY campo AS string[] 
+PRIVATE hcampo AS new string[]
+
+PROPERTY campotipo AS string[] 
+PRIVATE hcampotipo AS new string[]
+
+PROPERTY campovisible AS string[] 
+PRIVATE hcampovisible AS new string[]
+
+PRIVATE FUNCTION id_read() AS Integer
+ RETURN hid 
+END 
+ 
+PRIVATE SUB id_write(Valor AS Integer)
+ hid= Valor 
+END  
+ 
+PRIVATE FUNCTION idproducto_read() AS float
+ RETURN hidproducto 
+END 
+ 
+PRIVATE SUB idproducto_write(Valor AS float)
+ hidproducto= Valor 
+END  
+ 
+PRIVATE FUNCTION idlinearecibo_read() AS String
+ RETURN hidlinearecibo 
+END 
+ 
+PRIVATE SUB idlinearecibo_write(Valor AS String)
+ hidlinearecibo= Valor 
+END  
+ 
+PRIVATE FUNCTION precio_read() AS float
+ RETURN hprecio 
+END 
+ 
+PRIVATE SUB precio_write(Valor AS float)
+ hprecio= Valor 
+END  
+ 
+PRIVATE FUNCTION cantidad_read() AS float
+ RETURN hcantidad 
+END 
+ 
+PRIVATE SUB cantidad_write(Valor AS float)
+ hcantidad= Valor 
+END  
+ 
+PRIVATE FUNCTION descuento_read() AS float
+ RETURN hdescuento 
+END 
+ 
+PRIVATE SUB descuento_write(Valor AS float)
+ hdescuento= Valor 
+END  
+ 
+PRIVATE FUNCTION total_read() AS float
+ RETURN htotal 
+END 
+ 
+PRIVATE SUB total_write(Valor AS float)
+ htotal= Valor 
+END  
+ 
+PRIVATE FUNCTION tabla_read() AS float
+ RETURN htabla 
+END 
+ 
+PRIVATE SUB tabla_write(Valor AS float)
+ htabla= Valor 
+END  
+ 
+PRIVATE FUNCTION iva_read() AS float
+ RETURN hiva 
+END 
+ 
+PRIVATE SUB iva_write(Valor AS float)
+ hiva= Valor 
+END  
+ 
+PRIVATE FUNCTION campo_read() AS string[]
+ RETURN hcampo 
+END 
+ 
+PRIVATE SUB campo_write(Valor AS string[])
+ hcampo= Valor 
+END  
+ 
+PRIVATE FUNCTION campotipo_read() AS string[]
+ RETURN hcampotipo 
+END 
+ 
+PRIVATE SUB campotipo_write(Valor AS string[])
+ hcampotipo= Valor 
+END  
+ 
+PRIVATE FUNCTION campovisible_read() AS string[]
+ RETURN hcampovisible 
+END 
+ 
+PRIVATE SUB campovisible_write(Valor AS string[])
+ hcampovisible= Valor 
+END  
+ 
+PUBLIC FUNCTION Copia(Optional dato as LineareciboVO) AS LineareciboVO
+Dim datoVOtmp as new LineareciboVO
+Dim datoVOtmpOriginal as LineareciboVO
+If isnull(dato) then
+dato=me 'se copia a si mismo
+endif
+datoVOtmp.id=dato.id
+datoVOtmp.idproducto=dato.idproducto
+datoVOtmp.idlinearecibo=dato.idlinearecibo
+datoVOtmp.precio=dato.precio
+datoVOtmp.cantidad=dato.cantidad
+datoVOtmp.descuento=dato.descuento
+datoVOtmp.total=dato.total
+datoVOtmp.tabla=dato.tabla
+datoVOtmp.iva=dato.iva
+return datoVOtmp
+end
+
+PUBLIC FUNCTION ConvertirVOaColeccion(dato as LineareciboVO) AS collection
+Dim colecciontmp as new collection
+colecciontmp.add(dato.id,"id")
+colecciontmp.add(dato.idproducto,"idproducto")
+colecciontmp.add(dato.idlinearecibo,"idlinearecibo")
+colecciontmp.add(dato.precio,"precio")
+colecciontmp.add(dato.cantidad,"cantidad")
+colecciontmp.add(dato.descuento,"descuento")
+colecciontmp.add(dato.total,"total")
+colecciontmp.add(dato.tabla,"tabla")
+colecciontmp.add(dato.iva,"iva")
+return colecciontmp
+end
+PUBLIC FUNCTION ConvertirColeccionaVO(dato as collection) AS LineareciboVO
+Dim datoVOtmp as new LineareciboVO
+try datoVOtmp.id=dato["id"]
+try datoVOtmp.idproducto=dato["idproducto"]
+try datoVOtmp.idlinearecibo=dato["idlinearecibo"]
+try datoVOtmp.precio=dato["precio"]
+try datoVOtmp.cantidad=dato["cantidad"]
+try datoVOtmp.descuento=dato["descuento"]
+try datoVOtmp.total=dato["total"]
+try datoVOtmp.tabla=dato["tabla"]
+try datoVOtmp.iva=dato["iva"]
+return datoVOtmp
+end

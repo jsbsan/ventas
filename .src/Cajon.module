@@ -1,0 +1,28 @@
+' Gambas module file
+
+Public Sub abrir()
+
+  Dim comando As String
+  Dim pwr As String
+  Dim UsbDispositivo As String
+  Dim salida As String
+
+  pwr = Settings["pwr", ""]
+  UsbDispositivo = Settings["usbName", "/dev/ttyUSB0"]
+
+  comando = "echo pwr|sudo -S chmod 666 RUTAUSB;echo \"hola\">texto.txt;cat texto.txt|tee RUTAUSB"
+
+  'nota:
+  '1 para dar permisos
+  'chmod a+rw /dev/ttyUSB0
+  '2 para escribir en el puerto
+  'cat texto.txt | sudo tee /dev/ttyUSB0
+
+  comando = Replace$(comando, "pwr", pwr)
+  comando = Replace$(comando, "RUTAUSB", UsbDispositivo)
+
+  Shell comando To salida
+  Print comando
+  Print salida
+
+End

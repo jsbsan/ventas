@@ -1,0 +1,8 @@
+CREATE  VIEW sumaEntrada as 
+select 
+producto.nombre,precio,lineaAlmacen.idproducto,SUM(lineaAlmacen.cantidad) AS "suma_ENTRADA" 
+from 
+producto,lineaAlmacen 
+where 
+producto.id=lineaAlmacen.idproducto AND lineaAlmacen.tipo="ENTRADA" 
+group by producto.id

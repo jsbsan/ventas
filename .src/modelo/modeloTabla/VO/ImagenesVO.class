@@ -1,0 +1,125 @@
+' Gambas class file
+
+Property idimagen As Integer 
+Private hidimagen As Integer
+
+Property imagen As String 
+Private himagen As String
+
+Property rutaimagen As String 
+Private hrutaimagen As String
+
+Property campo As String[] 
+Private hcampo As New String[]
+
+Property campotipo As String[] 
+Private hcampotipo As New String[]
+
+Property campovisible As String[] 
+Private hcampovisible As New String[]
+
+Private Function idimagen_read() As Integer
+  
+  Return hidimagen 
+  
+End 
+
+Private Sub idimagen_write(Valor As Integer)
+  
+  hidimagen = Valor 
+  
+End  
+
+Private Function imagen_read() As String
+  
+  Return himagen 
+  
+End 
+
+Private Sub imagen_write(Valor As String)
+  
+  himagen = Valor 
+  
+End  
+
+Private Function rutaimagen_read() As String
+  
+  Return hrutaimagen 
+  
+End 
+
+Private Sub rutaimagen_write(Valor As String)
+  
+  hrutaimagen = Valor 
+  
+End  
+
+Private Function campo_read() As String[]
+  
+  Return hcampo 
+  
+End 
+
+Private Sub campo_write(Valor As String[])
+  
+  hcampo = Valor 
+  
+End  
+
+Private Function campotipo_read() As String[]
+  
+  Return hcampotipo 
+  
+End 
+
+Private Sub campotipo_write(Valor As String[])
+  
+  hcampotipo = Valor 
+  
+End  
+
+Private Function campovisible_read() As String[]
+  
+  Return hcampovisible 
+  
+End 
+
+Private Sub campovisible_write(Valor As String[])
+  
+  hcampovisible = Valor 
+  
+End  
+
+Public Function Copia(Optional dato As ImagenesVO) As ImagenesVO
+  
+  Dim datoVOtmp As New ImagenesVO
+  Dim datoVOtmpOriginal As ImagenesVO
+
+  If IsNull(dato) Then
+    dato = Me 'se copia a si mismo
+  Endif
+  datoVOtmp.idimagen = dato.idimagen
+  datoVOtmp.imagen = dato.imagen
+  datoVOtmp.rutaimagen = dato.rutaimagen
+  Return datoVOtmp
+
+End
+
+Public Function ConvertirVOaColeccion(dato As ImagenesVO) As Collection
+
+  Dim colecciontmp As New Collection
+  colecciontmp.add(dato.idimagen, "idimagen")
+  colecciontmp.add(dato.imagen, "imagen")
+  colecciontmp.add(dato.rutaimagen, "rutaimagen")
+  Return colecciontmp
+
+End
+
+Public Function ConvertirColeccionaVO(dato As Collection) As ImagenesVO
+
+  Dim datoVOtmp As New ImagenesVO
+Try datoVOtmp.idimagen = dato["idimagen"]
+Try datoVOtmp.imagen = dato["imagen"]
+Try datoVOtmp.rutaimagen = dato["rutaimagen"]
+Return datoVOtmp
+End

@@ -1,0 +1,68 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,63,62)
+  Icon = Picture["carrito.png"]
+  Resizable = False
+  { Label1 Label
+    MoveScaled(0,1,59,6)
+    Font = Font["+3"]
+    Text = ("Importe a cobrar:")
+    Alignment = Align.Center
+  }
+  { LabelCobrar Label
+    MoveScaled(11,7,38,8)
+    Font = Font["Bold,+2"]
+    Background = &H007FFF&
+    Foreground = &HFFFFFF&
+    Text = ("Label2")
+    Alignment = Align.Right
+  }
+  { ValueBoxRecibido ValueBox
+    MoveScaled(11,25,38,7)
+    Font = Font["Bold,+3"]
+    Background = &HFFFF00&
+    Text = ("ValueBox1")
+  }
+  { Label3 Label
+    MoveScaled(1,34,59,6)
+    Font = Font["+3"]
+    Text = ("Cambio a devolver al cliente:")
+    Alignment = Align.Center
+  }
+  { Label4 Label
+    MoveScaled(0,17,59,6)
+    Font = Font["+3"]
+    Text = ("Importe a Recibido por el cliente:")
+    Alignment = Align.Center
+  }
+  { ButtonGenerar Button
+    MoveScaled(39,50,23,5)
+    Visible = False
+    Text = ("Generar Recibo")
+    Picture = Picture["icon:/16/apply"]
+  }
+  { ButtonCancelar Button
+    MoveScaled(0,55,21,7)
+    Text = ("Cancelar")
+    Picture = Picture["icon:/16/cancel"]
+  }
+  { ValueBoxCambio ValueBox
+    MoveScaled(11,42,38,7)
+    Font = Font["Bold,+3"]
+    Background = &HFF0000&
+    Foreground = &HFFFFFF&
+    Text = ("ValueBox2")
+    ReadOnly = True
+  }
+  { Timer1 #Timer
+    #MoveScaled(1,48)
+    Delay = 500
+  }
+  { ButtonAbrirCajon Button
+    MoveScaled(27,55,35,7)
+    ToolTip = ("Abrir cajon monedero")
+    Text = ("Generar Recibo y Abrir Cajón")
+    Picture = Picture["cajon monedero.png"]
+  }
+}

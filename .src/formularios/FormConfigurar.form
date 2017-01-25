@@ -1,0 +1,425 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,150,73)
+  Icon = Picture["carrito.png"]
+  Resizable = False
+  { ButtonSalir Button
+    MoveScaled(67,68,18,5)
+    Text = ("Salir")
+    Picture = Picture["icon:/16/quit"]
+  }
+  { TabStrip1 TabStrip
+    MoveScaled(5,1,128,5)
+    Visible = False
+    Font = Font["-1"]
+    Count = 7
+    Index = 0
+    Text = ("Datos Imprimir Recibo")
+    Index = 1
+    Text = ("Permisos y datos de cálculo")
+    Index = 2
+    Text = ("Borrado")
+    Index = 3
+    Text = ("Contraseña")
+    Index = 4
+    Text = ("Actualización")
+    Index = 5
+    Text = ("Copia de Seguridad")
+    Index = 6
+    Text = ("Estructura")
+    Index = 0
+  }
+  { PictureBox2 PictureBox
+    MoveScaled(41,0,10,9)
+    Picture = Picture["carrito.png"]
+    Stretch = True
+  }
+  { Label19 Label
+    MoveScaled(52,0,33,9)
+    Font = Font["Italic,+5"]
+    Text = ("Configuración")
+    Alignment = Align.Center
+  }
+  { PictureBox4 PictureBox
+    MoveScaled(86,0,10,9)
+    Picture = Picture["config64.png"]
+    Stretch = True
+  }
+  { IconPanel1 IconPanel
+    MoveScaled(1,8,148,58)
+    Count = 13
+    Border = True
+    Index = 0
+    Text = ("Configuracion")
+    Picture = Picture["config16.png"]
+    { Label14 Label
+      MoveScaled(16,2,64,9)
+      Font = Font["Italic,+5"]
+      Text = ("Sistema de Configuración")
+      Alignment = Align.Center
+    }
+    { Label3 Label
+      MoveScaled(35,19,27,4)
+      Text = ("Realizado por:")
+      Alignment = Align.Center
+    }
+    { Label15 Label
+      MoveScaled(25,14,45,3)
+      #Translate = False
+      Font = Font["Underline"]
+      Foreground = &H0000FF&
+      Text = "http://softwarelibreventas.blogspot.com.es/"
+      Alignment = Align.Center
+    }
+    { Label16 Label
+      MoveScaled(26,22,46,4)
+      #Translate = False
+      Text = "Julio Sánchez Berro"
+      Alignment = Align.Center
+    }
+    { Label17 Label
+      MoveScaled(28,26,43,3)
+      #Translate = False
+      Font = Font["Underline"]
+      Foreground = &H0000FF&
+      Text = "http://jsbsan.blogspot.com.es/"
+      Alignment = Align.Center
+    }
+    { Label18 TextLabel
+      MoveScaled(2,36,93,14)
+      Text = ("<b>Gestión de pequeñas tiendas: </b><br> Productos,  Empleados, Clientes,  Agenda y Recibos. <br><b>Gestión del almacén:</b><br> Entrada de productos desde nuestro proveedor, roturas, o robo, para llevar el control del almacén de la tienda.")
+      Alignment = Align.Normal
+    }
+    { LabelVersion Label
+      MoveScaled(19,31,62,6)
+      Text = ("Label19")
+      Alignment = Align.Center
+    }
+    Index = 1
+    Text = ("Datos Imprimir Recibo")
+    Picture = Picture["icon:/16/print"]
+    { Frame1 Frame
+      MoveScaled(2,1,99,54)
+      Text = ("Datos que aparecerán en el recibo")
+      { Label1 Label
+        MoveScaled(1,9,24,6)
+        Text = ("Nombre del negocio:")
+      }
+      { TextBoxPeluqueria TextBox
+        MoveScaled(7,16,71,5)
+      }
+      { Label4 Label
+        MoveScaled(2,22,10,6)
+        Text = ("Dirección:")
+      }
+      { TextBoxDireccion TextBox
+        MoveScaled(7,29,72,5)
+      }
+      { Label5 Label
+        MoveScaled(2,35,32,5)
+        Text = ("Contacto (teléfono, movil, email): ")
+      }
+      { TextBoxTelefono TextBox
+        MoveScaled(7,40,72,5)
+      }
+      { Label20 Label
+        MoveScaled(1,3,18,5)
+        Text = ("Tipo de Negocio:")
+      }
+      { TextBoxTipoDeNegocio TextBox
+        MoveScaled(20,3,58,5)
+      }
+    }
+    Index = 2
+    Text = ("Permisos y datos de cálculo")
+    Picture = Picture["icon:/16/calculator"]
+    { ComboBoxBorradoRecibo ComboBox
+      MoveScaled(64,28,10,5)
+      ReadOnly = True
+    }
+    { ButtonElegirCarpeta Button
+      MoveScaled(65,38,19,5)
+      Text = ("Elegir carpeta")
+      Picture = Picture["icon:/16/directory"]
+    }
+    { Label1Directorio Label
+      MoveScaled(13.8571,38.1429,48,5)
+      Background = &HBFBFBF&
+    }
+    { Label11 Label
+      MoveScaled(8,34,47,4)
+      Text = ("Ruta donde se guardan los informes .pdf:")
+    }
+    { Label7 Label
+      MoveScaled(8,28,55,5)
+      Text = ("¿Es posible borrar un recibo o ticket?")
+      Alignment = Align.Right
+    }
+    { Label6 Label
+      MoveScaled(6,22,57,5)
+      Text = ("¿Es posible modificar el precio desde la pantalla de recibo?")
+      Alignment = Align.Right
+    }
+    { TextLabel1 TextLabel
+      MoveScaled(26,1,35,5)
+      Visible = False
+      Text = ("¿A los Cupones se les aplica IVA?")
+      Alignment = Align.Right
+    }
+    { ComboBoxCuponIva ComboBox
+      MoveScaled(63,1,10,5)
+      Visible = False
+      ReadOnly = True
+      Text = ("ComboBox1")
+    }
+    { ComboBoxServiciosIva ComboBox
+      MoveScaled(64,16,10,5)
+      Visible = False
+      ReadOnly = True
+    }
+    { TextLabel2 TextLabel
+      MoveScaled(30,17,32,3)
+      Visible = False
+      Text = ("¿A los Servicios se le aplica IVA?")
+      Alignment = Align.Right
+    }
+    { ValueBoxIva ValueBox
+      MoveScaled(64,9,8,5)
+      Text = ("ValueBox1")
+    }
+    { Label2 Label
+      MoveScaled(46,9,17,5)
+      Text = ("%IVA a aplicar:")
+      Alignment = Align.Right
+    }
+    { ComboBoxModificarRegistro ComboBox
+      MoveScaled(64,22,10,5)
+      ReadOnly = True
+    }
+    Index = 3
+    Text = ("Borrado")
+    Picture = Picture["icon:/16/erase"]
+    { CheckBoxBorradoEmpleadoCliente CheckBox
+      MoveScaled(10.8571,13.1429,61,4)
+      Text = ("Activar Borrar en menu Empleados/Clientes")
+    }
+    { CheckBoxBorradoRecibos CheckBox
+      MoveScaled(11,25,70,4)
+      Text = ("Activar Borrar en menu Recibos")
+    }
+    { CheckBoxBorradoServicosProductosCupoenes CheckBox
+      MoveScaled(11,19,70,4)
+      Text = ("Activar Borrar en menu Productos")
+    }
+    { Label13 Label
+      MoveScaled(6,8,42,4)
+      Text = ("Menu de borrado")
+    }
+    Index = 4
+    Text = ("Contraseña")
+    Picture = Picture["llave16x16.png"]
+    { TextBoxContrasenaActual TextBox
+      MoveScaled(46,10,33,4)
+      Password = True
+    }
+    { Label8 Label
+      MoveScaled(1,10,32,4)
+      Font = Font["Bold"]
+      Text = ("Contraseña Actual:")
+      Alignment = Align.Right
+    }
+    { Frame2 Frame
+      MoveScaled(11,16,78,16)
+      Text = ("Cambiar Contraseña")
+      { Label10 Label
+        MoveScaled(0,10,32,4)
+        Text = ("Repita Nueva Contraseña:")
+        Alignment = Align.Right
+      }
+      { Label9 Label
+        MoveScaled(0,3,32,4)
+        Text = ("Nueva Contraseña:")
+        Alignment = Align.Right
+      }
+      { TextBoxNueva1 TextBox
+        MoveScaled(35,3,33,4)
+        Password = True
+      }
+      { TextBoxNueva2 TextBox
+        MoveScaled(35,10,33,4)
+        Password = True
+      }
+    }
+    { ButtonPassword Button
+      MoveScaled(42,42,29,6)
+      Text = ("Actualizar Contraseña")
+      Picture = Picture["llave.png"]
+    }
+    Index = 5
+    Text = ("Actualización")
+    Picture = Picture["icon:/16/server"]
+    { ButtonUpdateManual Button
+      MoveScaled(17,28,53,5)
+      Text = ("Realizar Comprobación manual de actualización")
+    }
+    { CheckBoxUpdateAlinicio CheckBox
+      MoveScaled(16,17,56,4)
+      Text = ("Cada vez que se inicie el programa comprobar")
+    }
+    { Label12 Label
+      MoveScaled(10,8,71,4)
+      Text = ("Update: Sistema de Actualizacion mediante Conexión a Internet:")
+    }
+    Index = 6
+    Text = ("Comprobar Estructura")
+    Picture = Picture["icon:/16/system"]
+    { ButtonComprobarEstructura Button
+      MoveScaled(25,33,35,6)
+      Text = ("Comprobar")
+      Picture = Picture["lista de tareas a comprobar.png"]
+    }
+    { TextLabel3 TextLabel
+      MoveScaled(1,14,78,17)
+      Text = ("<h2>Analisis de Estructura:</h2><br>\nComprueba la estructura de la base de datos, arreglando borrados accidentales de Clientes, Empleados y  Productos que se sigan usando en los Registros.")
+      Alignment = Align.Center
+    }
+    Index = 7
+    Text = ("Copia de Seguridad/Restaurar de fábrica")
+    Picture = Picture["fabrica restaurar16x16.png"]
+    { ButtonRestauraCopiaSeguridad Button
+      MoveScaled(7,15,91,10)
+      Font = Font["+2"]
+      Text = ("Restaura Copia Seguridad de la base de datos")
+      Picture = Picture["restaura.png"]
+    }
+    { ButtonCrearCopiaSeguridad Button
+      MoveScaled(7,1,91,10)
+      Font = Font["+2"]
+      Text = ("Crear Copia Seguridad de la base de datos")
+      Picture = Picture["copiaseg.png"]
+    }
+    { ButtonRestaurarFabrica Button
+      MoveScaled(7,44,91,10)
+      Font = Font["+2"]
+      Text = ("Restaurar de fábrica")
+      Picture = Picture["fabrica restaurar.png"]
+    }
+    { ButtonRestauraCopiaSeguridad2 Button
+      MoveScaled(7,30,91,10)
+      Text = ("Restaura Copia Seguridad de la base de datos (solo productos, empleados y clientes)")
+      Picture = Picture["restauraProductos.png"]
+    }
+    Index = 8
+    Text = ("Empleado/Cliente Por defecto")
+    Picture = Picture["ClienteEmpleado16x16.png"]
+    { Label22 Label
+      MoveScaled(2,9,26,5)
+      Text = ("Empleado por defecto....")
+    }
+    { ComboBoxEmpleadoPorDefecto ComboBox
+      MoveScaled(31,9,33,5)
+      ReadOnly = True
+      List = Null
+    }
+    { ComboBoxClientePorDefecto ComboBox
+      MoveScaled(31,19,33,5)
+      ReadOnly = True
+      List = Null
+    }
+    { Label23 Label
+      MoveScaled(2,19,26,5)
+      Text = ("Cliente por defecto.......")
+    }
+    { TextLabel4 TextLabel
+      MoveScaled(1,28,62,13)
+      Text = ("Nota: <br>\nCada vez que se cree un recibo, se pondrán este Empleado y Cliente por defecto, los cuales puede cambiar pulsando el botón de lupa.")
+    }
+    { ButtonGuardarCambios Button
+      MoveScaled(32,42,32,6)
+      Text = ("Guardar Empleado/Cliente")
+      Picture = Picture["icon:/22/save"]
+    }
+    Index = 9
+    Text = ("USB Cajón monedero")
+    Picture = Picture["cajon monedero16x16.png"]
+    { TextBoxUsbDispositivo TextBox
+      MoveScaled(6,20,50,5)
+      Text = ("/dev/ttyUSB0")
+    }
+    { Label24 Label
+      MoveScaled(6,16,33,4)
+      Text = ("Nombre del Dispositivo:")
+    }
+    { Label25 Label
+      MoveScaled(6,4,37,5)
+      Text = ("Contraseña usuario admin / root:")
+    }
+    { TextBoxPasswordRoot TextBox
+      MoveScaled(6,8,50,5)
+      Password = True
+    }
+    { ButtonGuardaDatosCajon Button
+      MoveScaled(20,29,24,5)
+      Text = ("Guardar Datos")
+      Picture = Picture["icon:/16/save"]
+    }
+    { ButtonPruebaAbrirCajon Button
+      MoveScaled(7,40,50,8)
+      Text = ("     Prueba para Abrir Cajón")
+      Picture = Picture["cajon monedero.png"]
+    }
+    Index = 10
+    Text = ("Idiomas")
+    Picture = Picture["icon:/16/language"]
+    { ButtonInicioEspanol Button
+      MoveScaled(22,13,27,5)
+      Text = ("Español")
+      Picture = Picture["idioma/Spain32x32.png"]
+    }
+    { ButtonIdiomaPortugues Button
+      MoveScaled(22,19,27,5)
+      Text = ("Portugués")
+      Picture = Picture["idioma/Portuga32x32l.png"]
+    }
+    { Label21 Label
+      MoveScaled(5,7,31,4)
+      Text = ("Forzar el idioma del programa:")
+    }
+    { ButtonIdiomaBrasil Button
+      MoveScaled(22,25,27,5)
+      Text = ("Brasil")
+      Picture = Picture["idioma/Brazil.png"]
+    }
+    { ButtonIdiomaIngles Button
+      MoveScaled(22,31,27,5)
+      Text = ("English")
+      Picture = Picture["idioma/ingles.png"]
+    }
+    Index = 11
+    Text = ("Hoja de Cálculo LibreOffice")
+    Picture = Picture["libreofficeCSV16x16.png"]
+    { TextBoxComandoHojaDeCalculo TextBox
+      MoveScaled(16,20,56,6)
+    }
+    { Label26 Label
+      MoveScaled(11,14,45,5)
+      Text = ("Comando para llamar a la hoja de cálculo:")
+    }
+    Index = 12
+    Text = ("Moneda")
+    Picture = Picture["tipoMoneda16x16.png"]
+    { Label27 Label
+      MoveScaled(9,13,45,5)
+      Text = ("Símbolo de moneda:")
+    }
+    { TextBoxSimboloMoneda TextBox
+      MoveScaled(18,20,56,6)
+    }
+    { TextLabel5 TextLabel
+      MoveScaled(9,34,69,17)
+      Text = ("Moneda:<br> Puedes escribir símbolos (como \"$\", \"€\",..) o palabras (\"Euro\", Dolar\")")
+    }
+    Index = 0
+  }
+}

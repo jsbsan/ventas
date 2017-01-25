@@ -1,0 +1,90 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,127,69)
+  Icon = Picture["icon:/16/people"]
+  Resizable = False
+  Arrangement = Arrange.Vertical
+  { Menu1 Menu
+    Text = ("Menu1")
+    Visible = False
+    { add Menu
+      Text = ("Añadir")
+      Picture = Picture["icon:/16/add"]
+    }
+    { Editar Menu
+      Text = ("Editar")
+      Picture = Picture["icon:/16/edit"]
+    }
+    { Filtrar Menu
+      Text = ("Filtrar")
+      Picture = Picture["icon:/16/filter"]
+    }
+    { QuitarFiltro Menu
+      Text = ("Quitar Filtro")
+      Picture = Picture["icon:/16/close"]
+    }
+    { Borrar Menu
+      Text = ("Borrar")
+      Picture = Picture["icon:/16/delete"]
+      Enabled = False
+    }
+  }
+  { ColumnViewTabla ColumnView
+    MoveScaled(82,0,31,5)
+    Visible = False
+    Expand = True
+    PopupMenu = "Menu1"
+  }
+  { HBox2 HBox
+    MoveScaled(6,0,100,6)
+    { LabelTitulo Label
+      MoveScaled(0,0,87,5)
+      Font = Font["Italic,+3"]
+      Expand = True
+      Text = ("Titulo")
+      Alignment = Align.Center
+    }
+  }
+  { HBox1 HBox
+    MoveScaled(1,8,122,7)
+    { ButtonAgregar Button
+      MoveScaled(1,1,15,5)
+      Text = ("Añadir")
+      Picture = Picture["icon:/22/add"]
+    }
+    { ButtonEditor Button
+      MoveScaled(19,1,13,5)
+      Text = ("Editar")
+      Picture = Picture["icon:/22/edit"]
+    }
+    { ButtonFiltra Button
+      MoveScaled(58,1,22,5)
+      Text = ("Filtra")
+      Picture = Picture["icon:/22/calendar"]
+    }
+    { ButtonQuitarFiltro Button
+      MoveScaled(83,1,16,5)
+      Text = ("Quitar Filtro")
+      Picture = Picture["icon:/22/cancel"]
+    }
+  }
+  { GridView1 GridView
+    MoveScaled(0,16,119,41)
+    Expand = True
+    PopupMenu = "Menu1"
+    Mode = Select.Single
+  }
+  { Panel1 Panel
+    MoveScaled(2,58,111,7)
+    { ButtonSalir Button
+      MoveScaled(91,1,17,5)
+      Text = ("Cancelar")
+      Picture = Picture["icon:/16/close"]
+    }
+    { TextLabel1 TextLabel
+      MoveScaled(2,1,87,5)
+      Text = ("Nota:<br>\nPulsar el boton izquierdo para acceder al menú. Y doble click para elergir registro.")
+    }
+  }
+}

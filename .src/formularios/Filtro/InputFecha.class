@@ -1,0 +1,28 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+  DateBoxFechaElegida.value = Now
+  Me.Center
+  
+End
+
+Public Sub ButtonAceptar_Click()
+  
+  Me.Close()
+  
+End
+
+Public Function pedir() As Date
+  
+  Me.showmodal()
+  Return DateBoxFechaElegida.Value
+  
+End
+
+Public Sub ButtonCancelar_Click()
+  
+  DateBoxFechaElegida.value = Null
+  Me.Close()
+  
+End

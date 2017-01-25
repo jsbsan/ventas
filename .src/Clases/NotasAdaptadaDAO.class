@@ -1,0 +1,22 @@
+' Gambas class file
+
+Inherits NotasDAO
+
+Public Function GeneradorCodigoFormulario(tipo As String, Optional datosEditar As NotasVO) As String
+
+  Dim codigocampos As String
+
+  If tipo = "registrar" Then
+    codigocampos &= "null|id|null;"
+    codigocampos &= "valuebox|idcliente|" & ("idcliente") & "|0;"
+    codigocampos &= "datebox|fecha|" & ("fecha") & "|" & Format$(Now, Me.formatofecha) & ";"
+    codigocampos &= "textbox|Comentario|" & ("Comentario") & "|;"
+  Else
+    codigocampos &= "null|id|null;"
+    codigocampos &= "valuebox|idcliente|" & ("idcliente") & "|" & datosEditar.idcliente & "|True;" 'true añadido para que no sea visible
+    codigocampos &= "datebox|fecha|" & ("fecha") & "|" & Format$(datosEditar.fecha, Me.formatofecha) & ";"
+    codigocampos &= "textarea|Comentario|" & ("Comentario") & "|" & datosEditar.Comentario & ";"
+  Endif
+  Return codigocampos
+
+End

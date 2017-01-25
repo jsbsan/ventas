@@ -1,0 +1,12 @@
+PUBLIC function sql( consulta AS string) As result
+     Dim conectar as new conexion
+     Dim mRs as result
+     conectar.Conexion()
+try mRs=conectar.hconn.Exec(consulta) 
+If error then 
+    message.info("Consulta erronea, revisela")
+else
+    return mRs 
+endif
+END 
+

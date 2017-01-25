@@ -1,0 +1,23 @@
+CREATE VIEW INVENTARIOVALORADO AS 
+select 
+sumaEntrada.nombre,
+sumaEntrada.idproducto,
+sumaEntrada.precio,
+sumaEntrada.suma_Entrada as "ENTRADA",
+sumaEntrada.precio*sumaEntrada.suma_Entrada AS "COSTE_ENTRADA",
+sumaSalida.suma_Venta as "VENTA",
+sumaEntrada.precio*sumaSalida.suma_Venta AS "COSTE_VENTA",
+sumaRotura.suma_Rotura as "ROTURA",
+sumaEntrada.precio*sumaRotura.suma_Rotura AS "COSTE_ROTURA",
+sumaRobo.suma_Robo as "ROBO",
+sumaEntrada.precio*sumaRobo.suma_Robo AS "COSTE_ROBO",
+sumaEntrada.suma_Entrada-sumaSalida.suma_Venta-sumaRotura.suma_Rotura-sumaRobo.suma_Robo as "EXISTENCIA_ALMACEN",
+sumaEntrada.precio*(sumaEntrada.suma_Entrada-sumaSalida.suma_Venta-sumaRotura.suma_Rotura-sumaRobo.suma_Robo) AS "COSTE_ALMACEN" 
+from 
+sumaEntrada,sumaSalida,sumaRotura,sumaRobo 
+where 
+sumaEntrada.idproducto=sumaSalida.idproducto 
+and 
+sumaEntrada.idproducto=sumaRotura.idproducto 
+and 
+sumaEntrada.idproducto=sumaRobo.idproducto

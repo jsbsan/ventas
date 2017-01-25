@@ -1,0 +1,33 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.5.4
+Title=Ventas
+Startup=ModuleInicio
+Icon=carrito.png
+Version=0.5.4
+Component=gb.image
+Component=gb.qt4
+Component=gb.form
+Component=gb.db
+Component=gb.db.form
+Component=gb.db.sqlite3
+Component=gb.desktop
+Component=gb.settings
+Component=gb.net
+Component=gb.net.curl
+Description="Gestión de pequeña tienda: Productos, Empleados, Clientes, Recibos , Almacen (gestión de stock)"
+Authors="Julio Sanchez Berro (jsbsan)"
+TabSize=2
+Translate=1
+Language=en_US
+Maintainer=julio sanchez berro
+Address=jusabejusabe@gmail.com
+Url=http://www.jsbsan.blogspot.com
+License=General Public License
+PackageName=ventas-0.5.4
+CreateEachDirectory=1
+Packager=1
+Systems=debian
+Menus=debian:"Applications/Office"
+Categories=debian:"Office"
+Groups=debian:"admin"
+ExtraDependencies=debian:"wkhtmltopdf\t\t\nplan\t\t\ntar\t\t"

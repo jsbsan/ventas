@@ -1,0 +1,251 @@
+' Gambas class file
+
+' Gambas class file
+
+Private modo As String
+Private manejador As New ProductoDAO
+Private proDatos As New ProductoVO
+
+Private indice As Integer
+
+Private rutaimagen As String
+
+Public MiScrollView As ScrollViewImagenes
+
+Private manejadorImagen As New ImagenesDAO
+Private proDatosImagen As New ImagenesVO
+
+Private hprodVO As ProductoVO
+
+Private listaImagenes As ImagenesVO[]
+
+Public Sub Form_Open()
+  'rellenar el combobox de los empleados
+  
+  Dim manejadorempleado As New EmpleadoDAO
+  Dim datosEmpleado As New PersonaVO[]
+  Dim dat As PersonaVO
+  
+  datosEmpleado = manejadorempleado.ConvertirResult(manejadorempleado.contenido())
+  
+  For Each dat In datosEmpleado
+    ComboBoxEmpleados.Add(comun.camel(dat.nombre))
+  Next
+  
+  MiScrollView.hborrado = True 'para que aparezca el simbolo de la papelera en el formulario de imagen
+  
+End
+
+Public Sub setmodo(tipo As String, prodVo As ProductoVO, proDao As ProductoDAO)
+  
+  MiScrollView = New ScrollViewImagenes(PanelContenedor) As "ObsScroll"
+  hprodVo = prodVO
+  
+  If tipo = "add" Then
+    'estamos añadiendon
+    modo = "add"
+    Me.Title = "Añadiendo Registro"
+  Else
+    modo = "editar"
+    
+    TextBoxCodigo.text = prodVo.codigo
+    TextAreaComentario.text = prodVo.comentario
+    TextBoxUbicacion.text = prodVo.ubicacion
+    TextBoxNombre.text = prodVo.nombre
+    TextBoxUbicacion.text = prodVo.ubicacion
+    ValueBoxPrecio.text = prodVo.precio
+    
+    listaImagenes = manejadorImagen.ConvertirResult(manejadorImagen.BuscarIgualImagen(prodVo.id))
+    
+    MiScrollView.carga(listaImagenes)
+    
+    If listaImagenes.count > 0 And If Exist(comun.RutaDdeTrabajo & listaImagenes[0].rutaimagen) Then 
+      
+      PictureBoxImagen.Picture = Picture[comun.RutaDdeTrabajo & listaImagenes[0].rutaimagen]
+    Endif
+    
+    Me.Title = "Editando Registro"
+  Endif
+  manejador = proDao
+  Me.Showmodal()
+  
+End
+
+Public Sub setindice(i As Integer)
+  
+  indice = i
+  
+End
+
+Public Sub ButtonAceptar_Click()
+  
+  guardardatos()
+  
+  Me.Close()
+  
+End
+
+Public Sub guardardatos()
+  
+  If String.InStr(TextBoxCodigo.Text, "[" & ComboBoxEmpleados.Text & "]") Then 
+    'no le añade el empleado que tiene
+    proDatos.codigo = TextBoxCodigo.Text
+  Else
+    proDatos.codigo = TextBoxCodigo.Text & " [" & ComboBoxEmpleados.Text & "]"    
+  Endif
+  
+  proDatos.comentario = TextAreaComentario.Text
+  proDatos.nombre = TextBoxNombre.Text
+  proDatos.precio = ValueBoxPrecio.Value
+  proDatos.ubicacion = TextBoxUbicacion.Text
+  
+  If modo = "add" Then
+    'insertar
+    manejador.registrar(proDatos) 'registro 
+    prodatos = manejador.UltimoIntroducido() 'recupero el ultimo registro introducido
+    proDatos.imagen = prodatos.id ' asigno el id al campo imagen
+    manejador.ModificarId(indice, proDatos)
+    
+  Else
+    'editando
+    proDatos.id = indice
+    proDatos.imagen = indice
+    manejador.ModificarId(indice, proDatos)
+    
+  Endif
+  guardarimagenes(prodatos.id)
+  
+End
+
+Public Sub ButtonCancelar_Click()
+  
+  Me.Close()
+  
+End
+
+Public Sub ButtonElegirImagen_Click()
+  
+  Dim fichero As New String[]
+  
+  fichero.Add("") '[0] esta vacio en principio (fichero elegido)
+  FormElegirImagen.fichero = fichero
+  FormElegirImagen.ShowModal()
+  
+  If Not IsNull(fichero) Then 
+    rutaimagen = fichero[0]
+    PictureBoxImagen.Picture = Picture[rutaimagen]
+  Endif
+  
+End
+
+Public Sub PictureBoxImagen_MouseUp()
+  
+  ButtonElegirImagen_Click()
+  
+End
+
+Public Sub ButtonPasar_Click()
+  
+  Dim nombre As String
+  
+  If rutaimagen <> "" Then 
+    'la parte grafica que es la de mostrar la imagen el el scrollview
+    
+    nombre = Format(Now, "yyyymmddhhnnss") & Replace(File.Name(rutaimagen), " ", "_")
+    
+    If Exist(user.home & "/Ventas/" & nombre) Then 
+      Return 
+    Endif
+    
+    Copy rutaimagen To user.home & "/Ventas/" & nombre
+    
+    Shell "convert " & user.home & "/Ventas/" & nombre & " -resize 52x52\\! " & user.home & "/Ventas/mini_" & nombre Wait
+    
+    MiScrollView.addimagen(nombre) 
+    
+    'lo añade a la base de datos...
+    ' guardardatos()
+    PictureBoxImagen.Picture = Picture["PulsaParaElegirImagen.png"]
+    
+  Endif
+  
+End
+
+Public Sub guardarimagenes(indice As Integer)
+  
+  Dim contenido As Boolean
+  Dim arrayImagenes As ImagenesVO[]
+  Dim lista As String[]
+  Dim a As Integer
+  
+  'recibe el nombre de todos las imágenes del scrollview
+  lista = MiScrollView.contenido() 'obtengo la lista de nombres que contiene
+  
+  arrayImagenes = manejadorImagen.ConvertirResult(manejadorImagen.BuscarIgualImagen(indice))
+  
+  'comprobar que la imagen  no incluida...
+  For a = 0 To lista.Max
+    
+    contenido = False
+    For Each proDatosImagen In arrayImagenes  
+      If proDatosImagen.rutaimagen = lista[a] Then 
+        
+        contenido = True
+      Endif
+    Next
+    
+    If contenido = False Then 
+      
+      proDatosImagen.imagen = indice
+      proDatosImagen.rutaimagen = File.Name(lista[a])
+      
+      Try Copy lista[a] To comun.RutaDdeTrabajo & File.Name(lista[a])
+      'la va guardando las nuevas
+      
+      manejadorImagen.registrar(proDatosImagen) 'añado la ruta de la imagen
+    Endif
+  Next
+  
+End
+
+Public Sub recargarImagenes()
+  
+  Dim listaImagenes As ImagenesVO[]
+  
+  ' If IsNull(hprodvo) Then 
+  '   Message.Info(("Debes guardar el producto antes de poder borrar una imagen"))
+  '   Return
+  ' Endif
+  
+  listaImagenes = manejadorImagen.ConvertirResult(manejadorImagen.BuscarIgualImagen(hprodVo.id))
+  
+  If Error Then
+    'no hay nada que mostrar
+  Else
+    MiScrollView.carga(listaImagenes)    
+  Endif
+  
+End
+
+Public Sub ObsScroll_borrado()
+  
+  ButtonRefrescar_Click()
+  
+End
+
+Public Sub ButtonRefrescar_Click()
+  
+  ' MiScrollView.vaciar()
+  ' recargarImagenes()
+  ' 
+  ' If IsNull(listaImagenes) Then Return 'no hago ningun refresco he borrado todas las imágenes
+  ' 
+  ' 'la primera imagen en el picture
+  ' If listaImagenes.count > 0 And If Exist(comun.RutaDdeTrabajo & listaImagenes[0].rutaimagen) Then 
+  '   
+  '   PictureBox1.Picture = Picture[comun.RutaDdeTrabajo & listaImagenes[0].rutaimagen]
+  ' Else
+  '   PictureBox1.Picture = Picture["SinImagen.jpg"]
+  ' Endif
+  
+End

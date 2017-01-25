@@ -1,0 +1,184 @@
+' Gambas module file
+
+Public Sub comprobarAlbaranesListas()
+
+  'comprobar tabla "lineaAlamcen"
+  comprobarTablaLineaAlmacen()
+  'comprobarTablaNotas
+  comprobarTablaNotas()
+  'comprobarVista
+  CrearVista("sumaEntrada")
+  CrearVista("sumaRotura")
+  CrearVista("sumaRobo")
+  CrearVista("sumaSalida")
+  CrearVista("INVENTARIO")
+  CrearVista("INVENTARIOVALORADO")
+  CrearVista("VistaAlbaranesAlmacen")
+  'hacer consulta de tabla "lis
+
+  '' Importante registros iniciales de entrada,rotura y robo con cantidad 0 por cada producto.
+  'Importante hay que crear registros de entrada, roto y robo aunque sea con valor de cantidad 0, para todos los productos
+  'para que salgan en los listados!!!
+End
+
+Public Sub comprobarTablaNotas()
+
+  Dim comprobarExistenciaTabla As Boolean = False
+  Dim conectar As New Conexion
+  Dim SQLString As String
+  Dim mRs As Result
+  'conseguir conexion
+
+  conectar.Conexion()
+  SQLString = "SELECT * FROM sqlite_master where type=\"table\""
+  Try mRs = conectar.hconn.Exec(SQLString)
+  If Error Then
+    Message.Error(" " & ("Se ha producido un ERROR al Intentar obtener lista"))
+    Return
+  Endif
+
+  ' 'comprueba si existe la tabla "lineaAlmacen", en el result mRS
+  ' If Settings["TablaNotas", False] = True Then
+  '   Return 'existe la tabla (esta indicado en el archivo de configuración)
+  ' Endif
+  '
+  ' 'si no existe añade una nueva tabla....
+  While mRs.Available
+
+    Debug "Tablas existente: ", mRs["name"]
+    If mRs["name"] = "notas" Then
+
+      comprobarExistenciaTabla = True
+
+    Endif
+    mRs.MoveNext
+  Wend
+
+  If comprobarExistenciaTabla = True Then
+    Settings["TablaNotas"] = True
+    Return ' 'existe la tabla,
+  Endif
+
+  'si llegamos aqui, es que tenemos que crearla...
+
+  Print "Creando tabla"
+  SQLString = File.Load("Tabla_Notas.txt")
+  Try conectar.hconn.Exec(SQLString)
+  Try conectar.hconn.Commit()
+  Try conectar.hconn.Close()
+  If Error Then
+    Message.Info(("Se ha producido un error al intentar añadir la tabla de Notas nueva"))
+    Return
+
+  Endif
+  Settings["TablaNotas"] = True
+
+End
+
+Private Sub comprobarTablaLineaAlmacen()
+
+  Dim comprobarExistenciaTabla As Boolean = False
+  Dim conectar As New Conexion
+  Dim SQLString As String
+  Dim mRs As Result
+  'conseguir conexion
+
+  conectar.Conexion()
+  SQLString = "SELECT * FROM sqlite_master where type=\"table\""
+  Try mRs = conectar.hconn.Exec(SQLString)
+  If Error Then
+    Message.Error(" " & ("Se ha producido un ERROR al Intentar obtener lista"))
+    Return
+  Endif
+
+  'comprueba si existe la tabla "lineaAlmacen", en el result mRS
+  If Settings["TablaLineaAlmacen", False] = True Then
+    Return 'existe la tabla (esta indicado en el archivo de configuración)
+  Endif
+
+  'si no existe añade una nueva tabla....
+  While mRs.Available
+
+    Debug "Tablas existente: ", mRs["name"]
+    If mRs["name"] = "lineAlmacen" Then
+      'existe la tabla lineaAlmacen, no tengo que crearla
+      comprobarExistenciaTabla = True
+
+    Endif
+    mRs.MoveNext
+  Wend
+
+  If comprobarExistenciaTabla = True Then
+    Settings["TablaLineaAlmacen"] = comprobarExistenciaTabla
+    Return ' 'existe la tabla,
+  Endif
+
+  'si llegamos aqui, es que tenemos que crearla...
+
+  Print "Creando tabla"
+  SQLString = File.Load("TablaAlmacen.txt")
+  Try conectar.hconn.Exec(SQLString)
+  Try conectar.hconn.Commit()
+  Try conectar.hconn.Close()
+  If Error Then
+    Message.Info(("Se ha producido un error al intentar añadir la tabla de lineaAlamacen nueva"))
+    Return
+
+  Endif
+  Settings["TablaLineaAlmacen"] = True
+
+End
+
+Private Sub CrearVista(nombreVista As String)
+
+  Dim comprobarExistenciaTabla As Boolean = False
+  Dim conectar As New Conexion
+  Dim SQLString As String
+  Dim mRs As Result
+  'conseguir conexion
+
+  conectar.Conexion()
+  SQLString = "SELECT * FROM sqlite_master where type=\"view\"" 'consulta las vistas que existen en la tabla....
+  Try mRs = conectar.hconn.Exec(SQLString)
+  If Error Then
+    Message.Error((" Se ha producido un ERROR al Intentar obtener lista"))
+    Return
+  Endif
+
+  'comprueba si existe la vista nombreVista, en el result mRS
+
+  'If Settings["Vista/" & nombreVista, False] = True Then
+  '  Return 'existe la tabla (esta indicado en el archivo de configuración)
+  'Endif
+
+  'si no existe añade una nueva tabla....
+  mRs.MoveFirst()
+  While mRs.Available
+    Debug "vistas existentesexistente: ", mRs["name"]
+    If mRs["name"] = nombreVista Then
+      'existe la tabla lineaAlmacen, no tengo que crearla
+      comprobarExistenciaTabla = True
+    Endif
+    mRs.MoveNext()
+  Wend
+
+  If comprobarExistenciaTabla = True Then
+    ' Settings["Vista/" & nombreVista] = comprobarExistenciaTabla
+    Return ' 'existe la tabla,
+  Endif
+
+  'si llegamos aqui, es que tenemos que crearla...
+  Print "Creando vista: ", nombreVista
+  SQLString = Replace$(File.Load("Vista_" & nombreVista & ".txt"), "\n", "")
+  SQLString = Replace$(SQLString, "\r", "")
+  Try conectar.hconn.Exec(SQLString)
+  Try conectar.hconn.Commit()
+  Try conectar.hconn.Close()
+  If Error Then
+    Message.Info(("Se ha producido un error al intentar añadir la vista ") & nombreVista)
+    Return
+  Endif
+  'anulo esta linea...
+  'Settings["Vista/" & nombreVista] = True
+
+End
