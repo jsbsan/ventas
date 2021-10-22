@@ -3,13 +3,13 @@
 Inherits ProductoDAO
 
 Public Sub Observar_Data(row As Integer, column As Integer)
-  
+
   Dim f As New Font
   Dim datocontenido As Variant
-  
+
   f.name = "Sans"
   f.size = Me.sizefont
-  
+
   '-------------------------------------------
   'colores....filas impar / par ge regillas
   '-------------------------------------------
@@ -18,7 +18,7 @@ Public Sub Observar_Data(row As Integer, column As Integer)
   Else
     Me.gridviewPropio.Data.Background = Me.ColorFilaPar
   Endif
-  
+
   Me.hresultadoNuevo.MoveTo(row)
   'comprobar si hay datos en TAG
   If IsNull(Me.gridviewPropio.tag) Then
@@ -49,21 +49,21 @@ Public Sub Observar_Data(row As Integer, column As Integer)
           Me.gridviewPropio.data.picture = picture[Me.iconoFalse]
         Endif
       Else
-        
+
         If Me.GridViewPropio.tag[column] = "nombre" Then
           '  Print Me.gridviewPropio[row, 0].text '- > "id"
           ' formlistadoVentas.comprobarTablasEntradaRoboRoturaSalidaCREAR() 'para mostrar existencias
-          
+
           Me.gridviewPropio.Data.text = datocontenido & " (Existencias:" & calculaexistencia(Me.gridviewPropio[row, 0].text) & ")"
           '  formlistadoVentas.comprobarTablasEntradaRoboRoturaSalidaBorrar()
         Else
           Me.gridviewPropio.Data.text = datocontenido
         Endif
-        
+
       Endif
     Endif
   Endif
-  
+
   '-----------------------------------------------
   ' columna con id, con ancho 0, para que no se vea
   '-----------------------------------------------
@@ -74,45 +74,45 @@ Public Sub Observar_Data(row As Integer, column As Integer)
   '-----------------------------------------------
   'dibujo imagen en gridview
   '-----------------------------------------------
-  
-  If Upper$(Me.gridviewPropio.Columns[column].title) = Upper$("imagen") Then 
-    
+
+  If Upper$(Me.gridviewPropio.Columns[column].title) = Upper$("imagen") Then
+
     Me.gridviewPropio[row, column].Picture = Picture[comun.rutafichero(Me.gridviewPropio.Data.text)]
     Me.arrayAnchoColumnas[column] = 75
     Me.gridviewPropio.Rows.h = 70
-    
+
     ' Me.gridviewPropio.Data.text = ""
     Return 'salgo de la funcion
   Endif
-  
+
   'Compruebo ancho y amplio si es necesario.
   If Me.arrayAnchoColumnas[column] < F.textwidth(Me.gridviewPropio.Data.text) Then
     Me.arrayAnchoColumnas[column] = F.textwidth(Me.gridviewPropio.Data.text & "m")
   Endif
-  
+
 End
 
 Private Function calculaexistencia(valorID As String) As String
-  
+
   Dim conectar As New Conexion
   Dim SQLString As String
   Dim hresultExistencia As Result
   Dim numero As Integer
-  
+
   conectar.Conexion()
   sqlstring = "Select EXISTENCIA_ALMACEN From inventario where idProducto = '" & valorid & "'"
-  
+
   Try hresultExistencia = conectar.hconn.Exec(SQLString)
   If Error Then
     Message.Error(" Se ha producido un ERROR al intentar leer las existencias, " & "\nError: " & error.text)
     Return ""
   Else
-    
+
     Try numero = Val(Replace$(hresultExistencia["EXISTENCIA_ALMACEN"], ".", ","))
     If Error Then
       numero = 0
     Endif
     Return numero
   Endif
-  
+
 End

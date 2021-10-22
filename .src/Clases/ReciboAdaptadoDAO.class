@@ -3,20 +3,20 @@
 Inherits ReciboDAO
 
 Public Sub Observar_Data(row As Integer, column As Integer)
-  
+
   'para rellenar el nombre de cliente y el empleado en la tabla
   Dim hresultado2 As Result 'para obtener cliente
   Dim hresultado3 As Result 'para obtener empleado
-  
+
   Dim manejadorClienteDatos As ClienteDAO
   Dim manejadorEmpleado As EmpleadoDAO
-  
+
   Dim f As New Font
   Dim datocontenido As Variant
-  
+
   f.name = "Sans"
   f.size = Me.sizefont
-  
+
   '-------------------------------------------
   'colores....filas impar / par ge regillas
   '-------------------------------------------
@@ -25,7 +25,7 @@ Public Sub Observar_Data(row As Integer, column As Integer)
   Else
     Me.gridviewPropio.Data.Background = Me.ColorFilaPar
   Endif
-  
+
   Me.hresultadoNuevo.MoveTo(row)
   'comprobar si hay datos en TAG
   If IsNull(Me.gridviewPropio.tag) Then
@@ -43,11 +43,11 @@ Public Sub Observar_Data(row As Integer, column As Integer)
         Me.gridviewPropio.Data.text = datocontenido
       Endif
     Endif
-    
+
   Else
     ''hay datos en  TAG
     Try datocontenido = Me.hresultadoNuevo[Me.GridViewPropio.tag[column]]
-    
+
     '' If IsDate(Str$(datocontenido)) Then
     '   Me.gridviewPropio.Data.text = Format(Date(datocontenido), Me.formatofecha)
     ' Else
@@ -58,7 +58,7 @@ Public Sub Observar_Data(row As Integer, column As Integer)
         Me.gridviewPropio.data.picture = picture[Me.iconoFalse]
       Endif
     Else
-      
+
       Select Case Me.GridViewPropio.tag[column]
         Case "idempleado"
           manejadorEmpleado = New EmpleadoDAO
@@ -66,10 +66,10 @@ Public Sub Observar_Data(row As Integer, column As Integer)
           Try Me.gridviewPropio.Data.text = hresultado3["nombre"]
           If Error Then
             Message.error("Fallo de integridad de la base de datos Error: posiblemente se ha borrado un Empleado ")
-            
+
           Else
             Me.gridviewPropio.Data.text = datocontenido & "| " & Me.gridviewPropio.Data.text
-            
+
           Endif
         Case "idcliente"
           manejadorClienteDatos = New ClienteDAO
@@ -85,11 +85,11 @@ Public Sub Observar_Data(row As Integer, column As Integer)
         Default
           Me.gridviewPropio.Data.text = datocontenido
       End Select
-      
+
     Endif
     ' Endif
   Endif
-  
+
   '-----------------------------------------------
   ' columna con id, con ancho 0, para que no se vea
   '-----------------------------------------------
@@ -97,16 +97,16 @@ Public Sub Observar_Data(row As Integer, column As Integer)
     Me.arrayAnchoColumnas[column] = 0
     Return 'salgo de la funcion
   Endif
-  
+
   If Upper$(Me.gridviewPropio.Columns[column].title) = Upper$("importe") Then
     Me.gridviewPropio.Data.text = Format(Me.gridviewPropio.Data.text, "#.#0")
     Me.gridviewPropio.Columns[column].Alignment = Align.Right
     Return 'salgo de la funcion
   Endif
-  
+
   'Compruebo ancho y amplio si es necesario.
   If Me.arrayAnchoColumnas[column] < F.textwidth(Me.gridviewPropio.Data.text) Then
     Me.arrayAnchoColumnas[column] = F.textwidth(Me.gridviewPropio.Data.text & "m")
   Endif
-  
+
 End

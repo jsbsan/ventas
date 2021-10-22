@@ -1,124 +1,124 @@
 ' Gambas class file
 
-Property id As Integer 
+Property id As Integer
 Private hid As Integer
 
-Property idProducto As Integer 
+Property idProducto As Integer
 Private hidProducto As Integer
 
-Property cantidad As Float 
+Property cantidad As Float
 Private hcantidad As Float
 
-Property tipo As String 
+Property tipo As String
 Private htipo As String
 
-Property fecha As Date 
+Property fecha As Date
 Private hfecha As Date
 
-Property campo As String[] 
+Property campo As String[]
 Private hcampo As New String[]
 
-Property campotipo As String[] 
+Property campotipo As String[]
 Private hcampotipo As New String[]
 
-Property campovisible As String[] 
+Property campovisible As String[]
 Private hcampovisible As New String[]
 
 Private Function id_read() As Integer
-  
-  Return hid 
-  
-End 
+
+  Return hid
+
+End
 
 Private Sub id_write(Valor As Integer)
-  
-  hid = Valor 
-  
-End  
+
+  hid = Valor
+
+End
 
 Private Function idProducto_read() As Integer
-  
-  Return hidProducto 
-  
-End 
+
+  Return hidProducto
+
+End
 
 Private Sub idProducto_write(Valor As Integer)
-  
-  hidProducto = Valor 
-  
-End  
+
+  hidProducto = Valor
+
+End
 
 Private Function cantidad_read() As Float
-  
-  Return hcantidad 
-  
-End 
+
+  Return hcantidad
+
+End
 
 Private Sub cantidad_write(Valor As Float)
-  
-  hcantidad = Valor 
-  
-End  
+
+  hcantidad = Valor
+
+End
 
 Private Function tipo_read() As String
-  
-  Return htipo 
-  
-End 
+
+  Return htipo
+
+End
 
 Private Sub tipo_write(Valor As String)
-  
-  htipo = Valor 
-  
-End  
+
+  htipo = Valor
+
+End
 
 Private Function fecha_read() As Date
-  
-  Return hfecha 
-  
-End 
+
+  Return hfecha
+
+End
 
 Private Sub fecha_write(Valor As Date)
-  
-  hfecha = Valor 
-  
-End  
+
+  hfecha = Valor
+
+End
 
 Private Function campo_read() As String[]
-  
-  Return hcampo 
-  
-End 
+
+  Return hcampo
+
+End
 
 Private Sub campo_write(Valor As String[])
-  
-  hcampo = Valor 
-  
-End  
+
+  hcampo = Valor
+
+End
 
 Private Function campotipo_read() As String[]
-  
-  Return hcampotipo 
-  
-End 
+
+  Return hcampotipo
+
+End
 
 Private Sub campotipo_write(Valor As String[])
-  
-  hcampotipo = Valor 
-  
-End  
+
+  hcampotipo = Valor
+
+End
 
 Private Function campovisible_read() As String[]
-  
-  Return hcampovisible 
-  
-End 
+
+  Return hcampovisible
+
+End
 
 Private Sub campovisible_write(Valor As String[])
-  
-  hcampovisible = Valor 
-  
-End  
+
+  hcampovisible = Valor
+
+End
 
 Public Function Copia(Optional dato As LineaAlmacenVO) As LineaAlmacenVO
 
@@ -140,6 +140,7 @@ End
 Public Function ConvertirVOaColeccion(dato As LineaAlmacenVO) As Collection
 
   Dim colecciontmp As New Collection
+
   colecciontmp.add(dato.id, "id")
   colecciontmp.add(dato.idProducto, "idProducto")
   colecciontmp.add(dato.cantidad, "cantidad")
@@ -152,10 +153,12 @@ End
 Public Function ConvertirColeccionaVO(dato As Collection) As LineaAlmacenVO
 
   Dim datoVOtmp As New LineaAlmacenVO
+
   Try datoVOtmp.id = dato["id"]
-Try datoVOtmp.idProducto = dato["idProducto"]
-Try datoVOtmp.cantidad = dato["cantidad"]
-Try datoVOtmp.tipo = dato["tipo"]
-Try datoVOtmp.fecha = dato["fecha"]
-Return datoVOtmp
+  Try datoVOtmp.idProducto = dato["idProducto"]
+  Try datoVOtmp.cantidad = dato["cantidad"]
+  Try datoVOtmp.tipo = dato["tipo"]
+  Try datoVOtmp.fecha = dato["fecha"]
+  Return datoVOtmp
+
 End

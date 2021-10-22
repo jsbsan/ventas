@@ -4,9 +4,9 @@ Public moneda As String = Settings["SimboloMoneda", "$"]
 Public RutaTrabajo As String
 
 Public Function instalacionW() As Boolean '' Comprueba la instalacion de wkhtmltopdf
-  
+
   Dim instalado As String
-  
+
   Shell "which wkhtmltopdf" To instalado
   If instalado = "" Then
     Message.Info(("Debe de estar instalado el programa wkhtmltopdf (sudo apt-get install wkhtmltopdf)"))
@@ -14,7 +14,7 @@ Public Function instalacionW() As Boolean '' Comprueba la instalacion de wkhtmlt
   Else
     Return True
   Endif
-  
+
 End
 
 '---------------------------------------------
@@ -23,76 +23,76 @@ End
 
 'INFORME DE EMPLEADO
 Public Sub imprirmirInforme(texto As String, n As String)
-  
+
   Dim cadena As String
-  
+
   If instalacionW() = False Then
     Return
-    
+
   Endif
-  
+
   n = Str$(Now)
   n = Replace$(n, " ", "_")
   n = Replace$(n, "\\", "-")
   n = Replace$(n, "/", "-")
-  
+
   n = Replace$(n, ":", "_")
-  
+
   Try Kill "/tmp" & "/texto-" & n & ".html"
   Application.busy = 1
   cadena = "<html>"
   cadena &= " <meta charset=\"utf-8\"><body>"
-  
+
   cadena &= texto
-  
+
   cadena &= "</table>"
   cadena &= "</body></html>"
   File.Save("/tmp" & "/texto-" & n & ".html", cadena)
   Wait 0.1
-  
+
   If comun.csv = True Then
-    
+
     abrirLibreOffice("/tmp" & "/texto-" & n & ".html")
-    
+
   Else
-    
-    'en modo pdf  
+
+    'en modo pdf
     Exec ["wkhtmltopdf", "/tmp" & "/texto-" & n & ".html", ModuleVarios.RutaTrabajo & "/texto-" & n & ".pdf"] Wait
-    
+
     Desktop.Open(ModuleVarios.RutaTrabajo & "/texto-" & n & ".pdf")
-    
+
   Endif
-  
+
   Application.busy = 0
-  
+
 End
 
 Public Sub imprimirRecibo(fechayhora As String, Optional cantidad_recibida As Float, Optional cantidad_cambio As Float)
-  
+
   Dim cadena As String
-  
+
   Dim manejadorRecibo As New ReciboDAO
   Dim reciboDatos As New ReciboVO
   Dim hresultado As Result
   Dim hresultado2 As Result 'para obtener cliente
   Dim hresultado3 As Result 'para obtener empleado
   Dim hresultadoLineas As Result 'para obtener lineas de descompuesto
-  
+
   Dim manejadorClienteDatos As New ClienteDAO
   Dim manejadorEmpleado As New EmpleadoDAO
   Dim NombreCliente As String
   Dim NombreEmpleado As String
-  
+
   Dim manejadorLineaRecibo As New LineaReciboAdaptadaDAO
   Dim lineaReciboDatos As New LineareciboVO
   Dim nombre As Variant
-  
+
   Dim mCupon As New CuponDAO
   Dim mProducto As New ProductoDAO
   Dim mServicio As New ServicioDAO
-  
+
   Dim codigo As String
-  
+
   Dim cantidad As Float
   Dim precio As Float
   Dim descuento As Float
@@ -100,38 +100,38 @@ Public Sub imprimirRecibo(fechayhora As String, Optional cantidad_recibida As Fl
   Dim total As Float
   Dim tabla As Integer
   Dim idpro As Integer
-  
+
   Dim manejadorProducto As New ProductoAdaptadoDAO
   Dim codigoproducto As String
-  
+
   If instalacionW() = False Then
     Return
-    
+
   Endif
-  
+
   hresultado = manejadorRecibo.BuscarIgualIdlinearecibo(fechayhora)
-  
+
   If hresultado.count <= 0 Then
     Application.busy = 0
     Message(("Ese recibo no tiene linea de descompuesto"))
     Return
   Endif
   reciboDatos.importe = hresultado["importe"]
-  
+
   reciboDatos.idcliente = hresultado["idcliente"]
   reciboDatos.idempleado = hresultado["idempleado"]
-  
+
   'busco en tablas de cliente y empleados
   hresultado2 = manejadorClienteDatos.BuscarIgualId(hresultado["idcliente"])
   NombreCliente = hresultado2["nombre"]
   hresultado3 = manejadorEmpleado.BuscarIgualId(hresultado["idempleado"])
   NombreEmpleado = hresultado3["nombre"]
-  
+
   'busco en tabla de lineasRecibo
   hresultadoLineas = manejadorLineaRecibo.BuscarIgualIdlinearecibo(fechayhora)
-  
+
   'buscar en tabla cliente, cual es el nomre del cliente...
-  
+
   Try Kill "/tmp" & "/texto.html"
   Application.busy = 1
   cadena = "<html>"
@@ -149,16 +149,16 @@ Public Sub imprimirRecibo(fechayhora As String, Optional cantidad_recibida As Fl
   cadena &= "<b>" & ("Cliente") & ":</b> " & NombreCliente & "</br>"
   cadena &= "<b>" & ("Empleado") & ":</b> " & NombreEmpleado & "</br>"
   cadena &= "</br>"
-  
+
   cadena &= "<font size=\"1\"></br>"
   cadena &= "<table border=\"2\" table style=\"width:100%\">"
-  
+
   cadena &= "<tr  bgcolor=\"C4C4C4\"><td>" & ("Codigo") & "</td><td>" & ("Descripción") & "</td><td>" & ("Cantidad") & "</td><td>" & ("Precio") & " " & moneda & " " & "</td><td>" & ("Descuento") & " % " & "</td><td>" & ("Iva") & " % " & "</td><td>" & ("Total") & " " & moneda & " " & "</td></tr>"
-  
+
   'por cada linea de descompuesto, poner los datos...
-  
+
   '' rellenar lineas de descomuesto
-  
+
   While hresultadoLineas.Available
     'depende de que tabla estemos trabajando...
     tabla = hresultadoLineas["tabla"]
@@ -170,7 +170,7 @@ Public Sub imprimirRecibo(fechayhora As String, Optional cantidad_recibida As Fl
           Message.Info(("Problemas: Un servicio se ha borrado de la base de dato y era usado en un recibo "))
           Return
         Endif
-        
+
         nombre = hresultado["nombre"]
         codigo = hresultado["id"] & " (" & ("Servicios") & ")"
       Case 2 'productos
@@ -180,7 +180,7 @@ Public Sub imprimirRecibo(fechayhora As String, Optional cantidad_recibida As Fl
           Return
         Endif
         nombre = hresultado["nombre"]
-        
+
         codigo = hresultado["id"] '& " (" & ("Productos") & ")"
       Case 3 'cupones
         hresultado = mCupon.BuscarIgualId(idpro)
@@ -188,25 +188,25 @@ Public Sub imprimirRecibo(fechayhora As String, Optional cantidad_recibida As Fl
           Message.Info(("Problemas: Un cupon se ha borrado de la base de dato y era usado en un recibo"))
           Return
         Endif
-        
+
         nombre = hresultado["nombre"]
         codigo = hresultado["id"] & " (Cupones)"
     End Select
-    
+
     cantidad = hresultadoLineas["cantidad"]
     precio = hresultadoLineas["precio"]
     descuento = hresultadoLineas["descuento"]
     iva = hresultadoLineas["iva"]
     total = (1 + iva / 100) * (1 - DESCUENTO / 100) * PRECIO * cantidad 'calculo
-    
+
     codigoproducto = manejadorProducto.ConvertirResult(manejadorProducto.BuscarIgualId(codigo))[0].codigo
     cadena &= Subst$("<tr><td width=\"120\">&1</td><td >&2</td><td  align=\"Right\">&3</td><td align=\"Right\">&4</td><td  align=\"Right\">&5</td><td  align=\"Right\">&6</td><td  align=\"Right\">&7</td></tr>", codigoproducto, nombre, Format(cantidad, "#.#0"), Format(precio, "#.#0"), Format(descuento, "#.#0"), Format(iva, "#.#0"), Format(total, "#.#0"))
     hresultadoLineas.MoveNext
   Wend
-  
+
   cadena &= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
   cadena &= "<tr><td width=\"80\"></td><td width=\"250\"></td><td width=\"80\"></td><td width=\"80\"></td><td ></td><td>Total:</td><td width=\"120\" align=\"Right\"><b>" & Format(reciboDatos.importe, "#.#0") & "</b></td></tr>"
-  
+
   If cantidad_recibida <> 0 Then
     cadena &= "<tr><td width=\"80\"></td><td ></td><td width=\"80\"></td><td width=\"80\"></td><td ></td><td>" & ("Recibido") & ":</td><td width=\"120\" align=\"Right\">" & Format(cantidad_recibida, "#.#0") & "</td></tr>"
     cadena &= "<tr><td width=\"80\"></td><td ></td><td width=\"80\"></td><td width=\"80\"></td><td ></td><td>" & ("Cambio") & ":</td><td width=\"120\" align=\"Right\"><b>" & Format(cantidad_cambio, "#.#0") & "</b></td></tr>"
@@ -216,27 +216,27 @@ Public Sub imprimirRecibo(fechayhora As String, Optional cantidad_recibida As Fl
   cadena &= "</body></html>"
   File.Save("/tmp" & "/texto.html", cadena)
   Wait 0.1
-  
+
   If comun.csv = True Then
-    
+
     abrirLibreOffice("/tmp" & "/texto.html")
-    
+
   Else
-    
+
     Exec ["wkhtmltopdf", "/tmp" & "/texto.html", ModuleVarios.RutaTrabajo & "/texto.pdf"] Wait
-    
+
     Desktop.Open(ModuleVarios.RutaTrabajo & "/texto.pdf")
   Endif
-  
+
   Application.busy = 0
-  
+
 End
 
 ' ---------------------------
 ' CARGA DE COMBO BOX
 ' ---------------------------
 Public Sub cargaClienteCombobox(c As ComboBox)
-  
+
   Dim cliente As String
   Dim h As Result
   Dim m As New ClienteDAO
@@ -244,20 +244,20 @@ Public Sub cargaClienteCombobox(c As ComboBox)
   'lee datos del tabla de empledo...
   h = m.contenido()
   'los cargas al cambobox
-  
+
   While h.Available
     cliente = h["nombre"]
     ids.Add(h["id"])
     c.Add(cliente)
-    
+
     h.MoveNext
   Wend
   C.tag = ids
-  
+
 End
 
 Public Sub cargaEmpleadoCombobox(c As ComboBox)
-  
+
   Dim empleado As String
   Dim h As Result
   Dim m As New EmpleadoDAO
@@ -265,30 +265,30 @@ Public Sub cargaEmpleadoCombobox(c As ComboBox)
   'lee datos del tabla de empledo...
   h = m.contenido()
   'los cargas al cambobox
-  
+
   While h.Available
     empleado = h["nombre"]
     ids.Add(h["id"])
     c.Add(empleado)
-    
+
     h.MoveNext
   Wend
   C.tag = ids
-  
+
 End
 
 Public Sub abrirLibreOffice(nombre As String)
-  
+
   Dim comando As String
   Dim contenido As String
   Dim listaComando As String[]
-  
+
   comando = Settings["ComandoLibreOffice"]
-  
+
   contenido = File.Load(nombre)
-  
+
   contenido = Replace$(contenido, ".", ",") '' cambio el punto por la coma decimal, asi en la hoja de calculo se puede realizar calculos con los datos introducidos
-  
+
   'cambiar letras acentuadas a letras normales ya que no sale bien en el libreoffice
   contenido = Replace$(contenido, "ñ", "n")
   contenido = Replace$(contenido, "á", "a")
@@ -301,14 +301,14 @@ Public Sub abrirLibreOffice(nombre As String)
   contenido = Replace$(contenido, "Í", "I")
   contenido = Replace$(contenido, "Ó", "O")
   contenido = Replace$(contenido, "Ú", "U")
-  
+
   File.Save(nombre, contenido)
-  Wait 0.1 
-  
+  Wait 0.1
+
   listaComando = Split(comando & " " & nombre, " ")
-  
+
   Exec listaComando
-  
+
   comun.csv = False
-  
+
 End

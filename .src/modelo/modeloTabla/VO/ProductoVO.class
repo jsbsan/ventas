@@ -1,154 +1,154 @@
 ' Gambas class file
 
-Property id As Integer 
+Property id As Integer
 Private hid As Integer
 
-Property codigo As String 
+Property codigo As String
 Private hcodigo As String
 
-Property imagen As String 
+Property imagen As String
 Private himagen As String
 
-Property nombre As String 
+Property nombre As String
 Private hnombre As String
 
-Property ubicacion As String 
+Property ubicacion As String
 Private hubicacion As String
 
-Property precio As Float 
+Property precio As Float
 Private hprecio As Float
 
-Property comentario As String 
+Property comentario As String
 Private hcomentario As String
 
-Property campo As String[] 
+Property campo As String[]
 Private hcampo As New String[]
 
-Property campotipo As String[] 
+Property campotipo As String[]
 Private hcampotipo As New String[]
 
-Property campovisible As String[] 
+Property campovisible As String[]
 Private hcampovisible As New String[]
 
 Private Function id_read() As Integer
-  
-  Return hid 
-  
-End 
+
+  Return hid
+
+End
 
 Private Sub id_write(Valor As Integer)
-  
-  hid = Valor 
-  
-End  
+
+  hid = Valor
+
+End
 
 Private Function codigo_read() As String
-  
-  Return hcodigo 
-  
-End 
+
+  Return hcodigo
+
+End
 
 Private Sub codigo_write(Valor As String)
-  
-  hcodigo = Valor 
-  
-End  
+
+  hcodigo = Valor
+
+End
 
 Private Function imagen_read() As String
-  
-  Return himagen 
-  
-End 
+
+  Return himagen
+
+End
 
 Private Sub imagen_write(Valor As String)
-  
-  himagen = Valor 
-  
-End  
+
+  himagen = Valor
+
+End
 
 Private Function nombre_read() As String
-  
-  Return hnombre 
-  
-End 
+
+  Return hnombre
+
+End
 
 Private Sub nombre_write(Valor As String)
-  
-  hnombre = Valor 
-  
-End  
+
+  hnombre = Valor
+
+End
 
 Private Function ubicacion_read() As String
-  
-  Return hubicacion 
-  
-End 
+
+  Return hubicacion
+
+End
 
 Private Sub ubicacion_write(Valor As String)
-  
-  hubicacion = Valor 
-  
-End  
+
+  hubicacion = Valor
+
+End
 
 Private Function precio_read() As Float
-  
-  Return hprecio 
-  
-End 
+
+  Return hprecio
+
+End
 
 Private Sub precio_write(Valor As Float)
-  
-  hprecio = Valor 
-  
-End  
+
+  hprecio = Valor
+
+End
 
 Private Function comentario_read() As String
-  
-  Return hcomentario 
-  
-End 
+
+  Return hcomentario
+
+End
 
 Private Sub comentario_write(Valor As String)
-  
-  hcomentario = Valor 
-  
-End  
+
+  hcomentario = Valor
+
+End
 
 Private Function campo_read() As String[]
-  
-  Return hcampo 
-  
-End 
+
+  Return hcampo
+
+End
 
 Private Sub campo_write(Valor As String[])
-  
-  hcampo = Valor 
-  
-End  
+
+  hcampo = Valor
+
+End
 
 Private Function campotipo_read() As String[]
-  
-  Return hcampotipo 
-  
-End 
+
+  Return hcampotipo
+
+End
 
 Private Sub campotipo_write(Valor As String[])
-  
-  hcampotipo = Valor 
-  
-End  
+
+  hcampotipo = Valor
+
+End
 
 Private Function campovisible_read() As String[]
-  
-  Return hcampovisible 
-  
-End 
+
+  Return hcampovisible
+
+End
 
 Private Sub campovisible_write(Valor As String[])
-  
-  hcampovisible = Valor 
-  
-End  
+
+  hcampovisible = Valor
+
+End
 
 Public Function Copia(Optional dato As ProductoVO) As ProductoVO
 
@@ -172,6 +172,7 @@ End
 Public Function ConvertirVOaColeccion(dato As ProductoVO) As Collection
 
   Dim colecciontmp As New Collection
+
   colecciontmp.add(dato.id, "id")
   colecciontmp.add(dato.codigo, "codigo")
   colecciontmp.add(dato.imagen, "imagen")
@@ -186,12 +187,14 @@ End
 Public Function ConvertirColeccionaVO(dato As Collection) As ProductoVO
 
   Dim datoVOtmp As New ProductoVO
+
   Try datoVOtmp.id = dato["id"]
   Try datoVOtmp.codigo = dato["codigo"]
   Try datoVOtmp.imagen = dato["imagen"]
-Try datoVOtmp.nombre = dato["nombre"]
-Try datoVOtmp.ubicacion = dato["ubicacion"]
-Try datoVOtmp.precio = dato["precio"]
-Try datoVOtmp.comentario = dato["comentario"]
-Return datoVOtmp
+  Try datoVOtmp.nombre = dato["nombre"]
+  Try datoVOtmp.ubicacion = dato["ubicacion"]
+  Try datoVOtmp.precio = dato["precio"]
+  Try datoVOtmp.comentario = dato["comentario"]
+  Return datoVOtmp
+
 End

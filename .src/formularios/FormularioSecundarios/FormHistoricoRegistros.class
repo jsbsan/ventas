@@ -6,13 +6,13 @@ Private manejarRecibos As New ReciboAdaptadoDAO 'para presentar el nombre de los
 Private sumatotal As Float
 
 Public Sub ButtonSalir_Click()
-  
+
   Me.close
-  
+
 End
 
 Public Sub Form_Open()
-  
+
   DateBoxFecha.value = Now
   ' manejarRecibos.gridFormatearColumnas(GridView1)
   ' MostrarTodosLosRegistros()
@@ -20,7 +20,7 @@ Public Sub Form_Open()
   'cargaEmpleadoCombobox()
   manejarRecibos.ColorFilaPar = Settings["ColorRegillaPar", Color.orange]
   manejarRecibos.ColorFilaImPar = Settings["ColorRegillaImPar", color.white]
-  
+
   manejarRecibos.MostrarGridView(GridView1)
   quitarFiltros_Click()
 
@@ -28,18 +28,18 @@ End
 
 Public Sub escribeDatos()
   'escribo todo los datos...
-  
+
   ' manejarRecibos.GridResultanteSQL(hresult, GridView1)
   ' GridView1.Rows.count = 0
   ' GridView1.Rows.Count = hresult.Count
-  
+
   manejarRecibos.MostrarGridView(GridView1)
   calculoImporte(hresult)
-  
+
 End
 
 Public Sub calculoImporte(h As Result)
-  
+
   h.MoveFirst
   sumatotal = 0
   While h.Available
@@ -51,7 +51,7 @@ Public Sub calculoImporte(h As Result)
     h.MoveNext
   Wend
   LabelSumaTotal.text = Format$(sumatotal, ",#.#0")
-  
+
 End
 
 ' Public Sub GridView1_Data(row As Integer, column As Integer)
@@ -121,20 +121,20 @@ End
 ' End
 
 Public Sub ButtonFiltroFecha_Click()
-  
+
   sumatotal = 0
   LabelSumaTotal.text = ""
   manejarRecibos.MostrarGridView(GridView1, Subst$("Select * From recibo WHERE fecha Like '%&1%' ", cambiarFecha(Mid(Str$(DateBoxFecha.value), 1, 10))))
-  
+
   hresult = manejarRecibos.sql(Subst$("Select * From recibo WHERE fecha Like '%&1%' ", cambiarFecha(Mid(Str$(DateBoxFecha.value), 1, 10))))
   calculoImporte(hresult)
   '  manejarRecibos.GridResultanteSQL(hresult, GridView1)
   ' escribeDatos()
-  
+
 End
 
 Public Sub ButtonFiltroEmpleado_Click()
-  
+
   sumatotal = 0
   LabelSumaTotal.text = ""
   Try manejarRecibos.MostrarGridView(GridView1, Subst$("Select * From recibo WHERE idempleado Like '%&1%' ", ComboBoxEmpleado.Tag[ComboBoxEmpleado.index]))
@@ -143,26 +143,26 @@ Public Sub ButtonFiltroEmpleado_Click()
   calculoImporte(hresult)
   ' manejarRecibos.GridResultanteSQL(hresult, GridView1)
   ' escribeDatos()
-  
+
 End
 
 '--------------
 Public Sub cambiarFecha(f As String) As String
-  
+
   Dim anno As String
   Dim dia As String
   Dim mes As String
-  
+
   dia = Mid$(f, 1, 2)
   mes = Mid$(f, 4, 2)
   anno = Mid$(f, 7, 4)
-  
+
   Return anno & "-" & mes & "-" & dia
-  
+
 End
 
 Public Sub cargaEmpleadoCombobox(c As ComboBox)
-  
+
   Dim empleado As String
   Dim h As Result
   Dim m As New EmpleadoDAO
@@ -170,25 +170,25 @@ Public Sub cargaEmpleadoCombobox(c As ComboBox)
   'lee datos del tabla de empledo...
   h = m.contenido()
   'los cargas al cambobox
-  
+
   While h.Available
     empleado = h["nombre"]
     ids.Add(h["id"])
     c.Add(empleado)
-    
+
     h.MoveNext
   Wend
   C.tag = ids
-  
+
 End
 
 Public Sub MostrarTodosLosRegistros()
-  
+
   hresult = manejarRecibos.contenido()
   calculoImporte(hresult)
   manejarRecibos.GridResultanteSQL(hresult, GridView1)
   escribeDatos()
-  
+
 End
 
 '---------------------------------------
@@ -196,32 +196,32 @@ End
 '---------------------------------------
 
 Public Sub ReciboImprimir_Click()
-  
+
   'mostrar el informe del registro elegido....
   If GridView1.Row = -1 Then
     Message.Info(("Error: Seleccione un  recibo"))
     Return
   Endif
   ModuleVarios.imprimirRecibo(GridView1[GridView1.row, 4].text)
-  
+
 End
 
 Public Sub BorrarRecibo_Click()
-  
+
   Dim respuesta As Integer
   Dim manejadoLineaReciboDatos As LineaReciboAdaptadaDAO
-  
+
   If GridView1.Row = -1 Then
     Message.Info(("Error: Seleccione un  recibo"))
     Return
   Endif
-  
+
   If Settings["BorradoRecibo", "No"] = "No" Then
     Message.Info(("No se pueden borrar los recibos<br>Actualice la Configuración "))
   Else
     respuesta = Message.Warning(("El borrado de Registros es DEFINITIVO"), ("Borrar"), ("Cancelar"))
     If respuesta = 1 Then
-      
+
       ' Print "borrado de idrecibo:", GridView1[GridView1.row, 0].text
       ' Print "borrado de lineas descompuesto:", GridView1[GridView1.row, 4].text
       manejadoLineaReciboDatos = New LineaReciboAdaptadaDAO
@@ -230,30 +230,30 @@ Public Sub BorrarRecibo_Click()
       MostrarTodosLosRegistros()
     Endif
   Endif
-  
+
 End
 
 Public Sub quitarFiltros_Click()
-  
+
   MostrarTodosLosRegistros()
   ModuleVarios.cargaEmpleadoCombobox(ComboBoxEmpleado)
-  
+
 End
 
 Public Sub ButtonQuitarFiltro_Click()
-  
+
   quitarFiltros_Click()
-  
+
 End
 
 Public Sub ButtonImprimir_Click()
-  
+
   ReciboImprimir_Click()
-  
+
 End
 
 Public Sub ButtonBorrarRecibo_Click()
-  
+
   BorrarRecibo_Click()
-  
+
 End

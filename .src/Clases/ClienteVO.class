@@ -3,155 +3,155 @@
 ' Gambas class file
 Inherits PersonaVO
 
-Property id As Integer 
+Property id As Integer
 Private hid As Integer
 
-Property dni As String 
+Property dni As String
 Private hdni As String
 
-Property nombre As String 
+Property nombre As String
 Private hnombre As String
 
-Property telefono As String 
+Property telefono As String
 Private htelefono As String
 
-Property correo As String 
+Property correo As String
 Private hcorreo As String
 
-Property domicilio As String 
+Property domicilio As String
 Private hdomicilio As String
 
-Property comentario As String 
+Property comentario As String
 Private hcomentario As String
 
-Property campo As String[] 
+Property campo As String[]
 Private hcampo As New String[]
 
-Property campotipo As String[] 
+Property campotipo As String[]
 Private hcampotipo As New String[]
 
-Property campovisible As String[] 
+Property campovisible As String[]
 Private hcampovisible As New String[]
 
 Private Function id_read() As Integer
-  
-  Return hid 
-  
-End 
+
+  Return hid
+
+End
 
 Private Sub id_write(Valor As Integer)
-  
-  hid = Valor 
-  
-End  
+
+  hid = Valor
+
+End
 
 Private Function dni_read() As String
-  
-  Return hdni 
-  
-End 
+
+  Return hdni
+
+End
 
 Private Sub dni_write(Valor As String)
-  
-  hdni = Valor 
-  
-End  
+
+  hdni = Valor
+
+End
 
 Private Function nombre_read() As String
-  
-  Return hnombre 
-  
-End 
+
+  Return hnombre
+
+End
 
 Private Sub nombre_write(Valor As String)
-  
-  hnombre = Valor 
-  
-End  
+
+  hnombre = Valor
+
+End
 
 Private Function telefono_read() As String
-  
-  Return htelefono 
-  
-End 
+
+  Return htelefono
+
+End
 
 Private Sub telefono_write(Valor As String)
-  
-  htelefono = Valor 
-  
-End  
+
+  htelefono = Valor
+
+End
 
 Private Function correo_read() As String
-  
-  Return hcorreo 
-  
-End 
+
+  Return hcorreo
+
+End
 
 Private Sub correo_write(Valor As String)
-  
-  hcorreo = Valor 
-  
-End  
+
+  hcorreo = Valor
+
+End
 
 Private Function domicilio_read() As String
-  
-  Return hdomicilio 
-  
-End 
+
+  Return hdomicilio
+
+End
 
 Private Sub domicilio_write(Valor As String)
-  
-  hdomicilio = Valor 
-  
-End  
+
+  hdomicilio = Valor
+
+End
 
 Private Function comentario_read() As String
-  
-  Return hcomentario 
-  
-End 
+
+  Return hcomentario
+
+End
 
 Private Sub comentario_write(Valor As String)
-  
-  hcomentario = Valor 
-  
-End  
+
+  hcomentario = Valor
+
+End
 
 Private Function campo_read() As String[]
-  
-  Return hcampo 
-  
-End 
+
+  Return hcampo
+
+End
 
 Private Sub campo_write(Valor As String[])
-  
-  hcampo = Valor 
-  
-End  
+
+  hcampo = Valor
+
+End
 
 Private Function campotipo_read() As String[]
-  
-  Return hcampotipo 
-  
-End 
+
+  Return hcampotipo
+
+End
 
 Private Sub campotipo_write(Valor As String[])
-  
-  hcampotipo = Valor 
-  
-End  
+
+  hcampotipo = Valor
+
+End
 
 Private Function campovisible_read() As String[]
-  
-  Return hcampovisible 
-  
-End 
+
+  Return hcampovisible
+
+End
 
 Private Sub campovisible_write(Valor As String[])
-  
-  hcampovisible = Valor 
-  
-End  
+
+  hcampovisible = Valor
+
+End
 
 Public Function Copia(Optional dato As ClienteVO) As ClienteVO
 
@@ -175,6 +175,7 @@ End
 Public Function ConvertirVOaColeccion(dato As ClienteVO) As Collection
 
   Dim colecciontmp As New Collection
+
   colecciontmp.add(dato.id, "id")
   colecciontmp.add(dato.dni, "dni")
   colecciontmp.add(dato.nombre, "nombre")
@@ -189,12 +190,14 @@ End
 Public Function ConvertirColeccionaVO(dato As Collection) As ClienteVO
 
   Dim datoVOtmp As New ClienteVO
+
   Try datoVOtmp.id = dato["id"]
   Try datoVOtmp.dni = dato["dni"]
   Try datoVOtmp.nombre = dato["nombre"]
-Try datoVOtmp.telefono = dato["telefono"]
-Try datoVOtmp.correo = dato["correo"]
-Try datoVOtmp.domicilio = dato["domicilio"]
-Try datoVOtmp.comentario = dato["comentario"]
-Return datoVOtmp
+  Try datoVOtmp.telefono = dato["telefono"]
+  Try datoVOtmp.correo = dato["correo"]
+  Try datoVOtmp.domicilio = dato["domicilio"]
+  Try datoVOtmp.comentario = dato["comentario"]
+  Return datoVOtmp
+
 End

@@ -3,24 +3,24 @@
 Private datos As LineaAlmacenVO
 
 Public Sub Form_Open()
-  
+
   If ComboBoxTipo.text = "" Then ComboBoxTipo.text = ComboBoxTipo.List[0] ' "ENTRADA"
   If DateBoxFecha.value = 0 Then DateBoxFecha.value = Now
   Me.center
-  
+
 End
 
 Public Sub ButtonCancelar_Click()
-  
+
   datos = Null
   Me.Close()
-  
+
 End
 
 Public Sub ButtonBuscarProducto_Click()
-  
-  Dim nombre As New Collection ''NOTE: modificacion ventas  
-  
+
+  Dim nombre As New Collection ''NOTE: modificacion ventas
+
   FormServicios.setnombre(nombre)
   '   FormServicios.irtab(0, "no mostrar", "mostrar", "no mostrar") 'aqui indicar que las pestañas servicos y cupones no estan disponibles...
   FormServicios.ShowModal()
@@ -32,38 +32,38 @@ Public Sub ButtonBuscarProducto_Click()
     LabelProducto.text = nombre["descripcion"] 'descripcion
     ponimagen(nombre["id"])
   Endif
-  
+
 End
 
 Public Sub ponimagen(id As String)
-  
+
   Dim manejaImagen As New ImagenesDAO
   Dim datoImagen As ImagenesVO
-  
-  datoImagen = manejaImagen.ConvertirResult(manejaImagen.BuscarIgualImagen(id))[0]
-  
-  If Error Then 
+
+  Try datoImagen = manejaImagen.ConvertirResult(manejaImagen.BuscarIgualImagen(id))[0]
+
+  If Error Then
     PictureBox1.Picture = Picture["SinImagen2.png"]
-    Return 
+    Return
   Endif
-  
-  If Exist(comun.RutaDdeTrabajo & datoImagen.rutaimagen) Then 
-    
+
+  If Exist(comun.RutaDdeTrabajo & datoImagen.rutaimagen) Then
+
     PictureBox1.Picture = Picture[comun.RutaDdeTrabajo & "mini_" & datoImagen.rutaimagen]
   Else
     PictureBox1.Picture = Picture["SinImagen2.png"]
   Endif
-  
+
 End
 
 Public Sub ButtonAceptar_Click()
-  
+
   If LabelProducto.Tag <> 0 Then
     datos.fecha = DateBoxFecha.Value
     datos.idProducto = LabelProducto.Tag
     datos.cantidad = ValueBoxCantidad.Value
     '  datos.tipo = ComboBoxTipo.Text ''NOTE: hacer cambio aqui...
-    
+
     Select Case ComboBoxTipo.Index
       Case 0 'ENTRADA
         datos.tipo = "ENTRADA"
@@ -72,22 +72,22 @@ Public Sub ButtonAceptar_Click()
       Case 2 'ROTURA
         datos.tipo = "ROTURA"
     End Select
-    
+
     Me.Close()
   Else
     Message.Info(("Debe de elegir un producto"))
   Endif
-  
+
 End
 
 Public Sub setDatos(d As LineaAlmacenVO, Optional DescripcionProducto As String)
-  
+
   Dim manejaImagen As New ImagenesDAO
   Dim datoImagen As ImagenesVO
-  
+
   If d = Null Then
     datos = d
-    
+
   Else
     datos = d
     ValueBoxCantidad.Value = datos.cantidad
@@ -95,15 +95,15 @@ Public Sub setDatos(d As LineaAlmacenVO, Optional DescripcionProducto As String)
     ComboBoxTipo.Text = datos.tipo
     DateBoxFecha.value = datos.fecha
     LabelProducto.text = DescripcionProducto
-    
+
     Try datoImagen = manejaImagen.ConvertirResult(manejaImagen.BuscarIgualImagen(datos.idProducto))[0]
-    If Error Then 
+    If Error Then
       'si es un albaran nuevo, todavia no tiene imagen asociada.
     Else
-      Try PictureBox1.Picture = Picture.Load(comun.RutaDdeTrabajo & "mini_" & datoImagen.rutaimagen)    
+      Try PictureBox1.Picture = Picture.Load(comun.RutaDdeTrabajo & "mini_" & datoImagen.rutaimagen)
       'intenta leer la imagen
     Endif
-    
+
   Endif
-  
+
 End

@@ -3,70 +3,70 @@
 Public Sub Form_Open()
   'menu de borrado de cliente...
   'valor por defecto es que no se muestre
-  
+
   LabelVersion.text = "Versión del programa: " & Application.Version
   If Settings["BorradoClientesEmpleados", False] = False Then Settings["BorradoClientesEmpleados"] = False
   CheckBoxBorradoEmpleadoCliente.Value = Settings["BorradoClientesEmpleados"]
-  
+
   If Settings["BorradoTipos", False] = False Then Settings["BorradoTipos"] = False
   CheckBoxBorradoServicosProductosCupoenes.value = Settings["BorradoTipos"]
-  
+
   If Settings["BorradoRecibos", False] = False Then Settings["BorradoRecibos"] = False
   CheckBoxBorradoRecibos.value = Settings["BorradoRecibos"]
-  
+
   TextBoxTipoDeNegocio.text = Settings["TipoNegocio", "La Tienda de"]
-  
+
   TextBoxPeluqueria.text = Settings["NombrePeluqueria", "Jessi"]
   ValueBoxIva.value = settings["IVA", 21]
   TextBoxDireccion.text = settings["DIRECCION", ""]
   TextBoxTelefono.text = Settings["Telefono", ""]
   Label1Directorio.text = Settings["Directorio"]
-  
+
   ComboBoxServiciosIva.Add("Si")
   ComboBoxServiciosIva.Add("No")
   ComboBoxServiciosIva.text = Settings["AplicarIvaServicio", "No"]
-  
+
   ComboBoxCuponIva.Add("Si")
   ComboBoxCuponIva.Add("No")
   ComboBoxCuponIva.text = Settings["AplicarIvaCupon", "No"]
-  
+
   ComboBoxModificarRegistro.Add("Si")
   ComboBoxModificarRegistro.Add("No")
   ComboBoxModificarRegistro.text = Settings["ModificarPrecios", "No"]
-  
+
   ComboBoxBorradoRecibo.Add("Si")
   ComboBoxBorradoRecibo.Add("No")
   ComboBoxBorradoRecibo.text = Settings["BorradoRecibo", "No"]
-  
+
   CheckBoxUpdateAlinicio.Value = Settings["Update", False]
-  
+
   'empleados por defecto...
-  
+
   'cargar empleado y cliente por defecto..
   ' Rellenar combobox de clientes y Empleados por defecto
   RellenaComboBoxClienteEmpleados()
-  
+
   If Settings["EmpleadoPorDefecto", "1|EmpleadoPorDefecto"] <> "" Then
     ComboBoxEmpleadoPorDefecto.text = Settings["EmpleadoPorDefecto"]
   Endif
-  
+
   If Settings["ClientePorDefecto", "1|ClientePorDefecto"] <> "" Then
     ComboBoxClientePorDefecto.text = Settings["ClientePorDefecto"]
-    
+
   Endif
-  
+
   TextBoxPasswordRoot.text = Settings["pwr", ""]
-  
+
   TextBoxUsbDispositivo.text = Settings["usbName", "/dev/ttyUSB0"]
-  
-  TextBoxComandoHojaDeCalculo.text = Settings["ComandoLibreOffice", "libreoffice5.1 --calc"] 
-  
-  TextBoxSimboloMoneda.text = Settings["SimboloMoneda", "$"] 
-  
+
+  TextBoxComandoHojaDeCalculo.text = Settings["ComandoLibreOffice", "libreoffice5.1 --calc"]
+
+  TextBoxSimboloMoneda.text = Settings["SimboloMoneda", "$"]
+
 End
 
 Public Sub ButtonSalir_Click()
-  
+
   Settings["NombrePeluqueria"] = TextBoxPeluqueria.Text
   settings["IVA"] = ValueBoxIva.value
   settings["DIRECCION"] = TextBoxDireccion.text
@@ -81,17 +81,17 @@ Public Sub ButtonSalir_Click()
   Settings["BorradoRecibos"] = CheckBoxBorradoRecibos.Value
   Settings["TipoNegocio"] = TextBoxTipoDeNegocio.text
   Settings["ComandoLibreOffice"] = TextBoxComandoHojaDeCalculo.text
-  
+
   Settings["SimboloMoneda"] = TextBoxSimboloMoneda.text
-  
+
   Settings.Save()
   Me.Close()
-  
+
 End
 
 Public Sub ButtonPassword_Click()
   'comprobar que la contraseña actual es correcto
-  
+
   If TextBoxContrasenaActual.text = Settings["Contrasena", "ventas"] Then
     'comprobar que l
     If TextBoxNueva1.text = TextBoxNueva2.text And TextBoxNueva2.text <> "" Then
@@ -104,27 +104,27 @@ Public Sub ButtonPassword_Click()
   Else
     Message.Info(("La contraseña no es la correcta, no he realizado el cambio"))
   Endif
-  
+
 End
 
 Public Sub ButtonElegirCarpeta_Click()
-  
+
   If Dialog.SelectDirectory() Then
   Else
     Settings["Directorio"] = Dialog.path
     Label1Directorio.text = Dialog.path
     ModuleVarios.RutaTrabajo = Dialog.path
   Endif
-  
+
 End
 
 Public Sub ButtonUpdateManual_Click()
-  
+
   '' Update manual
   Application.busy = 1
   ModuleUpdate.comprobar("ventas", Application.Version, "http://seguimientodeapuestas.blogspot.com.es/2016/02/ventas.html", "")
   Application.busy = 0
-  
+
 End
 
 '------------------------------------------------
@@ -132,155 +132,155 @@ End
 '------------------------------------------------
 
 Public Sub ButtonCrearCopiaSeguridad_Click()
-  
+
   Dim nombrebasedatosfecha As String
   Dim salida As String
   Dim comando As String
-  
+
   ''  CREAR COPIA SEGURIDAD
   'ELEGIR RUTA
   Dialog.Title = ("Crear copia de seguridad")
   If Not Dialog.SelectDirectory() Then
     'HACER COPIA, CAMBIO EL NOMBRE (PONER FECHA)
-    nombrebasedatosfecha = "Ventas" & Format(Now, "yyyy-mm-dd_hhnnss") 
-    
+    nombrebasedatosfecha = "Ventas" & Format(Now, "yyyy-mm-dd_hhnnss")
+
     Message.Info(("Se va a copiar la base de datos, con el nombre:") & "\n" & nombrebasedatosfecha & ".tag.gz" & "\n" & ("en la ruta") & "\n" & Dialog.path)
     comando = "cd " & comun.RutaDdeTrabajo & ";tar czfv \"" & nombrebasedatosfecha & ".tag.gz\" *"
     Shell comando Wait
-    
+
     Try Move comun.RutaDdeTrabajo & nombrebasedatosfecha & ".tag.gz" To Dialog.path & "/" & nombrebasedatosfecha & ".tag.gz"
-    
+
     If Error Then
       Message.Error(("Ha habido un error al intentar copiar la base de datos") & "\n" & Error.text)
     Endif
   Endif
-  
+
 End
 
 Public Sub ButtonRestauraCopiaSeguridad_Click()
-  
-  restaurarCopia() 
+
+  restaurarCopia()
   form_Open()
-  
+
 End
 
 Public Function restaurarCopia() As Boolean
-  
+
   Dim nombrearchivo As String
   Dim res As Integer
   Dim Rutafichero As String
-  
+
   res = Message.Question(("Al restaurar una copia de seguridad, se borrarán los datos actuales!!!"), ("Continuar"), ("Cancelar"))
-  
+
   If res = 2 Then Return 'cancelar la restauracion del fichero
-  
+
   Dialog.Title = ("Restaurar una copia de seguridad")
-  
+
   If Not Dialog.OpenFile() Then
     Rutafichero = Dialog.path
     If Not Exist("/tmp/ventasAbrir") Then
       Mkdir "/tmp/ventasAbrir"
     Endif
-    
+
     'borro los archivos temporales, por si hubo otra restauración
     For Each nombrearchivo In Dir("/tmp/ventasAbrir", "*", GB.File).Sort()
       Kill "/tmp/ventasAbrir/" & nombrearchivo
     Next
-    
+
     'copia el archivo y lo descomprime el archivo
     Copy Rutafichero To "/tmp/ventasAbrir/" & File.Name(Rutafichero)
     Wait 0.1
-    
+
     Shell "cd /tmp/ventasAbrir/;tar -zxvf \"" & File.Name(Rutafichero) & "\"" Wait
-    
+
     'borro el directorio actual de la base de datos...
     For Each nombrearchivo In Dir(User.home & "/Ventas/", "*", GB.File).Sort()
       Kill User.home & "/Ventas/" & nombrearchivo
     Next
     Wait 0.1
-    
+
     Kill "/tmp/ventasAbrir/" & File.Name(Rutafichero)
-    
+
     'copio todos los archivos descomprimidos al directorio de trabajo
     For Each nombrearchivo In Dir("/tmp/ventasAbrir", "*", GB.File).Sort()
       Move "/tmp/ventasAbrir/" & nombrearchivo To User.home & "/Ventas/" & nombrearchivo
     Next
-    
+
     Message.Info(("Restauración realizada"))
-    
+
     Return True
   Endif
-  
+
   Return False
-  
+
 End
 
 Public Sub ButtonComprobarEstructura_Click()
-  
+
   Dim cadena As String
-  
+
   ButtonComprobarEstructura.text = ("espere....")
   Wait 0.01
   cadena = ComprobarEstructura.AnalizaEstructura()
   If cadena = "" Then Cadena = ("No ha habido nada que arreglar")
   Message.Info(("Estructura Comprobada.") & "\n" & cadena)
   ButtonComprobarEstructura.text = ("comprobar")
-  
+
 End
 
 Public Sub ButtonIdiomaPortugues_Click()
-  
+
   Settings["InicioIdioma"] = "pt_PT"
   Message.Info(("La proxima vez se iniciara el programa en Portugues"))
-  
+
 End
 
 Public Sub ButtonInicioEspanol_Click()
-  
+
   Settings["InicioIdioma"] = "es_ES"
   Message.Info(("La proxima vez se iniciara el programa en Castellano"))
-  
+
 End
 
 Public Sub ButtonIdiomaBrasil_Click()
-  
+
   Settings["InicioIdioma"] = "pt_BR"
   Message.Info(("La proxima vez se iniciara el programa en Portugues-Brasil"))
-  
+
 End
 
 Public Sub ButtonIdiomaIngles_Click()
-  
+
   Settings["InicioIdioma"] = "en_US"
   Message.Info(("La proxima vez se iniciara el programa en Ingles"))
-  
+
 End
 
 '----------------------------------------------------------
 'sistema para definir un empledo y cliente por defecto
 '----------------------------------------------------------
 Public Sub ButtonGuardarCambios_Click()
-  
+
   If ComboBoxEmpleadoPorDefecto.text <> "" Then
     Settings["EmpleadoPorDefecto"] = ComboBoxEmpleadoPorDefecto.text
   Endif
-  
+
   If ComboBoxClientePorDefecto.text <> "" Then
     Settings["ClientePorDefecto"] = ComboBoxClientePorDefecto.text
-    
+
   Endif
   Settings.Save()
-  
+
 End
 
 Public Sub RellenaComboBoxClienteEmpleados()
-  
+
   Dim conectar As New Conexion
   Dim SQLString As String
   Dim hresult As Result
-  
+
   conectar.Conexion()
-  
+
   sqlstring = "SELECT nombre,id FROM Empleado order by nombre DESC" ' DESC: desendiente (1,2,3), ASC (3,2,1
   Try hresult = conectar.hconn.Exec(SQLString)
   If Error Then
@@ -288,7 +288,7 @@ Public Sub RellenaComboBoxClienteEmpleados()
   Else
     RellenaComboBox(ComboBoxEmpleadoPorDefecto, hresult)
   Endif
-  
+
   sqlstring = "SELECT nombre,id FROM cliente order by nombre DESC" ' DESC: desendiente (1,2,3), ASC (3,2,1
   Try hresult = conectar.hconn.Exec(SQLString)
   If Error Then
@@ -296,114 +296,114 @@ Public Sub RellenaComboBoxClienteEmpleados()
   Else
     RellenaComboBox(ComboBoxClientePorDefecto, hresult)
   Endif
-  
+
 End
 
 Public Sub RellenaComboBox(comboboxTmp As ComboBox, hresultTMP As Result)
-  
+
   Dim nombretmp As String
   Dim idtmp As String
-  
+
   Do While hresultTMP.Available
     nombretmp = hresultTMP["nombre"] '"Local" es el nombre del campo, que queremos leer sus datos
     idtmp = hresultTMP["id"]
     comboboxTmp.Add(idtmp & "|" & nombretmp)
-    
+
     hresultTMP.MoveNext()
   Loop
-  
+
 End
 
 Public Sub ButtonGuardaDatosCajon_Click()
-  
+
   Settings["pwr"] = TextBoxPasswordRoot.text
-  
+
   Settings["usbName"] = TextBoxUsbDispositivo.text
-  
+
   Settings.Save()
-  
+
 End
 
 Public Sub ButtonPruebaAbrirCajon_Click()
-  
+
   Cajon.abrir()
-  
+
 End
 
 Public Sub Label15_MouseDown()
-  
+
   Desktop.Open("http://softwarelibreventas.blogspot.com.es/")
-  
+
 End
 
 Public Sub ButtonRestaurarFabrica_Click()
-  
+
   Dim res As Integer
-  
+
   res = Message.Question("¿Esta seguro?, borrará los datos actuales del programa !!!", "Si, borrar", "No, cancelar")
-  
-  If res = 2 Then 
+
+  If res = 2 Then
     Return
   Endif
-  
+
   ReinicioConfiguracion()
-  
+
   Me.Close()
-  
+
 End
 
 Public Sub ReinicioConfiguracion()
-  
+
   Dim nombrearchivo As String
-  
+
   Settings["EmpleadoPorDefecto"] = "1|EmpleadoPorDefecto"
   Settings["ClientePorDefecto"] = "1|ClientePorDefecto"
-  
+
   Settings["BorradoRecibo"] = "No"
   Settings["ModificarPrecios"] = "No"
-  
+
   Settings["Update"] = False
-  
+
   Settings["AplicarIvaCupon"] = "No"
-  
+
   Settings["AplicarIvaServicio"] = "No"
   Settings["TipoNegocio"] = "La Tienda de"
   Settings["NombrePeluqueria"] = "Jessi"
   settings["IVA"] = 21
-  
+
   Settings["BorradoRecibos"] = False
   Settings["BorradoTipos"] = False
   Settings["BorradoClientesEmpleados"] = False
-  
+
   Settings["pwr"] = ""
   Settings["usbName"] = "/dev/ttyUSB0"
   Settings["ComandoLibreOffice"] = "libreoffice5.1 --calc"
   Settings["SimboloMoneda"] = "$"
-  
+
   'borrado de ficheros de la ruta de trabajo (imagenes y la propia base de datos)
   For Each nombrearchivo In Dir(comun.RutaDdeTrabajo, "*", GB.File).Sort()
     Try Kill comun.RutaDdeTrabajo & nombrearchivo
   Next
-  
+
   Message.Info(("Reinicie el programa"))
-  
+
 End
 
 Public Sub ButtonRestauraCopiaSeguridad2_Click()
   ''TODO: solo productos, personas y clientes. (tal vez notas)
-  
+
   Dim manejadorLineasAlmacen As New LineaAlmacenDAO
   Dim manejadorLineaRecibo As New LineaReciboDAO
   Dim manejadorRecibo As New ReciboDAO
-  
-  If restaurarCopia() Then 
+
+  If restaurarCopia() Then
     'borrado de: lienas de almacen, lineas de recibo y recibos
     manejadorLineaRecibo.sql("DELETE FROM linearecibo")
     manejadorLineasAlmacen.sql("Delete from lineaAlmacen")
     manejadorRecibo.sql("delete from recibo")
-    
+
   Endif
-  
+
   form_Open()
-  
+
 End

@@ -9,32 +9,32 @@ Public MiScrollView As ScrollViewImagenes
 Private manejadorImagen As New ImagenesDAO
 
 Public Sub Form_Open()
-  
+
   Dim nombreClienteTmp As String
   Dim nombreEmpleadoTmp As String
   Dim CONTRASENA As String
-  
+
   If Settings["Update", False] = True Then
     'solo comprobar actualizacion al arranque si esta configurado para ello
     Application.busy = 1
     ModuleUpdate.comprobar("ventas", Application.Version, "http://seguimientodeapuestas.blogspot.com.es/2016/02/ventas.html", "oculto")
     Application.busy = 0
   Endif
-  
+
   ''NOTE: Ventas anulo el ancho de los botones T y Id
   LabelTabla.w = 0
   LabelId.w = 0
-  
+
   '' configuración iniciales al arrancar programa...
   If Settings["Directorio", "/tmp"] = "/tmp" Then Settings["Directorio"] = "/tmp"
   ModuleVarios.RutaTrabajo = Settings["Directorio", "/tmp"]
-  
+
   If Settings["AplicarIvaServicio", "No"] = "No" Then Settings["AplicarIvaServicio"] = "No"
   If Settings["AplicarIvaCupon", "No"] = "No" Then Settings["AplicarIvaCupon"] = "No"
-  
+
   CONTRASENA = Settings["Contrasena"]
   If CONTRASENA = "" Then Settings["Contrasena"] = "ventas"
-  
+
   ' If Not Exist(User.home &/ "Cortes") Then
   '   application.busy = 1
   '   Try Copy "Cortes.tar.gz" To user.home &/ "Cortes.tar.gz"
@@ -47,46 +47,46 @@ Public Sub Form_Open()
   '' Comprobación de la base de datos Cortes y añadir las tabla y vistas necesarias...version 0.0.8
   ''añadir vistas y tablas de la version 0.1.4
   '  ModuleAlbaranesVistas.comprobarAlbaranesListas()
-  
+
   'configuracion de menus
   opcionesBorradoMenu()
-  
+
   ''inicio de contador horario
   TimerRecalcular.Start()
   TimerFecha.Trigger()
   TimerFecha.Start()
   Me.title = "Gestión de Recibos y Almacén para Pequeñas tiendas. Versión " & Application.version
-  
+
   reiniciarDato()
-  
+
   formlistadoVentas.comprobarTablasEntradaRoboRoturaSalidaCREAR() 'para mostrar existencias
   'para mostrar imagenes
   MiScrollView = New ScrollViewImagenes(PanelContenedor) As "ObsScroll"
-  
+
   Me.center
-  
+
 End
 
 Public Sub ButtonDescompuesto_Click()
-  
+
   'añadir una nueva liena de descompuesto
   Dim hboxtmp As HBox
-  
+
   Inc indice
   hboxtmp = New HBox(ScrollView1)
   hboxtmp.w = ScrollView1.W - 30
   hboxtmp.h = 84
-  
+
   creabotones(hboxtmp)
-  
+
   bf = hboxtmp.Tag["filtro"]
   bf.SetFocus()
   FiltroDescripcion_Click()
-  
+
 End
 
 Public Sub creabotones(h As Hbox)
-  
+
   Dim a As Integer
   Dim btmp As Button
   Dim textTabla As TextBox
@@ -98,7 +98,7 @@ Public Sub creabotones(h As Hbox)
   Dim valueIva As ValueBox
   Dim LabelboxTotal As Label
   Dim pictureboxId As PictureBox
-  
+
   Dim coleccionDeObjetos As New Collection
   'boton de borrado
   btmp = New Button(h) As "borrado"
@@ -107,7 +107,7 @@ Public Sub creabotones(h As Hbox)
   btmp.h = 20
   btmp.tag = h
   coleccionDeObjetos.add(btmp, "borrado")
-  
+
   'tabla
   textTabla = New TextBox(h) As "tabla"
   textTabla.w = LabelTabla.w
@@ -115,7 +115,7 @@ Public Sub creabotones(h As Hbox)
   textTabla.tag = h
   textTabla.ReadOnly = True
   coleccionDeObjetos.add(textTabla, "tabla")
-  
+
   'id
   textId = New TextBox(h) As "Id"
   textiD.w = Labelid.w
@@ -123,7 +123,7 @@ Public Sub creabotones(h As Hbox)
   textiD.tag = h
   textiD.ReadOnly = True
   coleccionDeObjetos.add(textiD, "id")
-  
+
   'Codigo
   textId = New TextBox(h) As "Codigo"
   textiD.w = LabelCodigo.w
@@ -131,9 +131,9 @@ Public Sub creabotones(h As Hbox)
   textiD.tag = h
   textiD.ReadOnly = True
   coleccionDeObjetos.add(textiD, "codigo")
-  
+
   'picture
-  pictureboxId = New PictureBox(h) As "picture" 
+  pictureboxId = New PictureBox(h) As "picture"
   pictureboxiD.w = 84 'Labelid.w
   pictureboxiD.border = Border.Plain
   pictureboxiD.Tooltip = ("Haga doble click, para ver las imágenes relacionadas con este producto")
@@ -142,7 +142,7 @@ Public Sub creabotones(h As Hbox)
   pictureboxiD.tag = h
   ' pictureboxiD.ReadOnly = True -> no tiene readonly los picturebox
   coleccionDeObjetos.add(pictureboxId, "picturebox")
-  
+
   'descripcion
   textDescripciontmp = New TextBox(h) As "descripcion"
   textDescripciontmp.w = LabelDescripcion.w - 20
@@ -150,7 +150,7 @@ Public Sub creabotones(h As Hbox)
   textDescripciontmp.tag = h
   textDescripciontmp.ReadOnly = True
   coleccionDeObjetos.add(textDescripciontmp, "descripcion")
-  
+
   'boton de filtrado...
   btmp = New Button(h) As "FiltroDescripcion"
   btmp.Picture = Picture["icon:/16/filter"]
@@ -164,7 +164,7 @@ Public Sub creabotones(h As Hbox)
   valueCantidad.w = LabelCantidad.W
   valueCantidad.h = 20
   valueCantidad.tag = h
-  
+
   valueCantidad.Background = Color.Yellow
   coleccionDeObjetos.add(valueCantidad, "cantidad")
   'precio
@@ -173,14 +173,14 @@ Public Sub creabotones(h As Hbox)
   valuePrecio.w = LabelPrecio.W
   valuePrecio.h = 20
   valuePrecio.tag = h
-  
+
   If Settings["ModificarPrecios"] = "No" Then
     valuePrecio.ReadOnly = True
   Else
     valuePrecio.ReadOnly = False
     valuePrecio.Background = Color.Yellow
   Endif
-  
+
   coleccionDeObjetos.add(valuePrecio, "precio")
   'dto
   valueDescuento = New ValueBox(h) As "descuento"
@@ -190,7 +190,7 @@ Public Sub creabotones(h As Hbox)
   valueDescuento.tag = h
   valueDescuento.Background = Color.Yellow
   coleccionDeObjetos.add(valueDescuento, "descuento")
-  
+
   'iva
   valueIva = New ValueBox(h) As "iva"
   valueiva.x = Labeliva.x - ScrollView1.x
@@ -200,7 +200,7 @@ Public Sub creabotones(h As Hbox)
   valueIva.ReadOnly = True
   valueIva.Tooltip = "Cambiar % o si se aplica o no, ir al formulario de Configuracion"
   coleccionDeObjetos.add(valueIva, "iva")
-  
+
   'total
   LabelboxTotal = New Label(h)
   labelboxTotal.x = LabelTotal.x - ScrollView1.x
@@ -213,28 +213,28 @@ Public Sub creabotones(h As Hbox)
   coleccionDeObjetos.add(LabelboxTotal, "total")
   h.tag = coleccionDeObjetos
   h.w = ScrollView1.w - 2
-  
+
 End
 
 Public Sub FiltroDescripcion_Click()
-  
+
   Dim htmp As HBox
-  
+
   Dim nombre As New Collection
-  
+
   ' Print "filtrar descompuestos"
   ' Print "indice:", Last.tag 'me devuelve el H donde estan alojados los controles
   htmp = Last.tag
-  
+
   If IsNull(htmp) Then
     htmp = bf.tag
   Endif
-  
+
   FormServicios.setnombre(nombre)
-  
+
   FormServicios.irtab(0)
   FormServicios.ShowModal()
-  
+
   If nombre["salida"] = Null Then
     'no ha hecho doble click en ningun servicio/producto/cupon
     htmp.Delete()
@@ -243,19 +243,19 @@ Public Sub FiltroDescripcion_Click()
     htmp.tag["id"].text = nombre["id"]
     htmp.Tag["codigo"].text = nombre["codigo"]
     htmp.tag["descripcion"].text = nombre["descripcion"]
-    
+
     If nombre["tabla"] = 3 Then
       'se trada de un cupon, lo resto
       htmp.Tag["cantidad"].value = -1 ' por defecto compramos una cantidad de CUPON
     Else
       htmp.Tag["cantidad"].value = 1 ' por defecto compramos una cantidad
     Endif
-    
+
     htmp.Tag["precio"].value = nombre["precio"]
     htmp.Tag["descuento"].value = 0
-    
+
     '' aplicar iva o no al producto/servico/cupon añadido AL RECIBO
-    
+
     Select Case nombre["tabla"] 'tipo de tabla: 1 servicio, 2 productos, 3 cupon
       Case 1 ' servicio
         If Settings["AplicarIvaServicio"] = "No" Then
@@ -263,13 +263,13 @@ Public Sub FiltroDescripcion_Click()
         Else
           htmp.Tag["iva"].value = Settings["IVA"]
         Endif
-        
+
       Case 2 'producto
         'siempre llevan iva
         htmp.Tag["iva"].value = Settings["IVA"]
-        
+
         dibujaImagen(nombre["id"], htmp)
-        
+
       Case 3 ' cupon
         If Settings["AplicarIvaCupon"] = "No" Then
           'No aplicar Iva al cupon (tabla 3)
@@ -277,47 +277,47 @@ Public Sub FiltroDescripcion_Click()
           htmp.Tag["iva"].value = Settings["IVA"]
         Endif
     End Select
-    
+
   Endif
-  
+
 End
 
 Public Sub dibujaImagen(codigo As String, hb As Hbox) As String
-  
+
   Dim manejadorimagen As New ImagenesDAO
   Dim datostmp As New ImagenesVO
-  
+
   Try hb.tag["picturebox"].Picture = Picture[comun.RutaDdeTrabajo & "/" & manejadorimagen.ConvertirResult(manejadorimagen.BuscarIgualImagen(codigo))[0].rutaimagen]
   If Error Then hb.tag["picturebox"].Picture = Picture["SinImagen.jpg"]
-  
+
 End
 
 Public Sub borrado_click()
-  
+
   Dim htmp As HBox
-  
+
   htmp = Last.tag
   htmp.Delete
-  
+
 End
 
 Public Sub calcula(htmp As Hbox)
-  
+
   Dim total As Single
-  
+
   total = htmp.Tag["cantidad"].value * htmp.Tag["precio"].value * (1 - htmp.Tag["descuento"].value / 100) * (1 + htmp.Tag["iva"].value / 100)
-  
+
   htmp.Tag["total"].text = Format$(total, ",#.##")
-  
+
 End
 
 Public Sub CalculoTotal()
-  
+
   Dim sumatotal As Single
   Dim objTemp As Control
   'reviso todas las hbox que esten contenidos en el scrollview1
   For Each objTemp In ScrollView1.children
-    
+
     If object.Type(objTemp) = "HBox" Then
       calcula(objTemp)
       If objTemp.Tag["total"].text = " " Then
@@ -325,228 +325,228 @@ Public Sub CalculoTotal()
       Else
         sumatotal += Val(objTemp.Tag["total"].text)
       Endif
-      
+
     Endif
-    
+
   Next
   LabelSumaTotal.text = Format$(sumatotal, ",#.##")
-  
+
 End
 
 Public Sub TimerRecalcular_Timer()
-  
+
   CalculoTotal()
-  
+
 End
 
 Public Sub ButtonSalir_Click()
-  
+
   'salir de la aplilcacion
   TimerRecalcular.Stop()
   Wait 0.1
   Me.close
-  
+
 End
 
 'menus
 
 Public Sub Configurar_Click()
-  
+
   Dim contrasena As String
-  
+
   contrasena = FormPassword.pedir("Contraseña:")
   '  The path of the default configuration file is:
   '  User.Home &/ ".config/gambas" &/ Application.Name & ".conf"
-  
+
   If IsNull(Settings["Contrasena"]) Then
     Settings["Contrasena"] = "ventas"
   Endif
-  
+
   If contrasena = Settings["Contrasena"] Then
     FormConfigurar.ShowModal()
   Else
     Message.Error(("Contraseña no valida"))
   Endif
-  
+
 End
 
 Public Sub tarifas_Click()
-  
+
   FormServicios.ShowModal()
-  
+
 End
 
 Public Sub TimerFecha_Timer()
-  
+
   LabelFecha.text = Format$(Now, "mm/dd/yyyy hh:nn:ss")
   FechaActualizada = Now
-  
+
 End
 
 Public Sub Servicios_Click()
-  
+
   FormServicios.irtab(tipos.servicios)
   FormServicios.ShowModal()
-  
+
 End
 
 Public Sub productos_Click()
-  
+
   FormServicios.irtab(tipos.productos)
   FormServicios.ShowModal()
-  
+
 End
 
 Public Sub cupones_Click()
-  
+
   FormServicios.irtab(tipos.cupones)
   FormServicios.ShowModal()
-  
+
 End
 
 Public Sub clientes_Click()
   'tipo cliente
   '
-  
+
   FormClientes.ShowModal()
-  
+
 End
 
 Public Sub empleados_Click()
   'tipo empleado
-  
+
   FormClientes.ShowModal()
-  
+
 End
 
 Public Sub ButtonBuscarEmpleado_Click()
   'tipo empleado
-  
+
   Dim nombre As New Variant[]
-  
+
   FormClientes.setnombre(nombre)
   FormClientes.cualtipo(tipos.empleado)
   FormClientes.ShowModal()
-  
+
   If IsNull(nombre[0]) Then
   Else
     TextBoxEmpleado.text = nombre[0]  'string de nombre
     TextBoxEmpleado.tag = nombre[1] 'id
   Endif
-  
+
 End
 
 Public Sub ButtonBuscarCliente_Click()
-  
+
   'tipo cliente
   Dim nombre As New Variant[]
-  
+
   FormClientes.setnombre(nombre)
-  
+
   FormClientes.cualtipo(tipos.cliente)
   FormClientes.ShowModal()
-  
+
   If nombre[0] = Null Then
   Else
     TextBoxCliente.text = nombre[0]
     TextBoxCliente.tag = nombre[1] 'id
   Endif
-  
+
 End
 
 Public Sub historico_Click()
-  
+
   FormHistoricoRegistros.showModal()
-  
+
 End
 
 Public Sub ButtonGuardarImprimir_Click()
-  
+
   Dim idFechayhora As String
   Dim v As New Variant[]
-  
+
   Dim cantidadRecibida As Single
   Dim cantidadCambio As Single
-  
+
   If LabelSumaTotal.text = " " Then
     LabelSumaTotal.text = "0"
   Endif
-  
+
   v.Add(Val(LabelSumaTotal.text))
-  
+
   If IsNull(v[0]) Then
     Return
   Endif
-  
+
   FormCobro.setValores(v)
   FormCobro.ShowModal()
-  
+
   If IsNull(v[0]) Then
-    
+
     Return
   Else
-    
+
     cantidadRecibida = v[0]
     Try cantidadCambio = v[1]
-    
+
   Endif
-  
+
   idFechayhora = LabelFecha.Text
-  
+
   If ReciboAdd(idFechayhora) Then
     'guardar el recibo fue bien...
     ModuleVarios.imprimirRecibo(idFechayhora, cantidadRecibida, cantidadCambio)
-    
+
     reiniciarDato()
-    
+
   Endif
-  
+
 End
 
 Public Sub MenuAgenda_Click()
-  
+
   Dim instalado As String
-  
+
   Shell "which plan" To instalado
-  
+
   If instalado = "" Then
     Message.Info(("Debe de instalar el programa plan (sudo apt-get install plan)"))
   Else
     Exec ["plan"]
   Endif
-  
+
 End
 
 Public Sub Salir_Click()
-  
+
   ButtonSalir_Click()
-  
+
 End
 
 '-----------------------------------------------------------------------
 Public Sub reiniciarDato()
-  
+
   Dim nombreEmpleadoTmp As String
   Dim nombreClienteTmp As String
-  
+
   Dim objtemp As Object
   'borrado de datos de cliente y empleado
-  
+
   TextBoxEmpleado.Text = ""
   TextBoxCliente.Text = ""
-  
+
   'cargar empleado y cliente por defecto..
   If Settings["EmpleadoPorDefecto", "1|EmpleadoPorDefecto"] <> "" Then
     nombreEmpleadoTmp = Settings["EmpleadoPorDefecto"]
-    
+
   Endif
   If comprobarSiExiste("empleado", nombreEmpleadoTmp) Then
-    
+
     TextBoxEmpleado.text = Split(nombreEmpleadoTmp, "|")[1] 'string de nombre
     TextBoxEmpleado.tag = Split(nombreEmpleadoTmp, "|")[0] 'id
-    
+
   Endif
-  
+
   If Settings["ClientePorDefecto", "1|ClientePorDefecto"] <> "" Then
     nombreClienteTmp = Settings["ClientePorDefecto"]
     If comprobarSiExiste("cliente", nombreClienteTmp) Then
@@ -554,7 +554,7 @@ Public Sub reiniciarDato()
       TextBoxCliente.tag = Split(nombreClienteTmp, "|")[0] 'id
     Endif
   Endif
-  
+
   LabelSumaTotal.Text = ""
   'borrado de lineas de descomuestos
   'borrado de hbox...
@@ -563,25 +563,25 @@ Public Sub reiniciarDato()
     If object.Type(objTemp) = "HBox" Then
       objtemp.delete
     Endif
-    
+
   Next
-  
+
   Try MiScrollView.vaciar()
   'en un primer arranque no esta aun activado
-  
+
 End
 
 Public Sub ReciboAdd(FechaYhora As String) As Boolean
-  
+
   Dim manejadorRecibo As New ReciboDAO
   Dim reciboDatos As New ReciboVO
-  
+
   Dim manejadorLineaRecibo As New LineaReciboAdaptadaDAO
   Dim lineaReciboDatos As LineareciboVO
-  
+
   Dim objTemp As Control
   Dim fechaAlbaran As Date
-  
+
   'añadir recibo:
   'Tabla: ReciboDao
   'numero, empleado, total, cliente
@@ -591,31 +591,31 @@ Public Sub ReciboAdd(FechaYhora As String) As Boolean
     Message.Info(("Debe de indicar un cliente"))
     Return False
   Endif
-  
+
   reciboDatos.idcliente = TextBoxCliente.tag
-  
+
   If IsNull(TextBoxEmpleado.tag) Then
     Message.Info(("Debe de indicar un empleado"))
     Return False
   Endif
-  
+
   reciboDatos.idempleado = TextBoxEmpleado.tag
   reciboDatos.idlinearecibo = FechaYhora
-  
+
   If LabelSumaTotal.text = " " Or LabelSumaTotal.text = "" Then LabelSumaTotal.text = "0"
   reciboDatos.importe = Val(LabelSumaTotal.text)
-  
+
   manejadorRecibo.registrar(reciboDatos)
   'y lineas de descompuesto
   ' Tabla lineareciboDAO
-  
+
   'reviso todas las hbox que esten contenidos en el scrollview1
   For Each objTemp In ScrollView1.children
     If object.Type(objTemp) = "HBox" Then
-      
+
       If objTemp.tag["tabla"].text <> "" Then
         lineaReciboDatos = New LineareciboVO
-        
+
         lineaReciboDatos.cantidad = objTemp.Tag["cantidad"].value
         lineaReciboDatos.descuento = objTemp.Tag["descuento"].value
         lineaReciboDatos.idlinearecibo = reciboDatos.idlinearecibo
@@ -623,84 +623,84 @@ Public Sub ReciboAdd(FechaYhora As String) As Boolean
         lineaReciboDatos.precio = objTemp.Tag["precio"].value
         lineaReciboDatos.tabla = objTemp.tag["tabla"].text
         lineaReciboDatos.iva = objTemp.Tag["iva"].value
-        
+
         manejadorLineaRecibo.registrar(lineaReciboDatos)
       Endif
     Endif
-    
+
   Next
   Return True
-  
+
 End
 
 Public Sub ButtonAgenda_Click()
-  
+
   MenuAgenda_Click()
-  
+
 End
 
 Public Sub ButtonNuevo_Click()
-  
+
   reiniciarDato()
-  
+
 End
 
 Public Sub TextBoxEmpleado_DblClick()
-  
+
   ButtonBuscarEmpleado_Click()
-  
+
 End
 
 Public Sub TextBoxCliente_DblClick()
-  
+
   ButtonBuscarCliente_Click()
-  
+
 End
 
 Public Sub ListadoVentas_Click()
-  
+
   FormListadoVentas.ShowModal()
-  
+
 End
 
 Public Sub ButtonHistoricoRecibos_Click()
-  
+
   TimerRecalcular.Stop()
   FormHistoricoRegistros.showModal()
   TimerRecalcular.Start()
-  
+
 End
 
 Public Sub ButtonInforme_Click()
-  
+
   TimerRecalcular.Stop()
   FormListadoVentas.ShowModal()
   TimerRecalcular.Start()
-  
+
 End
 
 Public Sub ButtonConfigurar_Click()
-  
+
   TimerRecalcular.Stop()
   Configurar_Click()
   TimerRecalcular.Start()
-  
+
 End
 
 Public Sub Ayuda_Click()
-  
+
   TimerRecalcular.Stop()
   FormAyuda.ShowModal()
   TimerRecalcular.Start()
-  
+
 End
 
 Public Sub ButtonEntradas_Click()
-  
+
   TimerRecalcular.Stop()
   FormAlmacen.Showmodal()
   TimerRecalcular.Start()
-  
+
 End
 
 '----------------------------------------------------
@@ -708,23 +708,23 @@ End
 '----------------------------------------------------
 
 Public Sub opcionesBorradoMenu()
-  
+
 End
 
 Public Function comprobarSiExiste(tabla As String, texto As String) As Boolean
-  
+
   Dim idtmp As String
-  
+
   Dim conectar As New Conexion
   Dim SQLString As String
   Dim hresult As Result
-  
+
   Try idtmp = Split(texto, "|")[0] 'id
-  If Error Then  
+  If Error Then
     Return False
   Endif
   conectar.Conexion()
-  
+
   sqlstring = "SELECT id FROM " & tabla & " where id='&1'"
   Try hresult = conectar.hconn.Exec(Subst(SQLString, idtmp))
   If Error Then
@@ -736,68 +736,68 @@ Public Function comprobarSiExiste(tabla As String, texto As String) As Boolean
       Return True
     Endif
   Endif
-  
+
 End
 
 Public Sub ButtonComentarios_Click()
-  
+
   FormLibroClientes.Show()
-  
+
 End
 
 Public Sub ButtonAbrirCajon_Click()
-  
+
   Cajon.abrir()
-  
+
 End
 
 Public Sub ButtonAcercaDE_Click()
-  
+
   Ayuda_Click()
-  
+
 End
 
 Public Sub PanelContenedor_MouseDown()
-  
+
 End
 
 Public Sub Picture_MouseUp()
-  
+
   Dim id As Integer
   Dim coleccion As Collection
-  Dim listaImagenes As ImagenesVO[] 
-  
+  Dim listaImagenes As ImagenesVO[]
+
   MiScrollView.vaciar()
   ' coleccion = Last.tag.tag
-  
+
   ' Print coleccion["id"].text
-  
-  If Last.tag.tag["id"].text = "" Then  
+
+  If Last.tag.tag["id"].text = "" Then
     Return
-    
+
   Else
     id = Last.tag.tag["id"].text
     listaImagenes = manejadorImagen.ConvertirResult(manejadorImagen.BuscarIgualImagen(id))
-    
+
     MiScrollView.carga(listaImagenes, False)
-    
+
   Endif
-  
+
   ' Print coleccion["id"].text
-  
+
 End
 
 Public Sub PictureBox1_MouseDown()
-  
+
   Ayuda_Click()
-  
+
 End
 
 Public Sub ButtonNuevosProductos_Click()
-  
+
   Dim manejarProducto As New ProductoAdaptadoDAO
   Dim hprod As New ProductoVO
-  
+
   IntroProductos.setmodo("add", hprod, manejarProducto)
-  
+
 End

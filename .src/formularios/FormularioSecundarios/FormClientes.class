@@ -8,10 +8,10 @@ Private ManejarPersona As PersonaDAO
 Private tipo As String
 
 Public Sub Form_Open()
-  
+
   If Settings["BorradoClientesEmpleados", False] = False Then Settings["BorradoClientesEmpleados"] = False
   Menu1.Children[4].enabled = Settings["BorradoClientesEmpleados"]
-  
+
   If tipo = tipos.empleado Then
     ManejarPersona = New EmpleadoDAO
     ' ManejarEmpleados.gridFormatearColumnas(GridView1)
@@ -27,33 +27,33 @@ Public Sub Form_Open()
   Endif
   ManejarPersona.ColorFilaPar = Settings["ColorRegillaPar", Color.orange]
   ManejarPersona.ColorFilaImPar = Settings["ColorRegillaImPar", color.white]
-  
+
   'ManejarPersona.gridFormatearColumnas(GridView1)
   'hresult = ManejarPersona.contenido()
   'ManejarPersona.GridResultanteSQL(hresult, GridView1)
   escribeDatos()
-  
+
 End
 
 Public Sub setnombre(n As Variant[])
-  
+
   $nombre = n
-  
+
 End
 
 Public Sub ButtonSalir_Click()
-  
+
   If IsNull($nombre) Then
   Else
-    
+
     $nombre.Add(Null) 'añado null, puede ser el 2º valor..
   Endif
   Me.Close()
-  
+
 End
 
 Public Sub cualtipo(t As String)
-  
+
   Select Case t
     Case "Clientes"
       LabelTitulo.text = t
@@ -62,7 +62,7 @@ Public Sub cualtipo(t As String)
       LabelTitulo.text = t
       tipo = t
   End Select
-  
+
 End
 
 '--------------------------------------
@@ -71,30 +71,30 @@ End
 Public Sub add_Click()
   'indico modo "añadir", le paso una persona del tipo cliente o empleado
   'le paso manejador
-  
+
   IntroClienteEmpleado.setmodo("add", Null, ManejarPersona)
-  
+
   'escribo todo los datos...
   ManejarPersona.GridResultanteSQL(ManejarPersona.contenido(), GridView1)
   hresult = ManejarPersona.contenido()
   escribeDatos()
-  
+
 End
 
 Public Sub Editar_Click()
-  
+
   Dim personaEditar As New PersonaVO
   Dim indice As Integer
   Dim extraeresultado As Result
-  
+
   Try indice = Val(GridView1[GridView1.row, 0].text)
-  
+
   If Error Then
     Message.Info(("Debe elegir un registro"))
     Return
   Endif
   extraeresultado = ManejarPersona.BuscarIgualId(indice)
-  
+
   'convierte resultado en clase VO
   personaEditar.comentario = extraeresultado["comentario"]
   personaEditar.correo = extraeresultado["correo"]
@@ -103,29 +103,29 @@ Public Sub Editar_Click()
   personaEditar.nombre = extraeresultado["nombre"]
   personaEditar.telefono = extraeresultado["telefono"]
   personaEditar.id = indice
-  
+
   IntroClienteEmpleado.setindice(indice)
   IntroClienteEmpleado.setmodo("editar", personaEditar, ManejarPersona)
   'escribo todo los datos...
   ManejarPersona.GridResultanteSQL(ManejarPersona.contenido(), GridView1)
   hresult = ManejarPersona.contenido()
   escribeDatos()
-  
+
 End
 
 Public Sub Borrar_Click()
-  
+
   Dim manejarRecibos As New ReciboDAO
   Dim indice As Integer
   Dim resultado As Result
-  
+
   Try indice = Val(GridView1[GridView1.row, 0].text)
-  
+
   If Error Then
     Message.Info(("Debe elegir un registro"))
     Return
   Else
-    
+
     'comprobar si es un cliente o empleado el que debo borrar
     If Me.Title = "Empleados" Then
       'estamos con un empleado...
@@ -133,30 +133,30 @@ Public Sub Borrar_Click()
     Else
       resultado = manejarRecibos.BuscarIgualIdcliente(indice)
     Endif
-    
+
     'si hay recibos con ese cliente/empleados, no se puede borrar
     If resultado.count <> 0 Then
       Message.Info(("No es posible borrar esta persona, tiene recibos asignados"))
       Return
     Endif
-    
+
     ManejarPersona.BorrarId(indice)
     'escribo todo los datos...
     ManejarPersona.GridResultanteSQL(ManejarPersona.contenido(), GridView1)
     hresult = ManejarPersona.contenido()
     escribeDatos()
-    
+
   Endif
-  
+
 End
 
 Public Sub Filtrar_Click()
-  
+
   Dim opciones As New Variant[]
-  
+
   FormFiltrarClientesEmpleados.opcionesFiltrado(opciones)
   FormFiltrarClientesEmpleados.ShowModal()
-  
+
   Select Case opciones[0]
     Case Null
       'cancelado
@@ -165,20 +165,20 @@ Public Sub Filtrar_Click()
       hresult = ManejarPersona.BuscarContenidoNombre(opciones[1])
     Case "telefono"
       hresult = ManejarPersona.BuscarContenidoTelefono(opciones[1])
-      
+
   End Select
-  
+
   ManejarPersona.MostrarGridView(GridView1,, hresult)
-  
+
 End
 
 Public Sub QuitarFiltro_Click()
   'escribo todo los datos...
-  
+
   ManejarPersona.GridResultanteSQL(ManejarPersona.contenido(), GridView1)
   hresult = ManejarPersona.contenido()
   escribeDatos()
-  
+
 End
 
 'Public Sub GridView1_Data(row As Integer, column As Integer)
@@ -190,63 +190,63 @@ End
 'End
 
 Public Sub escribeDatos()
-  
+
   ManejarPersona.MostrarGridView(GridView1)
-  
+
 End
 
 Public Sub GridView1_DblClick()
-  
+
   Try $nombre.add(GridView1[GridView1.row, 2].text)
   Try $nombre.add(GridView1[GridView1.row, 0].text)
-  
+
   If IsNull($nombre) Then
     ButtonSalir_Click()
   Endif
-  
+
   If Error Then
     $nombre.Add(Null)
   Endif
   ButtonSalir_Click()
-  
+
 End
 
 Public Sub Form_Close()
-  
+
   If IsNull($nombre) Then
   Else
-    
+
     $nombre.Add(Null) 'añado null, puede ser el 2º valor..
   Endif
-  
+
 End
 
 Public Sub ButtonAgregar_Click()
-  
+
   add_Click()
-  
+
 End
 
 Public Sub ButtonEditor_Click()
-  
+
   Editar_Click()
-  
+
 End
 
 Public Sub ButtonFiltra_Click()
-  
+
   Filtrar_Click()
-  
+
 End
 
 Public Sub ButtonQuitarFiltro_Click()
-  
+
   QuitarFiltro_Click()
-  
+
 End
 
 Public Sub ButtonBorrar_Click()
-  
+
   Borrar_Click()
-  
+
 End

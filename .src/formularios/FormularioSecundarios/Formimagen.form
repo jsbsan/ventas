@@ -4,11 +4,6 @@
   MoveScaled(0,0,59,58)
   Icon = Picture["carrito.png"]
   Arrangement = Arrange.Fill
-  { PictureBox1 PictureBox
-    MoveScaled(0,0,51,54)
-    Expand = True
-    Border = Border.Plain
-  }
   { HBox1 Panel
     MoveScaled(0,0,11,31)
     Enabled = False
@@ -28,5 +23,10 @@
       Picture = Picture["rotarimagen.jpg"]
       Border = Border.Raised
     }
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(0,0,51,54)
+    Expand = True
+    Border = Border.Plain
   }
 }

@@ -5,43 +5,43 @@ Private datoslineaAlmacen As New LineaAlmacenVO
 Private hresult As Result
 
 Public Sub Form_Open()
-  
+
   If Settings["BorradoRecibos", False] = False Then Settings["BorradoRecibos"] = False
   Menu1.Children[6].enabled = Settings["BorradoRecibos"]
-  
+
   definirGridview()
   rellenarConDatos()
   Me.Title = "Gestión de Almacén"
   Me.Center
-  
+
 End
 
 Public Sub addentrada_Click()
-  
+
   Dim datos As New LineaAlmacenVO
-  
+
   IntroAlbaranAlmacen.setDatos(datos)
   IntroAlbaranAlmacen.ShowModal()
-  
+
   If IsNull(datos) Then
     'se ha cancelada añadir datos
   Else
-    
+
     manejadorlineaAlmacen.registrar(datos)
     'rellenar gridview...
     rellenarConDatos()
   Endif
-  
+
 End
 
 Public Sub editarentrada_Click()
-  
+
   Dim datos As New LineaAlmacenVO
   Dim descripcionProducto As String
   Dim indice As Integer
-  
+
   Try indice = Val(GridView1[GridView1.row, 0].text)
-  
+
   If Error Then
     Message.Info(("Debe elegir un registro"))
     Return
@@ -53,69 +53,69 @@ Public Sub editarentrada_Click()
     descripcionProducto = GridView1[GridView1.row, 5].text
     datos.cantidad = GridView1[GridView1.row, 6].text
     datos.tipo = GridView1[GridView1.row, 7].text
-    
+
     IntroAlbaranAlmacen.setDatos(datos, descripcionProducto)
     IntroAlbaranAlmacen.ShowModal()
-    
+
     If IsNull(datos) Then
       'se ha cancelada añadir datos
     Else
-      
+
       manejadorlineaAlmacen.ModificarId(datos.id, datos)
-      
+
       'rellenar gridview...
       rellenarConDatos()
     Endif
   Endif
-  
+
 End
 
 Public Sub Borrar_Click()
-  
+
   Dim indice As Integer
-  
+
   Try indice = Val(GridView1[GridView1.row, 0].text)
-  
+
   If Error Then
     Message.Info(("Debe elegir un registro"))
     Return
   Else
     manejadorlineaAlmacen.BorrarId(indice)
-    
+
     rellenarConDatos()
   Endif
-  
+
 End
 
 Public Sub ButtonSalir_Click()
-  
+
   Application.busy = 1
   ButtonSalir.text = "espere....."
   Wait 0.01
   formlistadoVentas.comprobarTablasEntradaRoboRoturaSalidaCREAR() 'para mostrar existencias
   Application.busy = 0
-  
+
   Me.Close
-  
+
 End
 
 Public Sub definirGridview()
-  
+
   With GridView1
     .header = 3
     .rows.count = 0
     .columns.count = 8
     .Columns[0].title = ("ID")
     .Columns[1].title = ("Fecha")
-    
+
     .Columns[2].title = ("idProducto")
-    
+
     .Columns[3].title = ("codigo")
     .Columns[4].title = ("imagen")
     .Columns[5].title = ("Producto")
     .Columns[6].title = ("Cantidad")
     .Columns[7].title = ("Tipo")
-    
+
     .Columns[0].width = 21
     .Columns[1].width = 85
     .Columns[2].width = 21
@@ -126,11 +126,11 @@ Public Sub definirGridview()
     .Columns[7].width = 109
   End With
   GridView1.tag = ["id", "fecha", "idProducto", "codigo", "imagen", "nombre", "cantidad", "tipo"]
-  
+
 End
 
 Public Sub rellenarConDatos(Optional sentenciasql As String)
-  
+
   Dim conectar As New Conexion
   'nos conectamos
   conectar.Conexion()
@@ -142,132 +142,132 @@ Public Sub rellenarConDatos(Optional sentenciasql As String)
   'consegumos result
   'cambiamos filas del gridview
   GridView1.clear()
-  
+
   GridView1.Rows.Count = hresult.Count
-  
+
 End
 
 Public Sub GridView1_Data(row As Integer, column As Integer)
-  
+
   hresult.MoveTo(row)
-  
+
   If GridView1.tag[column] = "fecha" Then
     'fecha al estilo europeo
     Try GridView1.Data.text = Format(hresult[GridView1.tag[column]], "dd/mm/yyyy")
   Else
     Try GridView1.Data.text = hresult[GridView1.tag[column]]
   Endif
-  
+
   'añadimos imagen...
-  If Upper$(GridView1.Columns[column].title) = Upper$("imagen") Then 
-    
+  If Upper$(GridView1.Columns[column].title) = Upper$("imagen") Then
+
     GridView1[row, column].Picture = Picture[ExtraigoRutaImagen(row)]
-    
+
     GridView1.Rows.h = 70
-    
+
   Endif
-  
+
 End
 
 Public Sub ExtraigoRutaImagen(fila As Integer) As String
-  
+
   Dim ruta As String
   Dim manejaImagen As New ImagenesDAO
-  
-  ruta = manejaImagen.ConvertirResult(manejaImagen.BuscarIgualImagen(Str$(GridView1[fila, 2].text)))[0].rutaimagen
-  
+
+  Try ruta = manejaImagen.ConvertirResult(manejaImagen.BuscarIgualImagen(Str$(GridView1[fila, 2].text)))[0].rutaimagen
+
   Return comun.RutaDdeTrabajo & "mini_" & ruta
-  
+
 End
 
 Public Sub filtradoFecha_Click()
-  
+
   Dim fecha As Date
   Dim sentenciasql As String
   'filtrar por fecha los datos....
-  
+
   fecha = InputFecha.pedir()
-  
+
   If IsNull(fecha) Then
     'no hacer nada
   Else
     sentenciasql = Subst$("SELECT * FROM VistaAlbaranesAlmacen where fecha like '%&1%'", cambiarFecha(Mid(Str$(fecha), 1, 10)))
-    
+
     rellenarConDatos(sentenciasql)
   Endif
-  
+
 End
 
 '--------------
 Public Function cambiarFecha(f As String) As String
-  
+
   Dim anno As String
   Dim dia As String
   Dim mes As String
-  
+
   dia = Mid$(f, 1, 2)
   mes = Mid$(f, 4, 2)
   anno = Mid$(f, 7, 4)
-  
+
   Return anno & "-" & mes & "-" & dia
-  
+
 End
 
 Public Function convertirAFecha(f As String) As Date
-  
+
   Dim fecha As Date
   Dim anno As String
   Dim dia As String
   Dim mes As String
-  
+
   dia = Mid$(f, 1, 2)
   mes = Mid$(f, 4, 2)
   anno = Mid$(f, 7, 4)
-  
+
   fecha = Date(anno, mes, dia)
-  
+
   Return fecha
-  
+
 End
 
 Public Sub quitafiltro_Click()
-  
+
   rellenarConDatos()
-  
+
 End
 
 Public Sub GridView1_DblClick()
-  
+
   editarentrada_Click()
-  
+
 End
 
 Public Sub ButtonAgregar_Click()
-  
+
   addentrada_Click()
-  
+
 End
 
 Public Sub ButtonEditor_Click()
-  
+
   editarentrada_Click()
-  
+
 End
 
 Public Sub ButtonFiltraFecha_Click()
-  
+
   filtradoFecha_Click()
-  
+
 End
 
 Public Sub ButtonQuitarFiltro_Click()
-  
+
   quitafiltro_Click()
-  
+
 End
 
 Public Sub ButtonBorrar_Click()
-  
+
   Borrar_Click()
-  
+
 End
